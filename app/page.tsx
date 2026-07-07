@@ -34,12 +34,26 @@ export default function Page() {
       />
       <main id="main-content" className="min-h-screen bg-background text-foreground">
         <Header />
-        <Hero />
-        <FeaturesSection />
-        <ProductGrid />
-        <TestimonialsSection />
-        <CTASection />
-        <Footer />
+        <section id="hero" aria-label="Secção de boas-vindas com apresentação">
+          <Hero />
+        </section>
+        
+        <section id="coleccoes" aria-label="Colecções em destaque">
+          <FeaturesSection />
+          <ProductGrid />
+        </section>
+        
+        <section id="testemunhos" aria-label="Testemunhos de clientes">
+          <TestimonialsSection />
+        </section>
+        
+        <section id="cta" aria-label="Chamada para acção">
+          <CTASection />
+        </section>
+        
+        <footer id="contacto" aria-label="Rodapé e contacto">
+          <Footer />
+        </footer>
       </main>
     </>
   )

@@ -115,18 +115,18 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.4 }}
           >
-            <Link
-              href="/coleccoes"
+            <a
+              href="#coleccoes"
               className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
               EXPLORAR COLECÇÃO
-            </Link>
-            <Link
-              href="#"
+            </a>
+            <a
+              href="#testemunhos"
               className="px-12 py-4 border-2 border-foreground text-foreground font-semibold tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
               SABER MAIS
-            </Link>
+            </a>
           </motion.div>
         </div>
       </div>

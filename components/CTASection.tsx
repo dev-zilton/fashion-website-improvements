@@ -52,18 +52,18 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <Link
-                href="/coleccoes"
+              <a
+                href="#coleccoes"
                 className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm"
               >
                 COMPRAR AGORA
-              </Link>
-              <Link
-                href="#"
+              </a>
+              <a
+                href="#contacto"
                 className="px-12 py-4 border-2 border-white text-white font-semibold tracking-wider hover:bg-white hover:text-black transition-colors duration-300 inline-block text-sm"
               >
                 SABER MAIS
-              </Link>
+              </a>
             </motion.div>
           </div>
         </ScrollReveal>

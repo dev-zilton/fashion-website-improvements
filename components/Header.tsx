@@ -10,7 +10,12 @@ export function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
-  const navItems = ['COLECÇÕES', 'NOVIDADES', 'SOBRE', 'CONTACTO']
+  const navItems = [
+    { label: 'COLECÇÕES', id: 'coleccoes' },
+    { label: 'TESTEMUNHOS', id: 'testemunhos' },
+    { label: 'CTA', id: 'cta' },
+    { label: 'CONTACTO', id: 'contacto' },
+  ]
 
   return (
     <>
@@ -22,7 +27,7 @@ export function Header() {
         Ir para conteúdo principal
       </a>
       <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
-      <nav className="flex items-center justify-between px-6 py-6 max-w-7xl mx-auto">
+      <nav className="flex items-center justify-between px-6 py-6 max-w-7xl mx-auto" aria-label="Navegação principal">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-wider" style={{ fontFamily: 'Playfair Display' }}>
           DRIP<span className="text-accent">GOD</span>
@@ -31,13 +36,13 @@ export function Header() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-12">
           {navItems.map((item) => (
-            <Link
-              key={item}
-              href={`/#${item.toLowerCase()}`}
+            <a
+              key={item.id}
+              href={`#${item.id}`}
               className="text-xs tracking-widest font-medium hover:text-accent transition-colors duration-300 focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1"
             >
-              {item}
-            </Link>
+              {item.label}
+            </a>
           ))}
         </div>
 
@@ -85,24 +90,26 @@ export function Header() {
           >
             <motion.div
               className="flex flex-col gap-4 px-6 py-6"
+              role="navigation"
+              aria-label="Menu móvel"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2, delay: 0.1 }}
             >
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item}
+                  key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
-                  <Link
-                    href={`/#${item.toLowerCase()}`}
+                  <a
+                    href={`#${item.id}`}
                     className="text-sm font-medium tracking-wide hover:text-accent transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1 block"
                     onClick={() => setIsOpen(false)}
                   >
-                    {item}
-                  </Link>
+                    {item.label}
+                  </a>
                 </motion.div>
               ))}
             </motion.div>
