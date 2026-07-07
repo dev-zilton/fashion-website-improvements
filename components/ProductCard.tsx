@@ -12,9 +12,11 @@ interface ProductCardProps {
   image: string
   collection: string
   index: number
+  onAddToCart?: (productId: string) => void
+  onToggleWishlist?: (productId: string) => void
 }
 
-export function ProductCard({ id, title, price, image, collection, index }: ProductCardProps) {
+export function ProductCard({ id, title, price, image, collection, index, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -59,13 +61,15 @@ export function ProductCard({ id, title, price, image, collection, index }: Prod
 
           {/* Wishlist Button */}
           <motion.button
-            className="absolute top-4 right-4 p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10"
+            className="absolute top-4 right-4 p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               e.preventDefault()
               setIsWishlisted(!isWishlisted)
+              onToggleWishlist?.(id)
             }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           >
             <Heart
               size={18}
@@ -75,14 +79,15 @@ export function ProductCard({ id, title, price, image, collection, index }: Prod
 
           {/* Quick Add Button */}
           <motion.button
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10"
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => {
               e.preventDefault()
-              console.log('Add to cart:', id)
+              onAddToCart?.(id)
             }}
+            aria-label={`Add ${title} to cart`}
           >
             <ShoppingBag size={16} />
             ADICIONAR

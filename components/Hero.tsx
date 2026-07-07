@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useMotionPreference } from '@/hooks/useMotionPreference'
 
 export function Hero() {
   const [activeImage, setActiveImage] = useState(0)
+  const [scrollY, setScrollY] = useState(0)
+  const prefersReducedMotion = useMotionPreference()
 
   // Rotate hero images every 8 seconds
   useEffect(() => {
@@ -14,6 +17,18 @@ export function Hero() {
     }, 8000)
     return () => clearInterval(timer)
   }, [])
+
+  // Parallax scroll effect
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [prefersReducedMotion])
 
   const collections = [
     {
@@ -35,16 +50,24 @@ export function Hero() {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Background with crossfade */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary to-secondary">
+      {/* Background with crossfade and parallax */}
+      <div
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-primary to-secondary"
+        style={{
+          transform: prefersReducedMotion ? 'none' : `translateY(${scrollY * 0.3}px)`,
+        }}
+      >
         {collections.map((collection, index) => (
           <motion.div
             key={index}
             className="absolute inset-0"
-            style={{ background: collection.image }}
+            style={{
+              background: collection.image,
+              willChange: 'opacity',
+            }}
             initial={{ opacity: index === 0 ? 0.1 : 0 }}
             animate={{ opacity: index === activeImage ? 0.3 : 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 1 }}
           />
         ))}
       </div>
@@ -57,7 +80,7 @@ export function Hero() {
             className="text-xs md:text-sm tracking-widest text-accent mb-8"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.6, delay: 0.1 }}
           >
             — NOVO LANÇAMENTO —
           </motion.p>
@@ -68,7 +91,7 @@ export function Hero() {
             style={{ fontFamily: 'Playfair Display' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.2 }}
           >
             Estilo Premium
             <br />
@@ -80,7 +103,7 @@ export function Hero() {
             className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.3 }}
           >
             Descubra a excelência em cada peça. Qualidade, design e conforto em perfeita harmonia.
           </motion.p>
@@ -90,17 +113,17 @@ export function Hero() {
             className="flex flex-col md:flex-row gap-6 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.4 }}
           >
             <Link
               href="/colecoes"
-              className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm"
+              className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
               EXPLORAR COLEÇÃO
             </Link>
             <Link
               href="#"
-              className="px-12 py-4 border-2 border-foreground text-foreground font-semibold tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 inline-block text-sm"
+              className="px-12 py-4 border-2 border-foreground text-foreground font-semibold tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
               CONHEÇA MAIS
             </Link>

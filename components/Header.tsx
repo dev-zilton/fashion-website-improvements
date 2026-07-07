@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, ShoppingBag } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,7 +26,7 @@ export function Header() {
             <Link
               key={item}
               href={`/#${item.toLowerCase()}`}
-              className="text-xs tracking-widest font-medium hover:text-accent transition-colors duration-300"
+              className="text-xs tracking-widest font-medium hover:text-accent transition-colors duration-300 focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1"
             >
               {item}
             </Link>
@@ -45,31 +46,61 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden p-2 hover:bg-muted rounded transition-colors"
+            className="md:hidden p-2 hover:bg-muted rounded transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={isOpen ? 'close' : 'open'}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isOpen ? <X size={20} /> : <Menu size={20} />}
+              </motion.div>
+            </AnimatePresence>
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="flex flex-col gap-4 px-6 py-6">
-            {navItems.map((item) => (
-              <Link
-                key={item}
-                href={`/#${item.toLowerCase()}`}
-                className="text-sm font-medium tracking-wide hover:text-accent transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu - Animated */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden border-t border-border bg-background overflow-hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+          >
+            <motion.div
+              className="flex flex-col gap-4 px-6 py-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 * index }}
+                >
+                  <Link
+                    href={`/#${item.toLowerCase()}`}
+                    className="text-sm font-medium tracking-wide hover:text-accent transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1 block"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item}
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
