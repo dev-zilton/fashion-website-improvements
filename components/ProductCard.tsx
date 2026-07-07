@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ShoppingBag, Heart } from 'lucide-react'
-import { useState } from 'react'
+import { useState, memo } from 'react'
 
 interface ProductCardProps {
   id: string
@@ -16,7 +16,7 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string) => void
 }
 
-export function ProductCard({ id, title, price, image, collection, index, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, index, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -124,3 +124,5 @@ export function ProductCard({ id, title, price, image, collection, index, onAddT
     </motion.div>
   )
 }
+
+export const ProductCard = memo(ProductCardComponent)

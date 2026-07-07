@@ -13,7 +13,15 @@ export function Header() {
   const navItems = ['COLECÇÕES', 'NOVIDADES', 'SOBRE', 'CONTACTO']
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
+    <>
+      {/* Skip to main content link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-accent focus:text-black"
+      >
+        Ir para conteúdo principal
+      </a>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
       <nav className="flex items-center justify-between px-6 py-6 max-w-7xl mx-auto">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-wider" style={{ fontFamily: 'Playfair Display' }}>
@@ -102,5 +110,6 @@ export function Header() {
         )}
       </AnimatePresence>
     </header>
+    </>
   )
 }
