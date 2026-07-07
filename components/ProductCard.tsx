@@ -19,6 +19,17 @@ interface ProductCardProps {
 function ProductCardComponent({ id, title, price, image, collection, index, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [imageError, setImageError] = useState(false)
+
+  // Validação básica
+  if (!id || !title || price < 0) {
+    console.error('[DripGOd] ProductCard inválido:', { id, title, price })
+    return (
+      <div className="bg-muted rounded p-4 text-muted-foreground text-sm">
+        Produto indisponível
+      </div>
+    )
+  }
 
   return (
     <motion.div
@@ -41,18 +52,25 @@ function ProductCardComponent({ id, title, price, image, collection, index, onAd
           {/* Product Image Container */}
           <div className="relative w-full h-full">
             {/* Main Image */}
-            <motion.img
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover"
-              initial={{ scale: 1, translateY: 0, opacity: 1 }}
-              animate={{
-                scale: isHovered ? 1.05 : 1,
-                translateY: isHovered ? -8 : 0,
-                opacity: isHovered ? 0.95 : 1,
-              }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            />
+            {imageError ? (
+              <div className="w-full h-full bg-muted flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Imagem indisponível</span>
+              </div>
+            ) : (
+              <motion.img
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover"
+                initial={{ scale: 1, translateY: 0, opacity: 1 }}
+                animate={{
+                  scale: isHovered ? 1.05 : 1,
+                  translateY: isHovered ? -8 : 0,
+                  opacity: isHovered ? 0.95 : 1,
+                }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                onError={() => setImageError(true)}
+              />
+            )}
 
             {/* Overlay */}
             <motion.div
