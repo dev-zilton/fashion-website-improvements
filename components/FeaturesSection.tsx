@@ -8,17 +8,17 @@ const features = [
   {
     icon: Zap,
     title: 'Qualidade Premium',
-    description: 'Selecionamos apenas as melhores peças com materiais de excelência',
+    description: 'Selecionamos apenas as melhores peças com materiais de excelência moçambicana',
   },
   {
     icon: Shield,
     title: 'Compra Segura',
-    description: 'Seus dados são protegidos com criptografia de nível bancário',
+    description: 'Os seus dados estão protegidos com encriptação de nível bancário',
   },
   {
     icon: Truck,
-    title: 'Envio Rápido',
-    description: 'Entregamos em até 5 dias úteis para todo o Brasil',
+    title: 'Entrega Rápida',
+    description: 'Entregamos em até 5 dias úteis para todo Moçambique',
   },
 ]
 
@@ -33,7 +33,7 @@ export function FeaturesSection() {
               className="text-4xl md:text-5xl font-bold"
               style={{ fontFamily: 'Playfair Display' }}
             >
-              Por que escolher DripGOd
+              Por que escolher a DripGOd
             </h2>
           </div>
         </ScrollReveal>

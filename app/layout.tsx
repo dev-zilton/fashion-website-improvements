@@ -3,11 +3,11 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'DripGOd - Premium Fashion',
-  description: 'Discover premium fashion and luxury styles at DripGOd',
+  title: 'DripGOd - Moda Premium de Moçambique',
+  description: 'Descubra moda premium e estilos de luxo de Maputo em Moçambique',
   generator: 'v0.app',
-  keywords: 'fashion, premium, luxury, drip, style, clothing',
-  authors: [{ name: 'DripGOd' }],
+  keywords: 'moda, premium, luxo, drip, estilo, roupa, Moçambique, Maputo',
+  authors: [{ name: 'DripGOd Moçambique' }],
   icons: {
     icon: [
       {
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://dripgod.com',
-    title: 'DripGOd - Premium Fashion',
-    description: 'Discover premium fashion and luxury styles',
+    locale: 'pt_MZ',
+    url: 'https://dripgod-mz.com',
+    title: 'DripGOd - Moda Premium Moçambicana',
+    description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
     images: [
       {
-        url: 'https://dripgod.com/og-image.png',
+        url: 'https://dripgod-mz.com/og-image.png',
         width: 1200,
         height: 630,
       },

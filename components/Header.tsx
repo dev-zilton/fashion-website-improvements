@@ -10,7 +10,7 @@ export function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
-  const navItems = ['COLEÇÕES', 'NOVIDADES', 'SOBRE', 'CONTATO']
+  const navItems = ['COLECÇÕES', 'NOVIDADES', 'SOBRE', 'CONTACTO']
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
@@ -36,7 +36,7 @@ export function Header() {
         {/* Actions */}
         <div className="flex items-center gap-6">
           {/* Cart */}
-          <Link href="/carrinho" className="relative">
+          <Link href="/sacola" className="relative" aria-label="Abrir carrinho">
             <ShoppingBag size={20} className="hover:text-accent transition-colors" />
             <span className="absolute -top-2 -right-2 bg-accent text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
               0

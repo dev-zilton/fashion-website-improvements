@@ -45,9 +45,13 @@ export function ProductCard({ id, title, price, image, collection, index, onAddT
               src={image}
               alt={title}
               className="w-full h-full object-cover"
-              initial={{ scale: 1 }}
-              animate={{ scale: isHovered ? 1.05 : 1 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ scale: 1, translateY: 0, opacity: 1 }}
+              animate={{
+                scale: isHovered ? 1.05 : 1,
+                translateY: isHovered ? -8 : 0,
+                opacity: isHovered ? 0.95 : 1,
+              }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             />
 
             {/* Overlay */}
@@ -55,7 +59,7 @@ export function ProductCard({ id, title, price, image, collection, index, onAddT
               className="absolute inset-0 bg-black/20"
               initial={{ opacity: 0 }}
               animate={{ opacity: isHovered ? 1 : 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.35 }}
             />
           </div>
 
@@ -90,7 +94,7 @@ export function ProductCard({ id, title, price, image, collection, index, onAddT
             aria-label={`Add ${title} to cart`}
           >
             <ShoppingBag size={16} />
-            ADICIONAR
+            ADICIONAR AO CARRINHO
           </motion.button>
 
           {/* Collection Badge */}
@@ -112,7 +116,7 @@ export function ProductCard({ id, title, price, image, collection, index, onAddT
 
         <div className="flex items-baseline justify-between">
           <span className="text-lg font-semibold tracking-tight">
-            ${price.toFixed(2)}
+            {price.toFixed(0)} MT
           </span>
           <span className="text-xs text-muted-foreground tracking-widest">PREMIUM</span>
         </div>

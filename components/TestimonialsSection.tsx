@@ -7,21 +7,21 @@ import { ScrollReveal } from './ScrollReveal'
 
 const testimonials = [
   {
-    name: 'Marina Silva',
-    role: 'Fashion Influencer',
-    text: 'DripGOd oferece a qualidade que procurava! Cada peça é um investimento em estilo.',
+    name: 'Marina Nhantumbo',
+    role: 'Influenciadora de Moda',
+    text: 'A DripGOd oferece a qualidade que procurava! Cada peça é um investimento em estilo moçambicano.',
     rating: 5,
   },
   {
-    name: 'Carlos Santos',
-    role: 'Empresário',
-    text: 'Excelente atendimento e produtos premium. Recomendo para quem valoriza qualidade.',
+    name: 'Carlos Mateus',
+    role: 'Empresário de Maputo',
+    text: 'Excelente atendimento e produtos premium. Recomendo para quem valoriza qualidade local.',
     rating: 5,
   },
   {
-    name: 'Ana Costa',
-    role: 'Stylist Profissional',
-    text: 'As coleções são incríveis! Design contemporâneo com toque de sofisticação.',
+    name: 'Ana Couto',
+    role: 'Estilista Profissional',
+    text: 'As colecções são incríveis! Design contemporâneo com toque de sofisticação moçambicana.',
     rating: 5,
   },
 ]
@@ -37,12 +37,12 @@ export function TestimonialsSection() {
       <div className="container mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <p className="text-xs md:text-sm tracking-widest text-accent mb-4">DEPOIMENTOS</p>
+            <p className="text-xs md:text-sm tracking-widest text-accent mb-4">TESTEMUNHOS</p>
             <h2
               className="text-4xl md:text-5xl font-bold"
               style={{ fontFamily: 'Playfair Display' }}
             >
-              O que nossos clientes dizem
+              O que os nossos clientes dizem
             </h2>
           </div>
         </ScrollReveal>

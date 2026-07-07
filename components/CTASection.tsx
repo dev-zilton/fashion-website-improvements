@@ -30,7 +30,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
-              Descubra seu estilo único
+              Descubra o seu estilo único
             </motion.h2>
 
             {/* Description */}
@@ -41,7 +41,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Explore nossa coleção premium e encontre as peças que definem seu estilo pessoal.
+              Explore a nossa colecção premium de Maputo e encontre as peças que definem o seu estilo pessoal.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -53,7 +53,7 @@ export function CTASection() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <Link
-                href="/colecoes"
+                href="/coleccoes"
                 className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm"
               >
                 COMPRAR AGORA
@@ -62,7 +62,7 @@ export function CTASection() {
                 href="#"
                 className="px-12 py-4 border-2 border-white text-white font-semibold tracking-wider hover:bg-white hover:text-black transition-colors duration-300 inline-block text-sm"
               >
-                APRENDER MAIS
+                SABER MAIS
               </Link>
             </motion.div>
           </div>

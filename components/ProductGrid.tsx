@@ -17,57 +17,57 @@ interface Product {
 const FEATURED_PRODUCTS: Product[] = [
   {
     id: '1',
-    title: 'Blazer Premium Black',
-    price: 299,
+    title: 'Blazer Premium Negro',
+    price: 4980,
     image: '/products/blazer.png',
-    collection: 'ESSENCIAIS',
+    collection: 'PEÇAS ESSENCIAIS',
   },
   {
     id: '2',
-    title: 'Camiseta Oversized',
-    price: 149,
+    title: 'T-Shirt Oversized',
+    price: 2480,
     image: '/products/tee.png',
     collection: 'PRIMAVERA',
   },
   {
     id: '3',
     title: 'Calça Slim Fit',
-    price: 199,
+    price: 3320,
     image: '/products/pants.png',
-    collection: 'ESSENCIAIS',
+    collection: 'PEÇAS ESSENCIAIS',
   },
   {
     id: '4',
-    title: 'Jaqueta Leather Deluxe',
-    price: 599,
+    title: 'Jaqueta Pele Deluxe',
+    price: 9980,
     image: '/products/blazer.png',
-    collection: 'PREMIUM',
+    collection: 'MAPUTO PREMIUM',
   },
   {
     id: '5',
-    title: 'Shorts Cargo Vintage',
-    price: 139,
+    title: 'Calções Cargo Vintage',
+    price: 2320,
     image: '/products/pants.png',
     collection: 'PRIMAVERA',
   },
   {
     id: '6',
     title: 'Casaco Lã Premium',
-    price: 449,
+    price: 7480,
     image: '/products/tee.png',
-    collection: 'PREMIUM',
+    collection: 'MAPUTO PREMIUM',
   },
   {
     id: '7',
-    title: 'Tênis Edição Limitada',
-    price: 349,
+    title: 'Sapatos Edição Limitada',
+    price: 5820,
     image: '/products/blazer.png',
     collection: 'EDIÇÃO LIMITADA',
   },
   {
     id: '8',
-    title: 'Acessórios Ouro 24K',
-    price: 199,
+    title: 'Acessórios Ouro Moçambique',
+    price: 3320,
     image: '/products/pants.png',
     collection: 'ACESSÓRIOS',
   },
@@ -103,12 +103,12 @@ export function ProductGrid() {
         >
           <div className="flex items-baseline justify-between gap-8 flex-wrap">
             <div>
-              <p className="text-xs md:text-sm tracking-widest text-accent mb-4">COLEÇÃO</p>
+              <p className="text-xs md:text-sm tracking-widest text-accent mb-4">COLECÇÃO</p>
               <h2
                 className="text-4xl md:text-5xl lg:text-6xl font-bold"
                 style={{ fontFamily: 'Playfair Display' }}
               >
-                Destaques de Moda
+                Destaques de Maputo
               </h2>
             </div>
             <button className="px-8 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 text-sm font-medium tracking-wider whitespace-nowrap focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
@@ -139,7 +139,7 @@ export function ProductGrid() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Explore nossa coleção completa de peças premium selecionadas especialmente para você
+            Explore a nossa colecção completa de peças premium selecionadas especialmente para si
           </p>
           <button className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-black hover:text-accent transition-colors duration-300 text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
             DESCOBRIR MAIS

@@ -32,18 +32,18 @@ export function Hero() {
 
   const collections = [
     {
-      title: 'COLEÇÃO PRIMAVERA',
-      subtitle: 'Silhuetas ousadas e cores vibrantes',
+      title: 'COLECÇÃO PRIMAVERA',
+      subtitle: 'Silhuetas ousadas e cores vibrantes de Moçambique',
       image: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
     },
     {
-      title: 'ESSENCIAIS PREMIUM',
+      title: 'PEÇAS ESSENCIAIS',
       subtitle: 'Peças atemporais para o guarda-roupa perfeito',
       image: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
     },
     {
-      title: 'EDIÇÃO LIMITADA',
-      subtitle: 'Designs exclusivos e peças one-of-a-kind',
+      title: 'EDIÇÃO LIMITADA MAPUTO',
+      subtitle: 'Designs exclusivos inspirados na cultura moçambicana',
       image: 'linear-gradient(135deg, #2a2a2a 0%, #000000 100%)',
     },
   ]
@@ -95,7 +95,7 @@ export function Hero() {
           >
             Estilo Premium
             <br />
-            <span className="text-accent">sem Compromissos</span>
+            <span className="text-accent">Feito em Moçambique</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -105,7 +105,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.3 }}
           >
-            Descubra a excelência em cada peça. Qualidade, design e conforto em perfeita harmonia.
+            Descubra a excelência em cada peça. Qualidade, design e conforto de Maputo para o mundo.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -116,16 +116,16 @@ export function Hero() {
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.4 }}
           >
             <Link
-              href="/colecoes"
+              href="/coleccoes"
               className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-white transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
-              EXPLORAR COLEÇÃO
+              EXPLORAR COLECÇÃO
             </Link>
             <Link
               href="#"
               className="px-12 py-4 border-2 border-foreground text-foreground font-semibold tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
-              CONHEÇA MAIS
+              SABER MAIS
             </Link>
           </motion.div>
         </div>

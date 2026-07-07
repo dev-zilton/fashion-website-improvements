@@ -8,8 +8,8 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const footerLinks = {
-    COMPRAR: ['Novidades', 'Coleções', 'Promoções', 'Edição Limitada'],
-    SUPORTE: ['Contato', 'FAQ', 'Envios', 'Devoluções'],
+    COMPRAR: ['Novidades', 'Colecções', 'Promoções', 'Edição Limitada'],
+    SUPORTE: ['Contacto', 'FAQ', 'Envios', 'Devoluções'],
     EMPRESA: ['Sobre Nós', 'Carreiras', 'Sustentabilidade', 'Imprensa'],
     LEGAL: ['Privacidade', 'Termos', 'Cookies', 'Acessibilidade'],
   }
@@ -33,10 +33,10 @@ export function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              Fique por dentro
+              Fique atualizado
             </motion.h3>
             <p className="text-sm text-gray-300 mb-8">
-              Receba novidades, ofertas exclusivas e inspiração direto na sua caixa de entrada.
+              Receba novidades, ofertas exclusivas e inspiração de Moçambique direto na sua caixa de entrada.
             </p>
 
             <div className="flex gap-4">
@@ -46,7 +46,7 @@ export function Footer() {
                 className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-gray-400 text-sm border border-white/20 focus:outline-none focus:border-accent transition-colors"
               />
               <button className="px-8 py-3 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors">
-                INSCREVER
+                SUBSCREVER
               </button>
             </div>
           </div>
@@ -62,7 +62,7 @@ export function Footer() {
               DRIP<span className="text-accent">GOD</span>
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Qualidade premium, design contemporâneo, e moda com propósito para você.
+              Qualidade premium, design contemporâneo, e moda moçambicana com propósito para si.
             </p>
           </div>
 
