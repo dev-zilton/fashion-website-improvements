@@ -1,0 +1,130 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { ProductCard } from './ProductCard'
+
+interface Product {
+  id: string
+  title: string
+  price: number
+  image: string
+  collection: string
+}
+
+const FEATURED_PRODUCTS: Product[] = [
+  {
+    id: '1',
+    title: 'Blazer Premium Black',
+    price: 299,
+    image: '/products/blazer.png',
+    collection: 'ESSENCIAIS',
+  },
+  {
+    id: '2',
+    title: 'Camiseta Oversized',
+    price: 149,
+    image: '/products/tee.png',
+    collection: 'PRIMAVERA',
+  },
+  {
+    id: '3',
+    title: 'Calça Slim Fit',
+    price: 199,
+    image: '/products/pants.png',
+    collection: 'ESSENCIAIS',
+  },
+  {
+    id: '4',
+    title: 'Jaqueta Leather Deluxe',
+    price: 599,
+    image: '/products/blazer.png',
+    collection: 'PREMIUM',
+  },
+  {
+    id: '5',
+    title: 'Shorts Cargo Vintage',
+    price: 139,
+    image: '/products/pants.png',
+    collection: 'PRIMAVERA',
+  },
+  {
+    id: '6',
+    title: 'Casaco Lã Premium',
+    price: 449,
+    image: '/products/tee.png',
+    collection: 'PREMIUM',
+  },
+  {
+    id: '7',
+    title: 'Tênis Edição Limitada',
+    price: 349,
+    image: '/products/blazer.png',
+    collection: 'EDIÇÃO LIMITADA',
+  },
+  {
+    id: '8',
+    title: 'Acessórios Ouro 24K',
+    price: 199,
+    image: '/products/pants.png',
+    collection: 'ACESSÓRIOS',
+  },
+]
+
+export function ProductGrid() {
+  return (
+    <section className="py-20 md:py-32 bg-background">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <motion.div
+          className="mb-16 md:mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-baseline justify-between gap-8 flex-wrap">
+            <div>
+              <p className="text-xs md:text-sm tracking-widest text-accent mb-4">COLEÇÃO</p>
+              <h2
+                className="text-4xl md:text-5xl lg:text-6xl font-bold"
+                style={{ fontFamily: 'Playfair Display' }}
+              >
+                Destaques de Moda
+              </h2>
+            </div>
+            <button className="px-8 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 text-sm font-medium tracking-wider whitespace-nowrap">
+              VER TUDO
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Product Grid with Staggered Animation */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          {FEATURED_PRODUCTS.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              {...product}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+            Explore nossa coleção completa de peças premium selecionadas especialmente para você
+          </p>
+          <button className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-black hover:text-accent transition-colors duration-300 text-sm">
+            DESCOBRIR MAIS
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
