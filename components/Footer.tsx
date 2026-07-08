@@ -3,9 +3,31 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Mail, Share2, Heart } from 'lucide-react'
+import { Toast } from './Toast'
+import { useToast } from '@/hooks/useToast'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
+  const { toast, showToast, hideToast } = useToast()
+
+  const handleShare = async () => {
+    const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
+    const shareData = {
+      title: 'DripGOD Moçambique',
+      text: 'Confira a DripGOD - moda contemporânea moçambicana',
+      url: shareUrl,
+    }
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        // utilizador cancelou a partilha, nada a fazer
+      }
+    } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      await navigator.clipboard.writeText(shareUrl)
+      showToast('Link copiado para a área de transferência!', 'success')
+    }
+  }
 
   const footerLinks = {
     COMPRAR: [
@@ -35,9 +57,9 @@ export function Footer() {
   }
 
   const socialLinks = [
-    { icon: Share2, url: '#', label: 'Share' },
-    { icon: Heart, url: '#', label: 'Wishlist' },
-    { icon: Mail, url: '#', label: 'Email' },
+    { icon: Share2, type: 'share' as const, href: undefined, label: 'Share' },
+    { icon: Heart, type: 'link' as const, href: '/favoritos', label: 'Wishlist' },
+    { icon: Mail, type: 'mailto' as const, href: 'mailto:Ziltontuaireabdulj@gmail.com', label: 'Email' },
   ]
 
   return (
@@ -117,16 +139,30 @@ export function Footer() {
 
           {/* Social Links */}
           <div className="flex gap-6">
-            {socialLinks.map(({ icon: Icon, url, label }) => (
-              <Link
-                key={label}
-                href={url}
-                className="text-gray-400 hover:text-accent transition-colors"
-                aria-label={label}
-              >
-                <Icon size={18} />
-              </Link>
-            ))}
+            {socialLinks.map(({ icon: Icon, type, href, label }) => {
+              if (type === 'share') {
+                return (
+                  <button
+                    key={label}
+                    onClick={handleShare}
+                    className="text-gray-400 hover:text-accent transition-colors"
+                    aria-label={label}
+                  >
+                    <Icon size={18} />
+                  </button>
+                )
+              }
+              return (
+                <Link
+                  key={label}
+                  href={href!}
+                  className="text-gray-400 hover:text-accent transition-colors"
+                  aria-label={label}
+                >
+                  <Icon size={18} />
+                </Link>
+              )
+            })}
           </div>
 
           {/* Payment Methods (placeholder) */}
@@ -142,6 +178,12 @@ export function Footer() {
           </div>
         </div>
       </div>
+    <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+      />
     </footer>
   )
 }
