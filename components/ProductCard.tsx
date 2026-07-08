@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ShoppingBag, Heart } from 'lucide-react'
 import { useState, memo } from 'react'
+import { useCart } from '@/contexts/CartContext'
 
 interface ProductCardProps {
   id: string
@@ -22,6 +23,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
+  const { addItem } = useCart()
 
   // Validação básica
   if (!id || !title || price < 0) {
@@ -109,6 +111,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             transition={{ duration: 0.3 }}
             onClick={(e) => {
               e.preventDefault()
+              addItem({ id, title, price, salePrice, image })
               onAddToCart?.(id)
             }}
             aria-label={`Add ${title} to cart`}

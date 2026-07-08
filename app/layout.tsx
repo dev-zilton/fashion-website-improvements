@@ -2,6 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { FontLoader } from '@/components/font-loader'
+import { CartProvider } from '@/contexts/CartContext'
 
 export const metadata: Metadata = {
   title: 'DripGOd - Moda Premium de Moçambique',
@@ -72,7 +73,9 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="antialiased font-sans">
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

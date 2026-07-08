@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { useCart } from '@/contexts/CartContext'
 import Link from 'next/link'
 import { Menu, X, ShoppingBag } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const { totalItems } = useCart()
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -51,9 +53,11 @@ export function Header() {
           {/* Cart */}
           <Link href="/sacola" className="relative" aria-label="Abrir carrinho">
             <ShoppingBag size={20} className="hover:text-accent transition-colors" />
-            <span className="absolute -top-2 -right-2 bg-accent text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
-              0
-            </span>
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-accent text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {totalItems}
+              </span>
+            )}
           </Link>
 
           {/* Mobile Menu Button */}
