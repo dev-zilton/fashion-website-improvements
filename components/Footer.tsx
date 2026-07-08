@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Mail, Share2, Heart } from 'lucide-react'
@@ -26,6 +27,36 @@ export function Footer() {
     } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
       await navigator.clipboard.writeText(shareUrl)
       showToast('Link copiado para a área de transferência!', 'success')
+    }
+  }
+
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [isSubscribing, setIsSubscribing] = useState(false)
+
+  const handleNewsletterSubmit = async () => {
+    if (!newsletterEmail || !newsletterEmail.includes('@')) {
+      showToast('Por favor, insira um email válido.', 'error')
+      return
+    }
+
+    setIsSubscribing(true)
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newsletterEmail }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Falha na subscrição')
+      }
+
+      showToast('Subscrição efetuada com sucesso!', 'success')
+      setNewsletterEmail('')
+    } catch (err) {
+      showToast('Erro ao subscrever. Tente novamente.', 'error')
+    } finally {
+      setIsSubscribing(false)
     }
   }
 
@@ -85,10 +116,17 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="seu@email.com"
-                className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-gray-400 text-sm border border-white/20 focus:outline-none focus:border-accent transition-colors"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                disabled={isSubscribing}
+                className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-gray-400 text-sm border border-white/20 focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
               />
-              <button className="px-8 py-3 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors">
-                SUBSCREVER
+              <button
+                onClick={handleNewsletterSubmit}
+                disabled={isSubscribing}
+                className="px-8 py-3 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubscribing ? 'A ENVIAR...' : 'SUBSCREVER'}
               </button>
             </div>
           </div>
