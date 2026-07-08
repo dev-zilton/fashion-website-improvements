@@ -8,6 +8,24 @@ import Link from 'next/link'
 export default function Page() {
   const { items, removeItem, updateQuantity, totalPrice } = useCart()
 
+  const handleCheckout = () => {
+    const lines = items.map((item) => {
+      const unitPrice = item.salePrice ?? item.price
+      return `- ${item.title} (x${item.quantity}) — ${(unitPrice * item.quantity).toFixed(0)} MT`
+    })
+
+    const message = [
+      'Olá! Gostaria de finalizar a seguinte compra na DripGOd:',
+      '',
+      ...lines,
+      '',
+      `Total: ${totalPrice.toFixed(0)} MT`,
+    ].join('\n')
+
+    const whatsappUrl = `https://wa.me/258843792635?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+  }
+
   if (items.length === 0) {
     return (
       <PageLayout
@@ -102,9 +120,15 @@ export default function Page() {
           <span className="text-xl font-bold">{totalPrice.toFixed(0)} MT</span>
         </div>
 
-        <button className="w-full px-8 py-4 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors">
-          FINALIZAR COMPRA
+        <button
+          onClick={handleCheckout}
+          className="w-full px-8 py-4 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors"
+        >
+          FINALIZAR COMPRA VIA WHATSAPP
         </button>
+        <p className="text-xs text-gray-400 text-center">
+          Ao finalizar, será redireccionado para o WhatsApp com o resumo da sua compra para confirmação.
+        </p>
       </div>
     </PageLayout>
   )
