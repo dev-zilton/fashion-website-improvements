@@ -8,10 +8,30 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const footerLinks = {
-    COMPRAR: ['Novidades', 'Colecções', 'Promoções', 'Edição Limitada'],
-    SUPORTE: ['Contacto', 'FAQ', 'Envios', 'Devoluções'],
-    EMPRESA: ['Sobre Nós', 'Carreiras', 'Sustentabilidade', 'Imprensa'],
-    LEGAL: ['Privacidade', 'Termos', 'Cookies', 'Acessibilidade'],
+    COMPRAR: [
+      { label: 'Novidades', href: '/novidades' },
+      { label: 'Colecções', href: '/#coleccoes' },
+      { label: 'Promoções', href: '/promocoes' },
+      { label: 'Edição Limitada', href: '/edicao-limitada' },
+    ],
+    SUPORTE: [
+      { label: 'Contacto', href: '/#contacto' },
+      { label: 'FAQ', href: '/faq' },
+      { label: 'Envios', href: '/envios' },
+      { label: 'Devoluções', href: '/devolucoes' },
+    ],
+    EMPRESA: [
+      { label: 'Sobre Nós', href: '/sobre-nos' },
+      { label: 'Carreiras', href: '/carreiras' },
+      { label: 'Sustentabilidade', href: '/sustentabilidade' },
+      { label: 'Imprensa', href: '/imprensa' },
+    ],
+    LEGAL: [
+      { label: 'Privacidade', href: '/privacidade' },
+      { label: 'Termos', href: '/termos' },
+      { label: 'Cookies', href: '/cookies' },
+      { label: 'Acessibilidade', href: '/acessibilidade' },
+    ],
   }
 
   const socialLinks = [
@@ -73,13 +93,13 @@ export function Footer() {
                 {category}
               </h4>
               <ul className="space-y-4">
-                {links.map((link) => (
-                  <li key={link}>
+                {links.map(({ label, href }) => (
+                  <li key={label}>
                     <Link
-                      href="#"
+                      href={href}
                       className="text-xs text-gray-400 hover:text-white transition-colors"
                     >
-                      {link}
+                      {label}
                     </Link>
                   </li>
                 ))}
