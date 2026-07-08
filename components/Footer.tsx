@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Mail, Share2, Heart } from 'lucide-react'
+import { Mail, Share2, Heart, MessageCircle, ShoppingBag } from 'lucide-react'
 import { Toast } from './Toast'
 import { useToast } from '@/hooks/useToast'
 
@@ -91,6 +91,8 @@ export function Footer() {
     { icon: Share2, type: 'share' as const, href: undefined, label: 'Share' },
     { icon: Heart, type: 'link' as const, href: '/favoritos', label: 'Wishlist' },
     { icon: Mail, type: 'mailto' as const, href: 'mailto:Ziltontuaireabdulj@gmail.com', label: 'Email' },
+    { icon: MessageCircle, type: 'whatsapp' as const, href: 'https://wa.me/258843792635', label: 'WhatsApp' },
+    { icon: ShoppingBag, type: 'link' as const, href: '/sacola', label: 'Carrinho' },
   ]
 
   return (
@@ -188,6 +190,20 @@ export function Footer() {
                   >
                     <Icon size={18} />
                   </button>
+                )
+              }
+              if (type === 'whatsapp') {
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-accent transition-colors"
+                    aria-label={label}
+                  >
+                    <Icon size={18} />
+                  </a>
                 )
               }
               return (
