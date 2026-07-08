@@ -8,6 +8,8 @@ import { useToast } from '@/hooks/useToast'
 export default function Page() {
   const { showToast } = useToast()
 
+  const filtered = FEATURED_PRODUCTS.filter((p) => p.salePrice)
+
   const handleAddToCart = (productId: string) => {
     const product = FEATURED_PRODUCTS.find((p) => p.id === productId)
     if (product) {
@@ -25,7 +27,7 @@ export default function Page() {
   return (
     <PageLayout title="Promoções" description="Peças selecionadas com condições especiais para si.">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-        {FEATURED_PRODUCTS.map((product, index) => (
+        {filtered.map((product, index) => (
           <ProductCard
             key={product.id}
             {...product}

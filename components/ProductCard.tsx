@@ -12,11 +12,13 @@ interface ProductCardProps {
   image: string
   collection: string
   index: number
+  isNew?: boolean
+  salePrice?: number
   onAddToCart?: (productId: string) => void
   onToggleWishlist?: (productId: string) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
@@ -121,6 +123,13 @@ function ProductCardComponent({ id, title, price, image, collection, index, onAd
               {collection}
             </div>
           )}
+
+          {/* New / Sale Badge */}
+          {(isNew || salePrice) && (
+            <div className="absolute top-4 right-16 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
+              {salePrice ? 'PROMOÇÃO' : 'NOVO'}
+            </div>
+          )}
         </div>
       </Link>
 
@@ -133,9 +142,22 @@ function ProductCardComponent({ id, title, price, image, collection, index, onAd
         </div>
 
         <div className="flex items-baseline justify-between">
-          <span className="text-lg font-semibold tracking-tight">
-            {price.toFixed(0)} MT
-          </span>
+          <div className="flex items-baseline gap-2">
+            {salePrice ? (
+              <>
+                <span className="text-lg font-semibold tracking-tight text-accent">
+                  {salePrice.toFixed(0)} MT
+                </span>
+                <span className="text-sm text-muted-foreground line-through">
+                  {price.toFixed(0)} MT
+                </span>
+              </>
+            ) : (
+              <span className="text-lg font-semibold tracking-tight">
+                {price.toFixed(0)} MT
+              </span>
+            )}
+          </div>
           <span className="text-xs text-muted-foreground tracking-widest">PREMIUM</span>
         </div>
       </div>

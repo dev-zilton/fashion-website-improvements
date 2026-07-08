@@ -4,6 +4,8 @@ export interface Product {
   price: number
   image: string
   collection: string
+  isNew?: boolean
+  salePrice?: number
 }
 
 export const FEATURED_PRODUCTS: Product[] = [
@@ -20,6 +22,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     price: 2480,
     image: '/products/tee.png',
     collection: 'PRIMAVERA',
+    isNew: true,
   },
   {
     id: '3',
@@ -27,6 +30,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     price: 3320,
     image: '/products/pants.png',
     collection: 'PEÇAS ESSENCIAIS',
+    salePrice: 2660,
   },
   {
     id: '4',
@@ -41,6 +45,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     price: 2320,
     image: '/products/pants.png',
     collection: 'PRIMAVERA',
+    isNew: true,
   },
   {
     id: '6',
@@ -62,5 +67,6 @@ export const FEATURED_PRODUCTS: Product[] = [
     price: 3320,
     image: '/products/pants.png',
     collection: 'ACESSÓRIOS',
+    salePrice: 2660,
   },
 ]
