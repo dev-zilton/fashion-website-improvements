@@ -57,8 +57,11 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           <div className="relative w-full h-full">
             {/* Main Image */}
             {imageError ? (
-              <div className="w-full h-full bg-muted flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Imagem indisponível</span>
+              <div className="w-full h-full bg-muted flex flex-col items-center justify-center gap-2 p-4 text-center">
+                <span className="text-muted-foreground text-xs uppercase tracking-widest">
+                  Imagem indisponível
+                </span>
+                <span className="text-sm font-medium">{title}</span>
               </div>
             ) : (
               <motion.img
