@@ -14,6 +14,7 @@ export function Header() {
 
   const navItems = [
     { label: 'COLECÇÕES', id: 'coleccoes' },
+    { label: 'CALÇADOS', href: '/calcados' },
     { label: 'TESTEMUNHOS', id: 'testemunhos' },
     { label: 'CTA', id: 'cta' },
     { label: 'CONTACTO', id: 'contacto' },
@@ -39,8 +40,8 @@ export function Header() {
         <div className="hidden md:flex items-center gap-12">
           {navItems.map((item) => (
             <a
-              key={item.id}
-              href={`#${item.id}`}
+              key={item.label}
+              href={item.href ?? `/#${item.id}`}
               className="text-xs tracking-widest font-medium hover:text-accent transition-colors duration-300 focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1"
             >
               {item.label}
@@ -102,13 +103,13 @@ export function Header() {
             >
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.id}
+                  key={item.label}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
                   <a
-                    href={`#${item.id}`}
+                    href={item.href ?? `/#${item.id}`}
                     className="text-sm font-medium tracking-wide hover:text-accent transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded px-2 py-1 block"
                     onClick={() => setIsOpen(false)}
                   >
