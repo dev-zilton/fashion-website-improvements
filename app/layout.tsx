@@ -27,19 +27,20 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  metadataBase: new URL('https://fashion-website-improvements-6n52.vercel.app'),
   openGraph: {
     type: 'website',
     locale: 'pt_MZ',
-    url: 'https://dripgod-mz.com',
+    url: 'https://fashion-website-improvements-6n52.vercel.app',
     title: 'DripGOd - Moda Premium Moçambicana',
     description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
-    images: [
-      {
-        url: 'https://dripgod-mz.com/og-image.png',
-        width: 1200,
-        height: 630,
-      },
-    ],
+    images: ['/opengraph-image'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DripGOd - Moda Premium Moçambicana',
+    description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
+    images: ['/opengraph-image'],
   },
 }
 
