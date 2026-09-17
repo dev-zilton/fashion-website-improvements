@@ -1,13 +1,13 @@
-# DripGOd - Premium Fashion E-commerce
+# DripGOd - Fashion E-commerce
 
-Um site de moda premium construído com Next.js 16, React 19, Framer Motion e Tailwind CSS, seguindo as especificações de transições suaves, microinterações e design editorial.
+Um site de moda construído com Next.js 16, React 19, Framer Motion e Tailwind CSS, seguindo as especificações de transições suaves, microinterações e design editorial.
 
 ## 🎨 Design System
 
 ### Cores
 - **Primário**: Preto (#000000) - Elegância e luxo
 - **Secundário**: Bege Quente (#f5f1ed) - Sofisticação
-- **Acentos**: Ouro (#d4af37) - Premium
+- **Acentos**: Ouro (#d4af37) -
 - **Neutros**: Cinzas e Brancos - Hierarquia visual
 
 ### Tipografia
@@ -41,7 +41,7 @@ Um site de moda premium construído com Next.js 16, React 19, Framer Motion e Ta
 - Scroll reveal
 
 ### Product Grid
-- 8 produtos premium
+- 8 produtos
 - Cards com imagens de produtos reais
 - Hover com zoom de imagem (1.05x)
 - Botão "Quick Add" com transição suave
@@ -70,27 +70,27 @@ Um site de moda premium construído com Next.js 16, React 19, Framer Motion e Ta
 
 ```
 app/
-├── layout.tsx           # Layout raiz com fonts
-├── globals.css          # Tema de cores e animações globais
-└── page.tsx             # Homepage com todas as seções
+├── layout.tsx # Layout raiz com fonts
+├── globals.css # Tema de cores e animações globais
+└── page.tsx # Homepage com todas as seções
 
 components/
-├── Header.tsx           # Navegação e logo
-├── Hero.tsx             # Hero com crossfade
-├── FeaturesSection.tsx  # Diferenciais
-├── ProductCard.tsx      # Card individual de produto
-├── ProductGrid.tsx      # Grid de 8 produtos
+├── Header.tsx # Navegação e logo
+├── Hero.tsx # Hero com crossfade
+├── FeaturesSection.tsx # Diferenciais
+├── ProductCard.tsx # Card individual de produto
+├── ProductGrid.tsx # Grid de 8 produtos
 ├── TestimonialsSection.tsx # Carrossel de depoimentos
-├── CTASection.tsx       # Call-to-action final
-├── Footer.tsx           # Rodapé
-├── ScrollReveal.tsx     # Componente de scroll reveal reutilizável
-└── RouteTransition.tsx  # Wrapper de transição de rotas
+├── CTASection.tsx # Call-to-action final
+├── Footer.tsx # Rodapé
+├── ScrollReveal.tsx # Componente de scroll reveal reutilizável
+└── RouteTransition.tsx # Wrapper de transição de rotas
 
 hooks/
-└── useScrollReveal.ts   # Hook de Intersection Observer
+└── useScrollReveal.ts # Hook de Intersection Observer
 
 public/
-└── products/            # Imagens de produtos
+└── products/ # Imagens de produtos
 ```
 
 ## 🎬 Animações Implementadas

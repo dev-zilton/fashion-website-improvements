@@ -12,7 +12,7 @@ const schemaMarkup = {
   name: 'DripGOd',
   url: 'https://dripgod-mz.com',
   logo: 'https://dripgod-mz.com/logo.png',
-  description: 'Moda premium moçambicana de Maputo',
+  description: 'Moda moçambicana de Maputo',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Avenida Mao Tse Tung',

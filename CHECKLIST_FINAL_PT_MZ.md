@@ -50,11 +50,11 @@
 - [x] Newsletter: "de você" → "de Maputo para o mundo"
 
 ### Nomes de Colecções
-- [x] ESSENCIAIS PREMIUM → PEÇAS ESSENCIAIS
+- [x] ESSENCIAIS → PEÇAS ESSENCIAIS
 - [x] PRIMAVERA mantido
 - [x] EDIÇÃO LIMITADA → EDIÇÃO LIMITADA MAPUTO
 - [x] ACESSÓRIOS → ACESSÓRIOS (mantido)
-- [x] Novo: MAPUTO PREMIUM (em alguns produtos)
+- [x] Novo: MAPUTO (em alguns produtos)
 
 ---
 
@@ -145,11 +145,11 @@
 ### CTASection.tsx
 - [x] Textos em PT-PT
 - [x] "Descubra o seu estilo único"
-- [x] "Explore a nossa colecção premium de Maputo"
+- [x] "Explore a nossa colecção de Maputo"
 - [x] Botões "COMPRAR AGORA" e "SABER MAIS"
 
 ### layout.tsx
-- [x] Title: "DripGOd - Moda Premium de Moçambique"
+- [x] Title: "DripGOd - Moda de Moçambique"
 - [x] Description em português
 - [x] Keywords em PT-PT moçambicano
 - [x] og:locale: pt_MZ
@@ -273,6 +273,6 @@
 
 ---
 
-**Última Verificação:** 7 de Julho de 2026  
-**Versão:** DripGOd v3.0 (PT-Portugal + Moçambique)  
+**Última Verificação:** 7 de Julho de 2026
+**Versão:** DripGOd v3.0 (PT-Portugal + Moçambique)
 **Responsável:** V0 AI Assistant

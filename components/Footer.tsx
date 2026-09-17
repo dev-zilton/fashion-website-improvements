@@ -144,7 +144,7 @@ export function Footer() {
               DRIP<span className="text-accent">GOD</span>
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Qualidade premium, design contemporâneo, e moda moçambicana com propósito para si.
+              Qualidade, design contemporâneo, e moda moçambicana com propósito para si.
             </p>
           </div>
 

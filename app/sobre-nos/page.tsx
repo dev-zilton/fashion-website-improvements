@@ -5,7 +5,7 @@ export default function Page() {
     <PageLayout title="Sobre Nós" description="Conheça a história e os valores da DripGOD.">
       <div className="prose prose-invert max-w-none text-sm leading-relaxed space-y-6">
         <div>
-          <p>A DripGOD nasceu em Maputo com o propósito de trazer moda contemporânea e de qualidade premium para Moçambique, unindo design internacional a uma identidade genuinamente moçambicana.</p>
+          <p>A DripGOD nasceu em Maputo com o propósito de trazer moda contemporânea e de qualidade para Moçambique, unindo design internacional a uma identidade genuinamente moçambicana.</p>
         </div>
         <div>
           <h2 className="text-xl font-semibold mb-2">A nossa missão</h2>

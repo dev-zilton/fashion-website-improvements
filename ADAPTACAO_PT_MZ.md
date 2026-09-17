@@ -34,13 +34,13 @@ Todas as mudanças de localização PT-PT e contextualização moçambicana fora
 - Contexto local → Maputo
 
 **Nomes de Colecções:**
-- ESSENCIAIS PREMIUM → PEÇAS ESSENCIAIS
+- ESSENCIAIS → PEÇAS ESSENCIAIS
 - PRIMAVERA → PRIMAVERA (mantido)
 - EDIÇÃO LIMITADA → EDIÇÃO LIMITADA MAPUTO
 
 **Descrições:**
-- "Qualidade premium, design contemporâneo, e moda com propósito para você" 
-→ "Qualidade premium, design contemporâneo, e moda moçambicana com propósito para si"
+- "Qualidade , design contemporâneo, e moda com propósito para você"
+→ "Qualidade , design contemporâneo, e moda moçambicana com propósito para si"
 
 ### 3. Moeda: USD → Metical (MT)
 
@@ -48,7 +48,7 @@ Todas as mudanças de localização PT-PT e contextualização moçambicana fora
 
 | Produto | Antes | Depois |
 |---------|-------|--------|
-| Blazer Premium | $299 | 4.980 MT |
+| Blazer | $299 | 4.980 MT |
 | T-Shirt Oversized | $149 | 2.480 MT |
 | Calça Slim Fit | $199 | 3.320 MT |
 | Jaqueta Pele | $599 | 9.980 MT |
@@ -123,9 +123,9 @@ Status: ✅ Implementado
 
 ### SEO/Metadados
 ```
-Title: "DripGOd - Moda Premium de Moçambique"
-Description: "Descubra moda premium e estilos de luxo de Maputo"
-Keywords: "moda, premium, luxo, drip, estilo, roupa, Moçambique, Maputo"
+Title: "DripGOd - Moda de Moçambique"
+Description: "Descubra moda e estilos de luxo de Maputo"
+Keywords: "moda, , luxo, drip, estilo, roupa, Moçambique, Maputo"
 ```
 Status: ✅ Implementado
 
@@ -154,24 +154,24 @@ Status: ✅ Implementado
 ## Próximos Passos Sugeridos
 
 1. **Tradução de Componentes Dinâmicos**
-   - Mensagens de erro/sucesso
-   - Labels de formulários
-   - Descrições de API
+ - Mensagens de erro/sucesso
+ - Labels de formulários
+ - Descrições de API
 
 2. **Localização de Conteúdo**
-   - Blog/Artigos em PT-PT
-   - FAQ em contexto moçambicano
-   - Políticas legais MZ
+ - Blog/Artigos em PT-PT
+ - FAQ em contexto moçambicano
+ - Políticas legais MZ
 
 3. **Suporte de Moeda**
-   - Integração com Gateway de pagamento moçambicano
-   - Cálculo dinâmico USD ↔ MT
-   - Histórico de câmbio
+ - Integração com Gateway de pagamento moçambicano
+ - Cálculo dinâmico USD ↔ MT
+ - Histórico de câmbio
 
 4. **Internacionalização Adicional**
-   - Outras regiões de Moçambique
-   - Variações dialetais
-   - Festas/Holidays MZ
+ - Outras regiões de Moçambique
+ - Variações dialetais
+ - Festas/Holidays MZ
 
 ---
 

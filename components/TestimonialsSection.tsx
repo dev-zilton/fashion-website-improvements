@@ -15,7 +15,7 @@ const testimonials = [
   {
     name: 'Carlos Mateus',
     role: 'Empresário de Maputo',
-    text: 'Excelente atendimento e produtos premium. Recomendo para quem valoriza qualidade local.',
+    text: 'Excelente atendimento e produtos de qualidade. Recomendo para quem valoriza qualidade local.',
     rating: 5,
   },
   {

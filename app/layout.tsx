@@ -5,10 +5,10 @@ import { FontLoader } from '@/components/font-loader'
 import { CartProvider } from '@/contexts/CartContext'
 
 export const metadata: Metadata = {
-  title: 'DripGOd - Moda Premium de Moçambique',
-  description: 'Descubra moda premium e estilos de luxo de Maputo em Moçambique',
+  title: 'DripGOd - Moda de Moçambique',
+  description: 'Descubra moda e estilos de luxo de Maputo em Moçambique',
   generator: 'v0.app',
-  keywords: 'moda, premium, luxo, drip, estilo, roupa, Moçambique, Maputo',
+  keywords: 'moda, luxo, drip, estilo, roupa, Moçambique, Maputo',
   authors: [{ name: 'DripGOd Moçambique' }],
   icons: {
     icon: [
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_MZ',
     url: 'https://fashion-website-improvements-6n52.vercel.app',
-    title: 'DripGOd - Moda Premium Moçambicana',
+    title: 'DripGOd - Moda Moçambicana',
     description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
     images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DripGOd - Moda Premium Moçambicana',
+    title: 'DripGOd - Moda Moçambicana',
     description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
     images: ['/opengraph-image'],
   },

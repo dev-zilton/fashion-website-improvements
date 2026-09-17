@@ -38,7 +38,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     title: 'Jaqueta Biker Deluxe',
     price: 9980,
     image: '/products/jaqueta-biker-deluxe.png',
-    collection: 'MAPUTO PREMIUM',
+    collection: 'MAPUTO',
   },
   {
     id: '5',
@@ -50,10 +50,10 @@ export const FEATURED_PRODUCTS: Product[] = [
   },
   {
     id: '6',
-    title: 'Casaco Longline Premium',
+    title: 'Casaco Longline',
     price: 7480,
-    image: '/products/casaco-longline-premium.png',
-    collection: 'MAPUTO PREMIUM',
+    image: '/products/casaco-longline.png',
+    collection: 'MAPUTO',
   },
   {
     id: '7',
@@ -146,9 +146,9 @@ export const FEATURED_PRODUCTS: Product[] = [
   },
   {
     id: '18',
-    title: 'New Balance 990 Premium',
+    title: 'New Balance 990',
     price: 6900,
-    image: '/products/calcados/new-balance-990-premium.png',
+    image: '/products/calcados/new-balance-990.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
   },
@@ -162,9 +162,9 @@ export const FEATURED_PRODUCTS: Product[] = [
   },
   {
     id: '20',
-    title: 'Timberland Boot Premium Couro',
+    title: 'Timberland Boot Couro',
     price: 8900,
-    image: '/products/calcados/timberland-boot-premium-couro.png',
+    image: '/products/calcados/timberland-boot-couro.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
   },

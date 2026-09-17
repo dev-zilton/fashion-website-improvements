@@ -164,7 +164,6 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
               </span>
             )}
           </div>
-          <span className="text-xs text-muted-foreground tracking-widest">PREMIUM</span>
         </div>
       </div>
     </motion.div>

@@ -40,7 +40,7 @@ export default function Page() {
   return (
     <PageLayout
       title="Calçados"
-      description="Sapatilhas, sapatos sociais e botas premium para completar o seu visual."
+      description="Sapatilhas, sapatos sociais e botas para completar o seu visual."
     >
       <div className="flex flex-wrap gap-3 mb-10">
         {FILTERS.map((filter) => (

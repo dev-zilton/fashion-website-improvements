@@ -62,7 +62,7 @@ export function ProductDetail({ product }: { product: Product }) {
         </div>
 
         <p className="text-sm text-gray-300 leading-relaxed mb-10">
-          Peça premium DripGOd, feita com materiais de qualidade e um design
+          Peça DripGOd, feita com materiais de qualidade e um design
           pensado para durar. Combine com o resto da sua colecção para um
           visual autêntico e contemporâneo.
         </p>

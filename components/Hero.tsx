@@ -93,9 +93,9 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.2 }}
           >
-            Estilo Premium
+            O drip do mundo,
             <br />
-            <span className="text-accent">Feito em Moçambique</span>
+            <span className="text-accent">em Moçambique</span>
           </motion.h1>
 
           {/* Subtitle */}

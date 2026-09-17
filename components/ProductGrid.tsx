@@ -73,7 +73,7 @@ export function ProductGrid() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Explore a nossa colecção completa de peças premium selecionadas especialmente para si
+            Explore a nossa colecção completa de peças selecionadas especialmente para si
           </p>
           <button className="px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-black hover:text-accent transition-colors duration-300 text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
             DESCOBRIR MAIS

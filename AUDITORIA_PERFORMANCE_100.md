@@ -23,12 +23,12 @@
 **Ações Implementadas:**
 ```tsx
 <Image
-  src="/products/blazer.png"
-  alt="Blazer Premium Negro"
-  width={400}
-  height={500}
-  loading="lazy"
-  quality={85}
+ src="/products/blazer.png"
+ alt="Blazer Negro"
+ width={400}
+ height={500}
+ loading="lazy"
+ quality={85}
 />
 ```
 
@@ -54,9 +54,9 @@
 
 ```html
 <link
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-  rel="preload"
-  as="style"
+ href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+ rel="preload"
+ as="style"
 />
 ```
 
@@ -95,9 +95,9 @@ transition={{ duration: prefersReducedMotion ? 0 : 0.8 }}
 
 ```tsx
 <input
-  aria-label="Email para newsletter"
-  type="email"
-  placeholder="seu@email.com"
+ aria-label="Email para newsletter"
+ type="email"
+ placeholder="seu@email.com"
 />
 ```
 
@@ -120,14 +120,14 @@ transition={{ duration: prefersReducedMotion ? 0 : 0.8 }}
 
 ```tsx
 export const metadata = {
-  title: 'DripGOd - Moda Premium de Moçambique',
-  description: 'Descubra moda premium de Maputo em Moçambique',
-  keywords: 'moda, premium, luxo, Moçambique',
-  openGraph: {
-    title: 'DripGOd - Moda Premium Moçambicana',
-    description: 'Estilos de luxo de Maputo',
-    locale: 'pt_MZ',
-  },
+ title: 'DripGOd - Moda de Moçambique',
+ description: 'Descubra moda de Maputo em Moçambique',
+ keywords: 'moda, , luxo, Moçambique',
+ openGraph: {
+ title: 'DripGOd - Moda Moçambicana',
+ description: 'Estilos de luxo de Maputo',
+ locale: 'pt_MZ',
+ },
 }
 ```
 
@@ -140,12 +140,12 @@ export const metadata = {
 ```tsx
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Blazer Premium Negro",
-  "price": "4980",
-  "priceCurrency": "MZN",
-  "description": "..."
+ "@context": "https://schema.org",
+ "@type": "Product",
+ "name": "Blazer Negro",
+ "price": "4980",
+ "priceCurrency": "MZN",
+ "description": "..."
 }
 </script>
 ```
@@ -169,7 +169,7 @@ export const metadata = {
 ```tsx
 // Tailwind responsive classes
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {/* Auto-responsive */}
+ {/* Auto-responsive */}
 </div>
 ```
 
@@ -191,9 +191,9 @@ export const metadata = {
 
 ```tsx
 <nav aria-label="Navegação Principal">
-  <Link href="/" aria-current={isActive ? "page" : undefined}>
-    Início
-  </Link>
+ <Link href="/" aria-current={isActive ? "page" : undefined}>
+ Início
+ </Link>
 </nav>
 ```
 
@@ -265,18 +265,18 @@ npx lighthouse http://localhost:3000 --view
 
 ### Monitoramento Recomendado
 1. **Vercel Analytics**
-   - Real User Monitoring (RUM)
-   - Core Web Vitals de utilizadores reais
+ - Real User Monitoring (RUM)
+ - Core Web Vitals de utilizadores reais
 
 2. **Google Search Console**
-   - Indexação de páginas
-   - Erros de crawling
-   - Core Web Vitals report
+ - Indexação de páginas
+ - Erros de crawling
+ - Core Web Vitals report
 
 3. **Sentry**
-   - Erros em produção
-   - Performance monitoring
-   - Session replay
+ - Erros em produção
+ - Performance monitoring
+ - Session replay
 
 ---
 

@@ -24,14 +24,14 @@
 - [x] ARIA roles correctas
 
 ### 3. SEO
-- [x] Title: "DripGOd - Moda Premium de Moçambique" (56 char)
-- [x] Description: "Descubra moda premium de Maputo em Moçambique" (48 char)
+- [x] Title: "DripGOd - Moda de Moçambique" (56 char)
+- [x] Description: "Descubra moda de Maputo em Moçambique" (48 char)
 - [x] Open Graph tags configuradas
 - [x] Locale: pt_MZ
 - [x] Schema.org Organization markup
 - [x] Apenas um H1 por página
 - [x] Hierarquia de headings correcta
-- [x] Keywords optimizadas: moda, premium, Moçambique
+- [x] Keywords optimizadas: moda, , Moçambique
 - [x] Mobile-first design
 
 ### 4. Responsividade
@@ -58,16 +58,16 @@
 ```tsx
 // 1. Skip Link (Acessibilidade)
 <a href="#main-content" className="sr-only focus:not-sr-only ...">
-  Ir para conteúdo principal
+ Ir para conteúdo principal
 </a>
 
 // 2. Schema.org Markup (SEO)
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "DripGOd",
-  ...
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "DripGOd",
+ ...
 }
 </script>
 

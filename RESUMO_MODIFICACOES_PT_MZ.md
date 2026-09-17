@@ -23,7 +23,7 @@ Comprar Agora → Comprar Agora (manutenção)
 
 **Nomes de Pessoas:**
 - Marina Silva → Marina Nhantumbo
-- Carlos Santos → Carlos Mateus  
+- Carlos Santos → Carlos Mateus
 - Ana Costa → Ana Couto
 
 **Referências de Localização:**
@@ -76,8 +76,8 @@ Depois: COLECÇÕES | CONTACTO
 
 ### Produto
 ```
-Antes: Blazer Premium Black - $299.99 - ESSENCIAIS
-Depois: Blazer Premium Negro - 4980 MT - PEÇAS ESSENCIAIS
+Antes: Blazer Black - $299.99 - ESSENCIAIS
+Depois: Blazer Negro - 4980 MT - PEÇAS ESSENCIAIS
 ```
 
 ### Testemunho
@@ -139,6 +139,6 @@ Depois: "Feito em Moçambique"
 
 ---
 
-**Última Actualização:** 7 de Julho de 2026  
-**Versão:** 3.0 (PT-Portugal + Moçambique)  
+**Última Actualização:** 7 de Julho de 2026
+**Versão:** 3.0 (PT-Portugal + Moçambique)
 **Status:** ✅ Completo

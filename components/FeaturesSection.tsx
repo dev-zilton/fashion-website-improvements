@@ -7,7 +7,7 @@ import { ScrollReveal } from './ScrollReveal'
 const features = [
   {
     icon: Zap,
-    title: 'Qualidade Premium',
+    title: 'Qualidade Superior',
     description: 'Selecionamos apenas as melhores peças com materiais de excelência moçambicana',
   },
   {

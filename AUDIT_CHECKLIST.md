@@ -5,7 +5,7 @@
 ### ✅ Transições e Animações de Rota
 - [x] Implementado `AnimatePresence` com fade + slide
 - [x] Timing consistente: 320ms entrada, 240ms saída
-- [x] Easing premium: `cubic-bezier(0.22, 1, 0.36, 1)`
+- [x] Easing : `cubic-bezier(0.22, 1, 0.36, 1)`
 - [x] Route transitions sem flicker
 
 ### ✅ Menu Mobile
@@ -120,6 +120,6 @@ npm run lint # Verifica outline/focus
 
 ---
 
-**Status**: ✅ Auditoria Completa  
-**Data**: 2024-07-07  
+**Status**: ✅ Auditoria Completa
+**Data**: 2024-07-07
 **Versão**: 1.0

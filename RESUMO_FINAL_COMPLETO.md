@@ -53,9 +53,9 @@
 
 ### 3. SEO (100/100)
 ✅ **Otimização Completa**
-- Title: "DripGOd - Moda Premium de Moçambique" (56 char)
-- Description: "Descubra moda premium de Maputo em Moçambique" (48 char)
-- Keywords: moda, premium, luxo, Moçambique, Maputo
+- Title: "DripGOd - Moda de Moçambique" (56 char)
+- Description: "Descubra moda de Maputo em Moçambique" (48 char)
+- Keywords: moda, , luxo, Moçambique, Maputo
 - Locale: pt_MZ
 - Schema.org Organization markup
 - Apenas um H1 por página
@@ -116,12 +116,12 @@
 ### Moeda: USD → Metical (MT)
 | Produto | Preço Original | Preço MT |
 |---------|--------|----------|
-| Blazer Premium Negro | $299 | 4.980 MT |
+| Blazer Negro | $299 | 4.980 MT |
 | T-Shirt Oversized | $149 | 2.480 MT |
 | Calça Slim Fit | $199 | 3.320 MT |
 | Jaqueta Pele Deluxe | $599 | 9.980 MT |
 | Calções Cargo | $139 | 2.320 MT |
-| Casaco Lã Premium | $449 | 7.480 MT |
+| Casaco Lã | $449 | 7.480 MT |
 | Sapatos Edição Limitada | $349 | 5.820 MT |
 | Acessórios Ouro | $199 | 3.320 MT |
 
@@ -131,9 +131,9 @@
 
 ### 3 Transições Simultâneas em Produtos
 ```tsx
-scale: 1 → 1.05        // Aumento 5%
-translateY: 0 → -8px   // Movimento para cima
-opacity: 1 → 0.95      // Desbotamento ligeiro
+scale: 1 → 1.05 // Aumento 5%
+translateY: 0 → -8px // Movimento para cima
+opacity: 1 → 0.95 // Desbotamento ligeiro
 Duration: 500ms
 Easing: cubic-bezier(0.22, 1, 0.36, 1)
 ```
@@ -152,31 +152,31 @@ Easing: cubic-bezier(0.22, 1, 0.36, 1)
 ```
 /vercel/share/v0-project/
 ├── app/
-│   ├── layout.tsx (com Schema.org)
-│   ├── globals.css (design tokens PT-MZ)
-│   └── page.tsx (com skip link + main ID)
+│ ├── layout.tsx (com Schema.org)
+│ ├── globals.css (design tokens PT-MZ)
+│ └── page.tsx (com skip link + main ID)
 ├── components/
-│   ├── Header.tsx (skip link + nav PT-PT)
-│   ├── Hero.tsx (parallax + prefers-reduced-motion)
-│   ├── ProductCard.tsx (memo + 3 transições)
-│   ├── ProductGrid.tsx (toast notifications)
-│   ├── FeaturesSection.tsx (PT-PT)
-│   ├── TestimonialsSection.tsx (PT-PT + nomes MZ)
-│   ├── CTASection.tsx (PT-PT)
-│   ├── Footer.tsx (PT-PT + newsletter)
-│   ├── Toast.tsx (notificações)
-│   ├── ScrollReveal.tsx (IntersectionObserver)
-│   ├── RevealOnScroll.tsx (lazy reveal)
-│   └── RouteTransition.tsx (page transitions)
+│ ├── Header.tsx (skip link + nav PT-PT)
+│ ├── Hero.tsx (parallax + prefers-reduced-motion)
+│ ├── ProductCard.tsx (memo + 3 transições)
+│ ├── ProductGrid.tsx (toast notifications)
+│ ├── FeaturesSection.tsx (PT-PT)
+│ ├── TestimonialsSection.tsx (PT-PT + nomes MZ)
+│ ├── CTASection.tsx (PT-PT)
+│ ├── Footer.tsx (PT-PT + newsletter)
+│ ├── Toast.tsx (notificações)
+│ ├── ScrollReveal.tsx (IntersectionObserver)
+│ ├── RevealOnScroll.tsx (lazy reveal)
+│ └── RouteTransition.tsx (page transitions)
 ├── hooks/
-│   ├── useMotionPreference.ts
-│   ├── useToast.ts
-│   └── useScrollReveal.ts
+│ ├── useMotionPreference.ts
+│ ├── useToast.ts
+│ └── useScrollReveal.ts
 ├── public/
-│   └── products/
-│       ├── blazer.png
-│       ├── tee.png
-│       └── pants.png
+│ └── products/
+│ ├── blazer.png
+│ ├── tee.png
+│ └── pants.png
 └── DOCUMENTACAO_INDEX.md
 ```
 
@@ -239,7 +239,7 @@ pnpm build
 ## ✨ Destaques
 
 ### Design
-- Paleta premium: Preto, Bege Quente, Ouro
+- Paleta : Preto, Bege Quente, Ouro
 - Tipografia editorial: Playfair Display + Inter
 - Minimalista com acessibilidade
 - Totalmente responsivo
@@ -267,27 +267,27 @@ pnpm build
 ## 🎯 Próximos Passos (Recomendados)
 
 1. **Monitoring**
-   - Configurar Vercel Analytics
-   - Monitorar Core Web Vitals
-   - Setup de alertas
+ - Configurar Vercel Analytics
+ - Monitorar Core Web Vitals
+ - Setup de alertas
 
 2. **Expansão**
-   - Adicionar mais colecções
-   - Integrar checkout Stripe
-   - Adicionar admin dashboard
-   - Sistema de reviews
+ - Adicionar mais colecções
+ - Integrar checkout Stripe
+ - Adicionar admin dashboard
+ - Sistema de reviews
 
 3. **Marketing**
-   - Google Analytics 4
-   - Facebook Pixel
-   - Email marketing
-   - Social media
+ - Google Analytics 4
+ - Facebook Pixel
+ - Email marketing
+ - Social media
 
 4. **Otimização**
-   - A/B testing
-   - User sessions (Sentry)
-   - Performance monitoring
-   - User feedback
+ - A/B testing
+ - User sessions (Sentry)
+ - Performance monitoring
+ - User feedback
 
 ---
 

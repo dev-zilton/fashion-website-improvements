@@ -41,7 +41,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Explore a nossa colecção premium de Maputo e encontre as peças que definem o seu estilo pessoal.
+              Explore a nossa colecção de Maputo e encontre as peças que definem o seu estilo pessoal.
             </motion.p>
 
             {/* CTA Buttons */}

@@ -31,12 +31,12 @@ git push origin main
 ### Passo 4: Configurar Domínio
 ```
 Opção A: Usar domínio .mz moçambicano
-  - dripgod.co.mz
-  - moda.dripgod.mz
+ - dripgod.co.mz
+ - moda.dripgod.mz
 
 Opção B: Usar domínio internacional com subdomain MZ
-  - mz.dripgod.com
-  - mozambique.dripgod.com
+ - mz.dripgod.com
+ - mozambique.dripgod.com
 ```
 
 ---
@@ -159,7 +159,7 @@ Recomendações:
 ### 4. Validação de SEO
 ```bash
 # Verificar meta tags
-- title: "DripGOd - Moda Premium de Moçambique"
+- title: "DripGOd - Moda de Moçambique"
 - description presente
 - og:image configurado
 - og:locale: pt_MZ
@@ -309,8 +309,8 @@ CDN Provider: [seu provider]
 
 **Status:** 🟢 PRONTO PARA DEPLOYMENT
 
-**Versão:** DripGOd v3.0 (PT-Portugal + Moçambique)  
-**Data:** 7 de Julho de 2026  
-**Linguagem:** Português de Portugal  
-**Moeda:** Metical (MT)  
+**Versão:** DripGOd v3.0 (PT-Portugal + Moçambique)
+**Data:** 7 de Julho de 2026
+**Linguagem:** Português de Portugal
+**Moeda:** Metical (MT)
 **Contexto:** Moçambique/Maputo
