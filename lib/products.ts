@@ -499,6 +499,25 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Vermelho e Preto', images: ['/products/calcados/air-jordan-1-rasa-vermelho-preto.jpg'] },
     ],
   },
+  {
+    id: '37',
+    title: 'Crocs Classic',
+    price: 1350,
+    image: '/products/calcados/crocs-classic-preto.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Creme', images: ['/products/calcados/crocs-classic-creme.jpg'] },
+      { color: 'Branco', images: ['/products/calcados/crocs-classic-branco.jpg'] },
+      { color: 'Cinzento', images: ['/products/calcados/crocs-classic-cinzento.jpg'] },
+      { color: 'Bege', images: ['/products/calcados/crocs-classic-bege.jpg'] },
+      { color: 'Azul Marinho', images: ['/products/calcados/crocs-classic-azul-marinho.jpg'] },
+      { color: 'Rosa', images: ['/products/calcados/crocs-classic-rosa.jpg'] },
+      { color: 'Preto', images: ['/products/calcados/crocs-classic-preto.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
