@@ -792,6 +792,23 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Azul Petróleo', images: ['/products/calcados/new-balance-327-azul-petroleo.jpg'] },
     ],
   },
+  {
+    id: '52',
+    title: 'New Balance 480',
+    price: 3500,
+    image: '/products/calcados/new-balance-480-preto-branco.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'ESPORTIVAS',
+    isNew: true,
+    sizes: ['38', '39', '40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Branco e Verde', images: ['/products/calcados/new-balance-480-branco-verde.jpg'] },
+      { color: 'Preto e Branco', images: ['/products/calcados/new-balance-480-preto-branco.jpg'] },
+      { color: 'Cinzento e Branco', images: ['/products/calcados/new-balance-480-cinzento-branco.jpg'] },
+      { color: 'Preto', images: ['/products/calcados/new-balance-480-preto.jpg'] },
+      { color: 'Cinzento Escuro e Bege', images: ['/products/calcados/new-balance-480-cinzento-escuro-bege.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
