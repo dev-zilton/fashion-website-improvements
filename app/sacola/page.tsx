@@ -4,6 +4,8 @@ import { PageLayout } from '@/components/PageLayout'
 import { useCart } from '@/contexts/CartContext'
 import { ShoppingBag, Trash2, Plus, Minus } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { WHATSAPP_NUMBER } from '@/lib/config'
 
 export default function Page() {
   const { items, removeItem, updateQuantity, totalPrice } = useCart()
@@ -11,7 +13,8 @@ export default function Page() {
   const handleCheckout = () => {
     const lines = items.map((item) => {
       const unitPrice = item.salePrice ?? item.price
-      return `- ${item.title} (x${item.quantity}) — ${(unitPrice * item.quantity).toFixed(0)} MT`
+      const variant = [item.size && `Tam. ${item.size}`, item.color].filter(Boolean).join(', ')
+      return `- ${item.title}${variant ? ` [${variant}]` : ''} (x${item.quantity}) — ${(unitPrice * item.quantity).toFixed(0)} MT`
     })
 
     const message = [
@@ -22,7 +25,7 @@ export default function Page() {
       `Total: ${totalPrice.toFixed(0)} MT`,
     ].join('\n')
 
-    const whatsappUrl = `https://wa.me/258843792635?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
   }
 
@@ -59,14 +62,16 @@ export default function Page() {
           const unitPrice = item.salePrice ?? item.price
           return (
             <div
-              key={item.id}
+              key={item.lineId}
               className="flex items-center gap-4 border-b border-border pb-6"
             >
-              <div className="w-20 h-24 bg-muted flex-shrink-0 overflow-hidden">
-                <img
+              <div className="relative w-20 h-24 bg-muted flex-shrink-0 overflow-hidden">
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
                 />
               </div>
 
@@ -74,6 +79,13 @@ export default function Page() {
                 <h3 className="text-sm font-medium tracking-wide mb-2">
                   {item.title}
                 </h3>
+                {(item.size || item.color) && (
+                  <p className="text-xs text-muted-foreground mb-2">
+                    {[item.size && `Tamanho: ${item.size}`, item.color && `Cor: ${item.color}`]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
+                )}
                 <div className="flex items-baseline gap-2">
                   <span className="text-sm font-semibold">
                     {unitPrice.toFixed(0)} MT
@@ -88,7 +100,7 @@ export default function Page() {
 
               <div className="flex items-center gap-3 border border-border">
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  onClick={() => updateQuantity(item.lineId, item.quantity - 1)}
                   className="p-2 hover:bg-muted transition-colors"
                   aria-label="Diminuir quantidade"
                 >
@@ -96,7 +108,7 @@ export default function Page() {
                 </button>
                 <span className="text-sm w-6 text-center">{item.quantity}</span>
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  onClick={() => updateQuantity(item.lineId, item.quantity + 1)}
                   className="p-2 hover:bg-muted transition-colors"
                   aria-label="Aumentar quantidade"
                 >
@@ -105,7 +117,7 @@ export default function Page() {
               </div>
 
               <button
-                onClick={() => removeItem(item.id)}
+                onClick={() => removeItem(item.lineId)}
                 className="p-2 text-gray-400 hover:text-red-500 transition-colors"
                 aria-label={`Remover ${item.title}`}
               >

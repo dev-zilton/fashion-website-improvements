@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Política de Privacidade',
+  description: 'Como recolhemos, usamos e protegemos os seus dados pessoais.',
+}
 
 export default function Page() {
   return (

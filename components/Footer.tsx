@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { Mail, Share2, Heart, MessageCircle, ShoppingBag } from 'lucide-react'
 import { Toast } from './Toast'
 import { useToast } from '@/hooks/useToast'
+import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '@/lib/config'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -90,8 +91,8 @@ export function Footer() {
   const socialLinks = [
     { icon: Share2, type: 'share' as const, href: undefined, label: 'Share' },
     { icon: Heart, type: 'link' as const, href: '/favoritos', label: 'Wishlist' },
-    { icon: Mail, type: 'mailto' as const, href: 'mailto:Ziltontuaireabdulj@gmail.com', label: 'Email' },
-    { icon: MessageCircle, type: 'whatsapp' as const, href: 'https://wa.me/258843792635', label: 'WhatsApp' },
+    { icon: Mail, type: 'mailto' as const, href: `mailto:${CONTACT_EMAIL}`, label: 'Email' },
+    { icon: MessageCircle, type: 'whatsapp' as const, href: `https://wa.me/${WHATSAPP_NUMBER}`, label: 'WhatsApp' },
     { icon: ShoppingBag, type: 'link' as const, href: '/sacola', label: 'Carrinho' },
   ]
 
@@ -103,7 +104,7 @@ export function Footer() {
           <div className="max-w-2xl">
             <motion.h3
               className="text-3xl md:text-4xl font-bold mb-4"
-              style={{ fontFamily: 'Playfair Display' }}
+              style={{ fontFamily: 'var(--font-playfair)' }}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

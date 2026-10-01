@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Envios',
+  description: 'Informações sobre prazos, custos e áreas de cobertura das nossas entregas.',
+}
 
 export default function Page() {
   return (

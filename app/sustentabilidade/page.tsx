@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Sustentabilidade',
+  description: 'O nosso compromisso com práticas responsáveis.',
+}
 
 export default function Page() {
   return (

@@ -40,7 +40,7 @@ export function TestimonialsSection() {
             <p className="text-xs md:text-sm tracking-widest text-accent mb-4">TESTEMUNHOS</p>
             <h2
               className="text-4xl md:text-5xl font-bold"
-              style={{ fontFamily: 'Playfair Display' }}
+              style={{ fontFamily: 'var(--font-playfair)' }}
             >
               O que os nossos clientes dizem
             </h2>

@@ -3,19 +3,25 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 export interface CartItem {
+  /** Identifica a linha do carrinho: o mesmo produto em tamanhos diferentes são linhas diferentes. */
+  lineId: string
   id: string
   title: string
   price: number
   salePrice?: number
   image: string
   quantity: number
+  size?: string
+  color?: string
 }
+
+export type NewCartItem = Omit<CartItem, 'quantity' | 'lineId'>
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (item: Omit<CartItem, 'quantity'>) => void
-  removeItem: (id: string) => void
-  updateQuantity: (id: string, quantity: number) => void
+  addItem: (item: NewCartItem) => void
+  removeItem: (lineId: string) => void
+  updateQuantity: (lineId: string, quantity: number) => void
   clearCart: () => void
   totalItems: number
   totalPrice: number
@@ -25,6 +31,9 @@ const CartContext = createContext<CartContextType | undefined>(undefined)
 
 const STORAGE_KEY = 'dripgod_cart'
 
+const makeLineId = (item: Pick<CartItem, 'id' | 'size' | 'color'>) =>
+  [item.id, item.size ?? '', item.color ?? ''].join('|')
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
@@ -33,7 +42,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) {
-        setItems(JSON.parse(stored))
+        const parsed = JSON.parse(stored) as CartItem[]
+        // Carrinhos antigos não tinham lineId
+        setItems(parsed.map((i) => ({ ...i, lineId: i.lineId ?? makeLineId(i) })))
       }
     } catch (err) {
       console.error('[DripGOd] Erro ao carregar carrinho do localStorage:', err)
@@ -51,29 +62,30 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, [items, isLoaded])
 
-  const addItem = (item: Omit<CartItem, 'quantity'>) => {
+  const addItem = (item: NewCartItem) => {
+    const lineId = makeLineId(item)
     setItems((prev) => {
-      const existing = prev.find((i) => i.id === item.id)
+      const existing = prev.find((i) => i.lineId === lineId)
       if (existing) {
         return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.lineId === lineId ? { ...i, quantity: i.quantity + 1 } : i
         )
       }
-      return [...prev, { ...item, quantity: 1 }]
+      return [...prev, { ...item, lineId, quantity: 1 }]
     })
   }
 
-  const removeItem = (id: string) => {
-    setItems((prev) => prev.filter((i) => i.id !== id))
+  const removeItem = (lineId: string) => {
+    setItems((prev) => prev.filter((i) => i.lineId !== lineId))
   }
 
-  const updateQuantity = (id: string, quantity: number) => {
+  const updateQuantity = (lineId: string, quantity: number) => {
     if (quantity < 1) {
-      removeItem(id)
+      removeItem(lineId)
       return
     }
     setItems((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity } : i))
+      prev.map((i) => (i.lineId === lineId ? { ...i, quantity } : i))
     )
   }
 

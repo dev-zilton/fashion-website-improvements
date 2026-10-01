@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Carreiras',
+  description: 'Faça parte da equipa DripGOD.',
+}
 
 export default function Page() {
   return (

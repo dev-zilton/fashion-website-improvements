@@ -2,9 +2,12 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ShoppingBag, Heart } from 'lucide-react'
 import { useState, memo } from 'react'
 import { useCart } from '@/contexts/CartContext'
+import { useWishlist } from '@/contexts/WishlistContext'
+import { getProductSizes } from '@/lib/products'
 
 interface ProductCardProps {
   id: string
@@ -15,15 +18,18 @@ interface ProductCardProps {
   index: number
   isNew?: boolean
   salePrice?: number
+  sizes?: string[]
   onAddToCart?: (productId: string) => void
-  onToggleWishlist?: (productId: string) => void
+  onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, onAddToCart, onToggleWishlist }: ProductCardProps) {
-  const [isWishlisted, setIsWishlisted] = useState(false)
+function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
+  const { isWishlisted, toggle } = useWishlist()
+  const wishlisted = isWishlisted(id)
+  const needsSize = getProductSizes({ id, title, price, image, collection, sizes }).length > 0
 
   // Validação básica
   if (!id || !title || price < 0) {
@@ -64,10 +70,8 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
                 <span className="text-sm font-medium">{title}</span>
               </div>
             ) : (
-              <motion.img
-                src={image}
-                alt={title}
-                className="w-full h-full object-cover"
+              <motion.div
+                className="absolute inset-0"
                 initial={{ scale: 1, translateY: 0, opacity: 1 }}
                 animate={{
                   scale: isHovered ? 1.05 : 1,
@@ -75,8 +79,17 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
                   opacity: isHovered ? 0.95 : 1,
                 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                onError={() => setImageError(true)}
-              />
+              >
+                <Image
+                  src={image}
+                  alt={title}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                  priority={index < 4}
+                  onError={() => setImageError(true)}
+                />
+              </motion.div>
             )}
 
             {/* Overlay */}
@@ -93,16 +106,15 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             className="absolute top-4 right-4 p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               e.preventDefault()
-              setIsWishlisted(!isWishlisted)
-              onToggleWishlist?.(id)
+              onToggleWishlist?.(id, toggle(id))
             }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+            aria-label={wishlisted ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
           >
             <Heart
               size={18}
-              className={isWishlisted ? 'fill-red-500 text-red-500' : 'text-black'}
+              className={wishlisted ? 'fill-red-500 text-red-500' : 'text-black'}
             />
           </motion.button>
 
@@ -113,14 +125,16 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
             transition={{ duration: 0.3 }}
             onClick={(e) => {
+              // Peças com tamanho seguem o link para a página do produto para escolher o tamanho
+              if (needsSize) return
               e.preventDefault()
               addItem({ id, title, price, salePrice, image })
               onAddToCart?.(id)
             }}
-            aria-label={`Add ${title} to cart`}
+            aria-label={needsSize ? `Escolher tamanho de ${title}` : `Adicionar ${title} ao carrinho`}
           >
             <ShoppingBag size={16} />
-            ADICIONAR AO CARRINHO
+            {needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
           </motion.button>
 
           {/* Collection Badge */}

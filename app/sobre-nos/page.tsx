@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Sobre Nós',
+  description: 'Conheça a história e os valores da DripGOD.',
+}
 
 export default function Page() {
   return (

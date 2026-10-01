@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Imprensa',
+  description: 'Recursos e contactos para profissionais de comunicação.',
+}
 
 export default function Page() {
   return (

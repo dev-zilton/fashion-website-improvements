@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Devoluções',
+  description: 'Saiba como trocar ou devolver os seus produtos.',
+}
 
 export default function Page() {
   return (

@@ -2,21 +2,23 @@
 
 import { useState } from 'react'
 import { useCart } from '@/contexts/CartContext'
+import { useWishlist } from '@/contexts/WishlistContext'
 import Link from 'next/link'
-import { Menu, X, ShoppingBag } from 'lucide-react'
+import { Menu, X, ShoppingBag, Heart } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const { totalItems } = useCart()
+  const { ids: wishlistIds } = useWishlist()
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
   const navItems = [
+    { label: 'LOJA', href: '/loja' },
     { label: 'COLECÇÕES', id: 'coleccoes' },
     { label: 'CALÇADOS', href: '/calcados' },
     { label: 'TESTEMUNHOS', id: 'testemunhos' },
-    { label: 'CTA', id: 'cta' },
     { label: 'CONTACTO', id: 'contacto' },
   ]
 
@@ -32,7 +34,7 @@ export function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
       <nav className="flex items-center justify-between px-6 py-6 max-w-7xl mx-auto" aria-label="Navegação principal">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold tracking-wider" style={{ fontFamily: 'Playfair Display' }}>
+        <Link href="/" className="text-2xl font-bold tracking-wider" style={{ fontFamily: 'var(--font-playfair)' }}>
           DRIP<span className="text-accent">GOD</span>
         </Link>
 
@@ -51,6 +53,16 @@ export function Header() {
 
         {/* Actions */}
         <div className="flex items-center gap-6">
+          {/* Wishlist */}
+          <Link href="/favoritos" className="relative" aria-label="Abrir favoritos">
+            <Heart size={20} className="hover:text-accent transition-colors" />
+            {wishlistIds.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-accent text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {wishlistIds.length}
+              </span>
+            )}
+          </Link>
+
           {/* Cart */}
           <Link href="/sacola" className="relative" aria-label="Abrir carrinho">
             <ShoppingBag size={20} className="hover:text-accent transition-colors" />
@@ -65,7 +77,7 @@ export function Header() {
           <button
             onClick={toggleMenu}
             className="md:hidden p-2 hover:bg-muted rounded transition-colors focus:outline-2 focus:outline-offset-2 focus:outline-accent"
-            aria-label="Toggle menu"
+            aria-label="Abrir menu"
             aria-expanded={isOpen}
           >
             <AnimatePresence mode="wait">

@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Acessibilidade',
+  description: 'O nosso compromisso em tornar o website acessível a todos.',
+}
 
 export default function Page() {
   return (

@@ -88,7 +88,7 @@ export function Hero() {
           {/* Main Headline */}
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-foreground mb-6 tracking-tight"
-            style={{ fontFamily: 'Playfair Display' }}
+            style={{ fontFamily: 'var(--font-playfair)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.2 }}

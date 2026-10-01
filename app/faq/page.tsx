@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Perguntas Frequentes',
+  description: 'Tire as suas dúvidas sobre encomendas, pagamentos e entregas.',
+}
 
 export default function Page() {
   return (

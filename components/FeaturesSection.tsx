@@ -31,7 +31,7 @@ export function FeaturesSection() {
             <p className="text-xs md:text-sm tracking-widest text-accent mb-4">DIFERENCIAIS</p>
             <h2
               className="text-4xl md:text-5xl font-bold"
-              style={{ fontFamily: 'Playfair Display' }}
+              style={{ fontFamily: 'var(--font-playfair)' }}
             >
               Por que escolher a DripGOd
             </h2>

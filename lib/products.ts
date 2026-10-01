@@ -1,3 +1,8 @@
+export interface ProductVariant {
+  color: string
+  images: string[]
+}
+
 export interface Product {
   id: string
   title: string
@@ -7,6 +12,30 @@ export interface Product {
   subcategory?: string
   isNew?: boolean
   salePrice?: number
+  sizes?: string[]
+  colors?: string[]
+  /** Cores com fotos próprias; quando existe, substitui `colors` e a foto muda com a cor. */
+  variants?: ProductVariant[]
+  /** Galeria de fotos quando não há variantes por cor. */
+  images?: string[]
+  /** Fotos extra na galeria que não pertencem a nenhuma cor (ex.: todas as cores juntas). */
+  extraImages?: string[]
+}
+
+export const SNEAKER_COLORS = ['Preto', 'Branco', 'Cinzento', 'Azul', 'Vermelho']
+export const FORMAL_COLORS = ['Preto', 'Castanho']
+
+const CLOTHING_SIZES = ['S', 'M', 'L', 'XL']
+export const SHOE_SIZES = ['38', '39', '40', '41', '42', '43', '44', '45']
+const NB530_SIZES = ['36', '37', '38', '39', '40', '41', '42', '43', '44', '45']
+
+// Tamanhos por defeito consoante a categoria (calçado, vestuário, acessórios sem tamanho).
+// Um produto pode definir `sizes` ou `colors` próprios para sobrepor.
+export function getProductSizes(product: Product): string[] {
+  if (product.sizes) return product.sizes
+  if (product.collection === 'CALÇADOS') return SHOE_SIZES
+  if (product.collection === 'ACESSÓRIOS') return []
+  return CLOTHING_SIZES
 }
 
 export const FEATURED_PRODUCTS: Product[] = [
@@ -59,8 +88,10 @@ export const FEATURED_PRODUCTS: Product[] = [
     id: '7',
     title: 'Ténis Retro Edição Limitada',
     price: 5820,
-    image: '/products/tenis-retro-edicao-limitada.png',
+    image: '/products/tenis-retro-edicao-limitada.jpg',
     collection: 'EDIÇÃO LIMITADA',
+    sizes: SHOE_SIZES,
+    colors: SNEAKER_COLORS,
   },
   {
     id: '8',
@@ -78,6 +109,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     collection: 'CALÇADOS',
     subcategory: 'ESPORTIVAS',
     isNew: true,
+    colors: SNEAKER_COLORS,
   },
   {
     id: '10',
@@ -87,6 +119,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     collection: 'CALÇADOS',
     subcategory: 'ESPORTIVAS',
     isNew: true,
+    colors: SNEAKER_COLORS,
   },
   {
     id: '11',
@@ -95,6 +128,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/new-balance-574-classic.png',
     collection: 'CALÇADOS',
     subcategory: 'ESPORTIVAS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '12',
@@ -103,6 +137,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/balenciaga-track-elegance.png',
     collection: 'CALÇADOS',
     subcategory: 'FORMAIS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '13',
@@ -111,6 +146,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/balenciaga-speed-trainer.png',
     collection: 'CALÇADOS',
     subcategory: 'FORMAIS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '14',
@@ -119,6 +155,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/clarks-oxford-classico.png',
     collection: 'CALÇADOS',
     subcategory: 'FORMAIS',
+    colors: FORMAL_COLORS,
   },
   {
     id: '15',
@@ -127,6 +164,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/clarks-derby-couro.png',
     collection: 'CALÇADOS',
     subcategory: 'FORMAIS',
+    colors: FORMAL_COLORS,
   },
   {
     id: '16',
@@ -135,6 +173,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/nike-air-force-1-classic.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '17',
@@ -143,6 +182,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/adidas-stan-smith-couro.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '18',
@@ -151,6 +191,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/new-balance-990.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    colors: SNEAKER_COLORS,
   },
   {
     id: '19',
@@ -159,6 +200,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/timberland-boot-classica.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    colors: FORMAL_COLORS,
   },
   {
     id: '20',
@@ -167,5 +209,214 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/calcados/timberland-boot-couro.png',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    colors: FORMAL_COLORS,
+  },
+  {
+    id: '21',
+    title: 'New Balance 530',
+    price: 3000,
+    image: '/products/calcados/new-balance-530-azul-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'ESPORTIVAS',
+    isNew: true,
+    sizes: NB530_SIZES,
+    variants: [
+      {
+        color: 'Branco e Azul',
+        images: [
+          '/products/calcados/new-balance-530-azul-1.jpg',
+          '/products/calcados/new-balance-530-azul-2.jpg',
+          '/products/calcados/new-balance-530-azul-3.jpg',
+          '/products/calcados/new-balance-530-azul-4.jpg',
+        ],
+      },
+      {
+        color: 'Branco e Preto',
+        images: [
+          '/products/calcados/new-balance-530-preto-1.jpg',
+          '/products/calcados/new-balance-530-preto-2.jpg',
+          '/products/calcados/new-balance-530-preto-3.jpg',
+        ],
+      },
+    ],
+  },
+  {
+    id: '22',
+    title: 'Calções Jeans',
+    price: 1700,
+    image: '/products/calcoes-jeans-1.jpg',
+    collection: 'PRIMAVERA',
+    isNew: true,
+    images: Array.from({ length: 7 }, (_, i) => `/products/calcoes-jeans-${i + 1}.jpg`),
+  },
+  {
+    id: '23',
+    title: 'Air Force 1 AIR-FLEA',
+    price: 3500,
+    image: '/products/calcados/air-force-1-air-flea-preto-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['39', '40', '41', '42', '43', '44'],
+    variants: [
+      {
+        color: 'Preto',
+        images: [
+          '/products/calcados/air-force-1-air-flea-preto-1.jpg',
+          '/products/calcados/air-force-1-air-flea-preto-2.jpg',
+        ],
+      },
+      {
+        color: 'Branco',
+        images: [
+          '/products/calcados/air-force-1-air-flea-branco-1.jpg',
+          '/products/calcados/air-force-1-air-flea-branco-2.jpg',
+        ],
+      },
+    ],
+  },
+  {
+    id: '24',
+    title: 'Conjunto Feminino',
+    price: 3500,
+    image: '/products/conjunto-feminino-branco-1.jpg',
+    collection: 'PRIMAVERA',
+    isNew: true,
+    variants: [
+      {
+        color: 'Branco',
+        images: [
+          '/products/conjunto-feminino-branco-1.jpg',
+          '/products/conjunto-feminino-branco-2.jpg',
+        ],
+      },
+      {
+        color: 'Rosa',
+        images: [
+          '/products/conjunto-feminino-rosa-1.jpg',
+          '/products/conjunto-feminino-rosa-2.jpg',
+        ],
+      },
+      {
+        color: 'Preto',
+        images: [
+          '/products/conjunto-feminino-preto-1.jpg',
+          '/products/conjunto-feminino-preto-2.jpg',
+        ],
+      },
+      {
+        color: 'Bege',
+        images: [
+          '/products/conjunto-feminino-bege-1.jpg',
+          '/products/conjunto-feminino-bege-2.jpg',
+        ],
+      },
+    ],
+  },
+  {
+    id: '25',
+    title: 'Camisa Polo Lacoste',
+    price: 1770,
+    image: '/products/polo-lacoste-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    colors: ['Branco', 'Preto', 'Azul Marinho', 'Verde', 'Vermelho'],
+    images: Array.from({ length: 6 }, (_, i) => `/products/polo-lacoste-${i + 1}.jpg`),
+  },
+  {
+    id: '26',
+    title: 'Conjunto Oversized',
+    price: 2800,
+    image: '/products/conjunto-oversized-preto.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Preto', images: ['/products/conjunto-oversized-preto.jpg'] },
+      { color: 'Cinzento Escuro', images: ['/products/conjunto-oversized-cinzento-escuro.jpg'] },
+      { color: 'Azul Céu', images: ['/products/conjunto-oversized-azul-ceu.jpg'] },
+      { color: 'Verde Sálvia', images: ['/products/conjunto-oversized-verde-salvia.jpg'] },
+      { color: 'Verde Escuro', images: ['/products/conjunto-oversized-verde-escuro.jpg'] },
+      { color: 'Verde Oliva', images: ['/products/conjunto-oversized-oliva.jpg'] },
+      { color: 'Cinzento Claro', images: ['/products/conjunto-oversized-cinzento-claro.jpg'] },
+      { color: 'Branco', images: ['/products/conjunto-oversized-branco.jpg'] },
+    ],
+  },
+  {
+    id: '27',
+    title: 'Camisa Oversized',
+    price: 1600,
+    image: '/products/camisa-oversized-bege.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Bege', images: ['/products/camisa-oversized-bege.jpg'] },
+      { color: 'Branco', images: ['/products/camisa-oversized-branco.jpg'] },
+      { color: 'Creme', images: ['/products/camisa-oversized-creme.jpg'] },
+      { color: 'Rosa', images: ['/products/camisa-oversized-rosa.jpg'] },
+      { color: 'Cinzento Escuro', images: ['/products/camisa-oversized-cinzento-escuro.jpg'] },
+      { color: 'Areia', images: ['/products/camisa-oversized-areia.jpg'] },
+      { color: 'Verde Menta', images: ['/products/camisa-oversized-verde-menta.jpg'] },
+    ],
+    extraImages: ['/products/camisa-oversized-todas-as-cores.jpg'],
+  },
+  {
+    id: '28',
+    title: 'Conjunto NOCTA',
+    price: 2950,
+    image: '/products/conjunto-nocta-preto-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Preto', images: ['/products/conjunto-nocta-preto-1.jpg'] },
+      { color: 'Branco', images: ['/products/conjunto-nocta-branco-1.jpg'] },
+      { color: 'Bege', images: ['/products/conjunto-nocta-bege-1.jpg'] },
+    ],
+  },
+  {
+    id: '29',
+    title: 'Camiseta NOCTA',
+    price: 1450,
+    image: '/products/camiseta-nocta-preto.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Preto', images: ['/products/camiseta-nocta-preto.jpg'] },
+      { color: 'Bege', images: ['/products/camiseta-nocta-bege.jpg'] },
+      { color: 'Cinzento', images: ['/products/camiseta-nocta-cinzento.jpg'] },
+    ],
+    extraImages: ['/products/camiseta-nocta-todas-as-cores.jpg'],
+  },
+  {
+    id: '30',
+    title: 'T-shirt Supreme',
+    price: 1500,
+    image: '/products/tshirt-supreme-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    images: Array.from({ length: 5 }, (_, i) => `/products/tshirt-supreme-${i + 1}.jpg`),
+  },
+  {
+    id: '31',
+    title: 'T-shirt Brasil',
+    price: 1500,
+    image: '/products/tshirt-brasil-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    colors: ['Amarelo', 'Branco', 'Azul Marinho'],
+    images: Array.from({ length: 6 }, (_, i) => `/products/tshirt-brasil-${i + 1}.jpg`),
+  },
+  {
+    id: '32',
+    title: 'Calções Gallery Dept',
+    price: 1550,
+    image: '/products/calcoes-gallery-dept-1.jpg',
+    collection: 'PRIMAVERA',
+    isNew: true,
+    sizes: ['30', '32', '34', '36', '38'],
+    images: Array.from({ length: 5 }, (_, i) => `/products/calcoes-gallery-dept-${i + 1}.jpg`),
   },
 ]
+
+export function getProductById(id: string) {
+  return FEATURED_PRODUCTS.find((p) => p.id === id)
+}

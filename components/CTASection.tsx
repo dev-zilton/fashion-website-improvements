@@ -24,7 +24,7 @@ export function CTASection() {
             {/* Headline */}
             <motion.h2
               className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-              style={{ fontFamily: 'Playfair Display' }}
+              style={{ fontFamily: 'var(--font-playfair)' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

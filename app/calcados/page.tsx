@@ -2,9 +2,8 @@
 
 import { useState } from 'react'
 import { PageLayout } from '@/components/PageLayout'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCollection } from '@/components/ProductCollection'
 import { FEATURED_PRODUCTS } from '@/lib/products'
-import { useToast } from '@/hooks/useToast'
 
 const FILTERS = [
   { key: 'TODOS', label: 'Todos' },
@@ -14,7 +13,6 @@ const FILTERS = [
 ] as const
 
 export default function Page() {
-  const { showToast } = useToast()
   const [activeFilter, setActiveFilter] = useState<string>('TODOS')
 
   const calcados = FEATURED_PRODUCTS.filter((p) => p.collection === 'CALÇADOS')
@@ -22,20 +20,6 @@ export default function Page() {
     activeFilter === 'TODOS'
       ? calcados
       : calcados.filter((p) => p.subcategory === activeFilter)
-
-  const handleAddToCart = (productId: string) => {
-    const product = FEATURED_PRODUCTS.find((p) => p.id === productId)
-    if (product) {
-      showToast(`${product.title} adicionado ao carrinho!`, 'success')
-    }
-  }
-
-  const handleToggleWishlist = (productId: string) => {
-    const product = FEATURED_PRODUCTS.find((p) => p.id === productId)
-    if (product) {
-      showToast(`${product.title} adicionado aos favoritos!`, 'success')
-    }
-  }
 
   return (
     <PageLayout
@@ -58,23 +42,10 @@ export default function Page() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-        {filtered.map((product, index) => (
-          <ProductCard
-            key={product.id}
-            {...product}
-            index={index}
-            onAddToCart={handleAddToCart}
-            onToggleWishlist={handleToggleWishlist}
-          />
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <p className="text-center text-gray-400 py-12">
-          Nenhum produto encontrado nesta categoria.
-        </p>
-      )}
+      <ProductCollection
+        products={filtered}
+        emptyMessage="Nenhum produto encontrado nesta categoria."
+      />
     </PageLayout>
   )
 }

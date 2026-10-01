@@ -1,13 +1,16 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import { FontLoader } from '@/components/font-loader'
+import { Inter, Playfair_Display } from 'next/font/google'
 import { CartProvider } from '@/contexts/CartContext'
+import { SITE_URL } from '@/lib/config'
+import { WishlistProvider } from '@/contexts/WishlistContext'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'DripGOd - Moda de Moçambique',
+  title: { default: 'DripGOd - Moda de Moçambique', template: '%s | DripGOd' },
   description: 'Descubra moda e estilos de luxo de Maputo em Moçambique',
-  generator: 'v0.app',
   keywords: 'moda, luxo, drip, estilo, roupa, Moçambique, Maputo',
   authors: [{ name: 'DripGOd Moçambique' }],
   icons: {
@@ -27,11 +30,12 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
-  metadataBase: new URL('https://fashion-website-improvements-6n52.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
     locale: 'pt_MZ',
-    url: 'https://fashion-website-improvements-6n52.vercel.app',
+    url: SITE_URL,
+    siteName: 'DripGOd',
     title: 'DripGOd - Moda Moçambicana',
     description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
     images: ['/opengraph-image'],
@@ -52,7 +56,6 @@ export const viewport: Viewport = {
   ],
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
 }
 
 export default function RootLayout({
@@ -61,23 +64,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt" className="bg-background">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <FontLoader />
-        <noscript>
-          <link 
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
-      </head>
+    <html lang="pt" className={`bg-background ${inter.variable} ${playfair.variable}`}>
       <body className="antialiased font-sans">
         <CartProvider>
-          {children}
+          <WishlistProvider>{children}</WishlistProvider>
         </CartProvider>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

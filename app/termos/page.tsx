@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Termos e Condições',
+  description: 'Termos de utilização do nosso website e serviços.',
+}
 
 export default function Page() {
   return (

@@ -5,13 +5,14 @@ import { FeaturesSection } from '@/components/FeaturesSection'
 import { TestimonialsSection } from '@/components/TestimonialsSection'
 import { CTASection } from '@/components/CTASection'
 import { Footer } from '@/components/Footer'
+import { SITE_URL } from '@/lib/config'
 
 const schemaMarkup = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'DripGOd',
-  url: 'https://dripgod-mz.com',
-  logo: 'https://dripgod-mz.com/logo.png',
+  url: SITE_URL,
+  logo: `${SITE_URL}/apple-icon.png`,
   description: 'Moda moçambicana de Maputo',
   address: {
     '@type': 'PostalAddress',

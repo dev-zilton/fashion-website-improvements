@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
+
+export const metadata: Metadata = {
+  title: 'Política de Cookies',
+  description: 'Como utilizamos cookies neste website.',
+}
 
 export default function Page() {
   return (

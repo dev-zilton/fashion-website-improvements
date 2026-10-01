@@ -1,42 +1,17 @@
-'use client'
-
+import type { Metadata } from 'next'
 import { PageLayout } from '@/components/PageLayout'
-import { ProductCard } from '@/components/ProductCard'
+import { ProductCollection } from '@/components/ProductCollection'
 import { FEATURED_PRODUCTS } from '@/lib/products'
-import { useToast } from '@/hooks/useToast'
+
+export const metadata: Metadata = {
+  title: 'Novidades',
+  description: 'Confira as últimas peças que chegaram à nossa colecção.',
+}
 
 export default function Page() {
-  const { showToast } = useToast()
-
-  const filtered = FEATURED_PRODUCTS.filter((p) => p.isNew)
-
-  const handleAddToCart = (productId: string) => {
-    const product = FEATURED_PRODUCTS.find((p) => p.id === productId)
-    if (product) {
-      showToast(`${product.title} adicionado ao carrinho!`, 'success')
-    }
-  }
-
-  const handleToggleWishlist = (productId: string) => {
-    const product = FEATURED_PRODUCTS.find((p) => p.id === productId)
-    if (product) {
-      showToast(`${product.title} adicionado aos favoritos!`, 'success')
-    }
-  }
-
   return (
     <PageLayout title="Novidades" description="Confira as últimas peças que chegaram à nossa colecção.">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-        {filtered.map((product, index) => (
-          <ProductCard
-            key={product.id}
-            {...product}
-            index={index}
-            onAddToCart={handleAddToCart}
-            onToggleWishlist={handleToggleWishlist}
-          />
-        ))}
-      </div>
+      <ProductCollection products={FEATURED_PRODUCTS.filter((p) => p.isNew)} />
     </PageLayout>
   )
 }
