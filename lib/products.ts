@@ -818,6 +818,16 @@ export const FEATURED_PRODUCTS: Product[] = [
     isNew: true,
     images: Array.from({ length: 3 }, (_, i) => `/products/colete-boss-${i + 1}.jpg`),
   },
+  {
+    id: '54',
+    title: 'Calças Jeans AMIRI',
+    price: 2199,
+    image: '/products/calcas-amiri-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    sizes: ['30', '32', '34', '36', '38'],
+    images: Array.from({ length: 6 }, (_, i) => `/products/calcas-amiri-${i + 1}.jpg`),
+  },
 ]
 
 export function getProductById(id: string) {
