@@ -828,6 +828,17 @@ export const FEATURED_PRODUCTS: Product[] = [
     sizes: ['30', '32', '34', '36', '38'],
     images: Array.from({ length: 6 }, (_, i) => `/products/calcas-amiri-${i + 1}.jpg`),
   },
+  {
+    id: '55',
+    title: 'Casaco Sobrecamisa',
+    price: 2500,
+    image: '/products/casaco-sobrecamisa-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    sizes: ['M', 'L', 'XL', 'XXL'],
+    colors: ['Preto', 'Branco', 'Creme', 'Bege', 'Camel', 'Castanho', 'Cinzento', 'Verde Claro', 'Verde Militar', 'Azul Marinho', 'Azul Royal'],
+    images: Array.from({ length: 4 }, (_, i) => `/products/casaco-sobrecamisa-${i + 1}.jpg`),
+  },
 ]
 
 export function getProductById(id: string) {
