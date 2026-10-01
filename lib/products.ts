@@ -442,6 +442,22 @@ export const FEATURED_PRODUCTS: Product[] = [
     ],
     extraImages: ['/products/calcados/jordan-retro-4-todas.jpg'],
   },
+  {
+    id: '34',
+    title: 'Calções Nike Classic',
+    price: 1350,
+    image: '/products/calcoes-nike-classic-vermelho.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    sizes: ['M', 'L', 'XL', 'XXL', 'XXXL'],
+    variants: [
+      { color: 'Vermelho', images: ['/products/calcoes-nike-classic-vermelho.jpg'] },
+      { color: 'Azul', images: ['/products/calcoes-nike-classic-azul.jpg'] },
+      { color: 'Preto', images: ['/products/calcoes-nike-classic-preto.jpg'] },
+      { color: 'Branco', images: ['/products/calcoes-nike-classic-branco.jpg'] },
+    ],
+    extraImages: ['/products/calcoes-nike-classic-todas-as-cores.jpg'],
+  },
 ]
 
 export function getProductById(id: string) {
