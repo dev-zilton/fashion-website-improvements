@@ -649,6 +649,32 @@ export const FEATURED_PRODUCTS: Product[] = [
     ],
     extraImages: ['/products/bones-todas-1.jpg', '/products/bones-todas-2.jpg'],
   },
+  {
+    id: '43',
+    title: 'Mochila Goyard',
+    price: 2649,
+    image: '/products/mochila-vermelho-1.jpg',
+    collection: 'ACESSÓRIOS',
+    isNew: true,
+    variants: [
+      {
+        color: 'Vermelho',
+        images: ['/products/mochila-vermelho-1.jpg', '/products/mochila-vermelho-2.jpg', '/products/mochila-vermelho-3.jpg', '/products/mochila-vermelho-4.jpg'],
+      },
+      {
+        color: 'Verde',
+        images: ['/products/mochila-verde-1.jpg', '/products/mochila-verde-2.jpg', '/products/mochila-verde-3.jpg', '/products/mochila-verde-4.jpg', '/products/mochila-verde-5.jpg', '/products/mochila-verde-6.jpg'],
+      },
+      {
+        color: 'Preto',
+        images: ['/products/mochila-preto-1.jpg', '/products/mochila-preto-2.jpg', '/products/mochila-preto-3.jpg', '/products/mochila-preto-4.jpg'],
+      },
+      {
+        color: 'Cinzento',
+        images: ['/products/mochila-cinzento-1.jpg', '/products/mochila-cinzento-2.jpg', '/products/mochila-cinzento-3.jpg'],
+      },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
