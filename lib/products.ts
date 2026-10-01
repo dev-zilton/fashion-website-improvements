@@ -591,6 +591,22 @@ export const FEATURED_PRODUCTS: Product[] = [
       },
     ],
   },
+  {
+    id: '41',
+    title: 'Camisa de Linho às Riscas',
+    price: 0,
+    priceOnRequest: true,
+    image: '/products/camisa-linho-riscas-azul.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Azul', images: ['/products/camisa-linho-riscas-azul.jpg'] },
+      { color: 'Rosa', images: ['/products/camisa-linho-riscas-rosa.jpg'] },
+      { color: 'Azul Claro', images: ['/products/camisa-linho-riscas-azul-claro.jpg'] },
+      { color: 'Vermelho', images: ['/products/camisa-linho-riscas-vermelho.jpg'] },
+      { color: 'Verde', images: ['/products/camisa-linho-riscas-verde.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
