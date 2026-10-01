@@ -750,6 +750,20 @@ export const FEATURED_PRODUCTS: Product[] = [
     sizes: ['40', '41', '42', '43', '44', '45'],
     images: Array.from({ length: 3 }, (_, i) => `/products/calcados/tenis-numeris-${i + 1}.jpg`),
   },
+  {
+    id: '49',
+    title: 'Adidas Superstar',
+    price: 3499,
+    image: '/products/calcados/adidas-superstar-branco-azul-marinho-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['38', '39', '40', '41', '42', '43', '44'],
+    variants: [
+      { color: 'Branco e Azul Marinho', images: ['/products/calcados/adidas-superstar-branco-azul-marinho-1.jpg', '/products/calcados/adidas-superstar-branco-azul-marinho-2.jpg', '/products/calcados/adidas-superstar-branco-azul-marinho-3.jpg'] },
+      { color: 'Cinzento', images: ['/products/calcados/adidas-superstar-cinzento-1.jpg', '/products/calcados/adidas-superstar-cinzento-2.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
