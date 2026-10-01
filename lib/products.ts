@@ -475,6 +475,30 @@ export const FEATURED_PRODUCTS: Product[] = [
     ],
     extraImages: ['/products/calcoes-nike-nocta-todas-as-cores.jpg'],
   },
+  {
+    id: '36',
+    title: 'Air Jordan 1 Rasa',
+    price: 2499,
+    image: '/products/calcados/air-jordan-1-rasa-preto-branco.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['37', '38', '39', '40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Preto e Branco', images: ['/products/calcados/air-jordan-1-rasa-preto-branco.jpg'] },
+      { color: 'Bordô e Preto', images: ['/products/calcados/air-jordan-1-rasa-borbo-preto.jpg'] },
+      { color: 'Preto Total', images: ['/products/calcados/air-jordan-1-rasa-preto-total.jpg'] },
+      { color: 'Preto Camurça', images: ['/products/calcados/air-jordan-1-rasa-preto-camurca.jpg'] },
+      { color: 'Azul Marinho', images: ['/products/calcados/air-jordan-1-rasa-azul-marinho.jpg'] },
+      { color: 'Preto e Cinzento', images: ['/products/calcados/air-jordan-1-rasa-preto-cinzento.jpg'] },
+      { color: 'Branco, Preto e Vermelho', images: ['/products/calcados/air-jordan-1-rasa-branco-preto-vermelho.jpg'] },
+      { color: 'Branco', images: ['/products/calcados/air-jordan-1-rasa-branco.jpg'] },
+      { color: 'Cinzento e Branco', images: ['/products/calcados/air-jordan-1-rasa-cinzento-branco.jpg'] },
+      { color: 'Preto, Vermelho e Creme', images: ['/products/calcados/air-jordan-1-rasa-preto-vermelho-creme.jpg'] },
+      { color: 'Preto, Branco e Castanho', images: ['/products/calcados/air-jordan-1-rasa-preto-branco-castanho.jpg'] },
+      { color: 'Vermelho e Preto', images: ['/products/calcados/air-jordan-1-rasa-vermelho-preto.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
