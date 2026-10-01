@@ -546,6 +546,21 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Faixa Preto', images: ['/products/calcados/chinelos-tommy-faixa-preto-1.jpg'] },
     ],
   },
+  {
+    id: '39',
+    title: 'Calções Diesel',
+    price: 1450,
+    image: '/products/calcoes-diesel-azul-escuro.jpg',
+    collection: 'PRIMAVERA',
+    isNew: true,
+    sizes: ['32', '34', '36'],
+    variants: [
+      { color: 'Azul Escuro', images: ['/products/calcoes-diesel-azul-escuro.jpg'] },
+      { color: 'Azul Médio', images: ['/products/calcoes-diesel-azul-medio.jpg'] },
+      { color: 'Azul Claro', images: ['/products/calcoes-diesel-azul-claro.jpg'] },
+      { color: 'Azul Lavado', images: ['/products/calcoes-diesel-azul-lavado.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
