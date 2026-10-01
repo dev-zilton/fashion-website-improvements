@@ -415,6 +415,33 @@ export const FEATURED_PRODUCTS: Product[] = [
     sizes: ['30', '32', '34', '36', '38'],
     images: Array.from({ length: 5 }, (_, i) => `/products/calcoes-gallery-dept-${i + 1}.jpg`),
   },
+  {
+    id: '33',
+    title: 'Jordan Retro 4',
+    price: 2450,
+    image: '/products/calcados/jordan-retro-4-branco-vermelho-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    variants: [
+      { color: 'Branco e Vermelho', images: ['/products/calcados/jordan-retro-4-branco-vermelho-1.jpg'] },
+      { color: 'Preto e Roxo', images: ['/products/calcados/jordan-retro-4-preto-roxo-1.jpg'] },
+      { color: 'Verde Escuro', images: ['/products/calcados/jordan-retro-4-verde-escuro-1.jpg', '/products/calcados/jordan-retro-4-verde-escuro-2.jpg'] },
+      { color: 'Branco e Azul Royal', images: ['/products/calcados/jordan-retro-4-branco-azul-royal-1.jpg'] },
+      { color: 'Roxo', images: ['/products/calcados/jordan-retro-4-roxo-1.jpg'] },
+      { color: 'Cinzento e Azul', images: ['/products/calcados/jordan-retro-4-cinzento-azul-1.jpg'] },
+      { color: 'Branco e Verde', images: ['/products/calcados/jordan-retro-4-branco-verde-1.jpg'] },
+      { color: 'Cinzento e Menta', images: ['/products/calcados/jordan-retro-4-cinzento-menta-1.jpg'] },
+      { color: 'Branco Multicor', images: ['/products/calcados/jordan-retro-4-branco-multicor-1.jpg'] },
+      { color: 'Branco e Azul Marinho', images: ['/products/calcados/jordan-retro-4-branco-azul-marinho-1.jpg'] },
+      { color: 'Vermelho e Azul', images: ['/products/calcados/jordan-retro-4-vermelho-azul-1.jpg'] },
+      { color: 'Preto e Vermelho', images: ['/products/calcados/jordan-retro-4-preto-vermelho-1.jpg'] },
+      { color: 'Branco e Bordô', images: ['/products/calcados/jordan-retro-4-branco-bordo-1.jpg'] },
+      { color: 'Azul Claro', images: ['/products/calcados/jordan-retro-4-azul-claro-1.jpg'] },
+      { color: 'Creme e Verde', images: ['/products/calcados/jordan-retro-4-creme-verde-1.jpg'] },
+    ],
+    extraImages: ['/products/calcados/jordan-retro-4-todas.jpg'],
+  },
 ]
 
 export function getProductById(id: string) {
