@@ -500,6 +500,12 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Preto, Vermelho e Creme', images: ['/products/calcados/air-jordan-1-rasa-preto-vermelho-creme.jpg'] },
       { color: 'Preto, Branco e Castanho', images: ['/products/calcados/air-jordan-1-rasa-preto-branco-castanho.jpg'] },
       { color: 'Vermelho e Preto', images: ['/products/calcados/air-jordan-1-rasa-vermelho-preto.jpg'] },
+      { color: 'Azul Marinho e Cinzento', images: ['/products/calcados/air-jordan-1-rasa-azul-marinho-cinzento-1.jpg', '/products/calcados/air-jordan-1-rasa-azul-marinho-cinzento-2.jpg', '/products/calcados/air-jordan-1-rasa-azul-marinho-cinzento-3.jpg'] },
+      { color: 'Cinzento Escuro e Branco', images: ['/products/calcados/air-jordan-1-rasa-cinzento-escuro-branco-1.jpg', '/products/calcados/air-jordan-1-rasa-cinzento-escuro-branco-2.jpg'] },
+      { color: 'Verde Militar', images: ['/products/calcados/air-jordan-1-rasa-verde-militar-1.jpg', '/products/calcados/air-jordan-1-rasa-verde-militar-2.jpg'] },
+      { color: 'PSG Preto e Vermelho', images: ['/products/calcados/air-jordan-1-rasa-psg-preto-vermelho-1.jpg', '/products/calcados/air-jordan-1-rasa-psg-preto-vermelho-2.jpg', '/products/calcados/air-jordan-1-rasa-psg-preto-vermelho-3.jpg'] },
+      { color: 'Preto Elefante Amarelo', images: ['/products/calcados/air-jordan-1-rasa-preto-elefante-amarelo-1.jpg', '/products/calcados/air-jordan-1-rasa-preto-elefante-amarelo-2.jpg', '/products/calcados/air-jordan-1-rasa-preto-elefante-amarelo-3.jpg'] },
+      { color: 'Verde Oliva e Branco', images: ['/products/calcados/air-jordan-1-rasa-verde-oliva-branco-1.jpg', '/products/calcados/air-jordan-1-rasa-verde-oliva-branco-2.jpg'] },
     ],
   },
   {
