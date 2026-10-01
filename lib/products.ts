@@ -695,6 +695,17 @@ export const FEATURED_PRODUCTS: Product[] = [
     ],
     extraImages: ['/products/calcados/birkenstock-boston-todas-1.jpg', '/products/calcados/birkenstock-boston-todas-2.jpg'],
   },
+  {
+    id: '45',
+    title: 'Camiseta de Malha',
+    price: 1450,
+    image: '/products/camiseta-malha-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    sizes: ['M', 'L', 'XL', 'XXL'],
+    colors: ['Bordô', 'Creme', 'Preto', 'Cinzento'],
+    images: ['/products/camiseta-malha-1.jpg', '/products/camiseta-malha-2.jpg'],
+  },
 ]
 
 export function getProductById(id: string) {
