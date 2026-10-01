@@ -733,6 +733,17 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Castanho', images: ['/products/fato-cruzado-castanho-1.jpg'] },
     ],
   },
+  {
+    id: '48',
+    title: 'Ténis Numeris',
+    price: 5999,
+    image: '/products/calcados/tenis-numeris-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['40', '41', '42', '43', '44', '45'],
+    images: Array.from({ length: 3 }, (_, i) => `/products/calcados/tenis-numeris-${i + 1}.jpg`),
+  },
 ]
 
 export function getProductById(id: string) {
