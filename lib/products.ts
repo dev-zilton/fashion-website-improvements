@@ -14,6 +14,8 @@ export interface Product {
   collection: string
   subcategory?: string
   isNew?: boolean
+  /** Mostra o selo "STOCK LIMITADO" no lugar de "NOVO". */
+  limitedStock?: boolean
   salePrice?: number
   sizes?: string[]
   colors?: string[]

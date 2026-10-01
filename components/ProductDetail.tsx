@@ -74,7 +74,7 @@ export function ProductDetail({ product }: { product: Product }) {
         />
         {(product.isNew || product.salePrice) && (
           <div className="absolute top-4 left-4 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
-            {product.salePrice ? 'PROMOÇÃO' : 'NOVO'}
+            {product.salePrice ? 'PROMOÇÃO' : product.limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
           </div>
         )}
       </div>

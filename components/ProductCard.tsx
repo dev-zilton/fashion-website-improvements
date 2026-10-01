@@ -18,13 +18,14 @@ interface ProductCardProps {
   collection: string
   index: number
   isNew?: boolean
+  limitedStock?: boolean
   salePrice?: number
   sizes?: string[]
   onAddToCart?: (productId: string) => void
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, priceOnRequest, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
@@ -146,9 +147,9 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           )}
 
           {/* New / Sale Badge */}
-          {(isNew || salePrice) && (
+          {(isNew || salePrice || limitedStock) && (
             <div className="absolute top-4 right-16 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
-              {salePrice ? 'PROMOÇÃO' : 'NOVO'}
+              {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
             </div>
           )}
         </div>
