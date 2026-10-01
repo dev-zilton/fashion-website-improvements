@@ -9,6 +9,7 @@ const FILTERS = [
   { key: 'TODOS', label: 'Todos' },
   { key: 'ESPORTIVAS', label: 'Esportivas' },
   { key: 'FORMAIS', label: 'Formais' },
+  { key: 'CHINELOS', label: 'Chinelos' },
   { key: 'MAIS', label: 'Mais' },
 ] as const
 
