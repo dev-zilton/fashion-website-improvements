@@ -12,7 +12,9 @@ const SORTS = [
   { key: 'price-desc', label: 'Preço: maior para menor' },
 ] as const
 
-const effectivePrice = (p: { price: number; salePrice?: number }) => p.salePrice ?? p.price
+// Produtos com preço sob consulta ficam sempre no fim das ordenações por preço
+const effectivePrice = (p: { price: number; salePrice?: number; priceOnRequest?: boolean }) =>
+  p.priceOnRequest ? Number.POSITIVE_INFINITY : (p.salePrice ?? p.price)
 
 const normalize = (value: string) =>
   value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -32,7 +34,7 @@ export default function Page() {
         (!q || normalize(p.title).includes(q))
     )
     if (sort === 'price-asc') list.sort((a, b) => effectivePrice(a) - effectivePrice(b))
-    if (sort === 'price-desc') list.sort((a, b) => effectivePrice(b) - effectivePrice(a))
+    if (sort === 'price-desc') list.sort((a, b) => (a.priceOnRequest ? 1 : b.priceOnRequest ? -1 : effectivePrice(b) - effectivePrice(a)))
     return list
   }, [query, collection, sort])
 

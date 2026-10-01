@@ -13,6 +13,7 @@ interface ProductCardProps {
   id: string
   title: string
   price: number
+  priceOnRequest?: boolean
   image: string
   collection: string
   index: number
@@ -23,7 +24,7 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, index, isNew, salePrice, priceOnRequest, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
@@ -126,15 +127,15 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             transition={{ duration: 0.3 }}
             onClick={(e) => {
               // Peças com tamanho seguem o link para a página do produto para escolher o tamanho
-              if (needsSize) return
+              if (needsSize || priceOnRequest) return
               e.preventDefault()
               addItem({ id, title, price, salePrice, image })
               onAddToCart?.(id)
             }}
-            aria-label={needsSize ? `Escolher tamanho de ${title}` : `Adicionar ${title} ao carrinho`}
+            aria-label={priceOnRequest ? `Ver ${title}` : needsSize ? `Escolher tamanho de ${title}` : `Adicionar ${title} ao carrinho`}
           >
             <ShoppingBag size={16} />
-            {needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
+            {priceOnRequest ? 'VER DETALHES' : needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
           </motion.button>
 
           {/* Collection Badge */}
@@ -163,7 +164,11 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
 
         <div className="flex items-baseline justify-between">
           <div className="flex items-baseline gap-2">
-            {salePrice ? (
+            {priceOnRequest ? (
+              <span className="text-sm font-semibold tracking-widest uppercase text-accent">
+                Preço sob consulta
+              </span>
+            ) : salePrice ? (
               <>
                 <span className="text-lg font-semibold tracking-tight text-accent">
                   {salePrice.toFixed(0)} MT

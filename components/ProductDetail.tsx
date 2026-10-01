@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Heart, ShoppingBag, Check } from 'lucide-react'
+import { Heart, ShoppingBag, Check, MessageCircle } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { getProductSizes, type Product } from '@/lib/products'
+import { WHATSAPP_NUMBER } from '@/lib/config'
 
 export function ProductDetail({ product }: { product: Product }) {
   const { addItem } = useCart()
@@ -38,6 +39,12 @@ export function ProductDetail({ product }: { product: Product }) {
       return
     }
     setMissing(false)
+    if (product.priceOnRequest) {
+      const variant = [size && `Tam. ${size}`, color].filter(Boolean).join(', ')
+      const message = `Olá! Gostaria de saber o preço de: ${product.title}${variant ? ` [${variant}]` : ''}`
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+      return
+    }
     addItem({
       id: product.id,
       title: product.title,
@@ -98,7 +105,11 @@ export function ProductDetail({ product }: { product: Product }) {
         </span>
 
         <div className="flex items-baseline gap-3 mt-6 mb-8">
-          {product.salePrice ? (
+          {product.priceOnRequest ? (
+            <span className="text-lg font-semibold tracking-widest uppercase text-accent">
+              Preço sob consulta
+            </span>
+          ) : product.salePrice ? (
             <>
               <span className="text-2xl font-semibold text-accent">
                 {product.salePrice.toFixed(0)} MT
@@ -168,7 +179,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
         {missing && (
           <p role="alert" className="text-sm text-red-500 mb-4">
-            Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de adicionar ao carrinho.
+            Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'adicionar ao carrinho'}.
           </p>
         )}
 
@@ -177,7 +188,12 @@ export function ProductDetail({ product }: { product: Product }) {
             onClick={handleAddToCart}
             className="flex-1 flex items-center justify-center gap-2 px-8 py-4 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors"
           >
-            {added ? (
+            {product.priceOnRequest ? (
+              <>
+                <MessageCircle size={16} />
+                PEDIR PREÇO NO WHATSAPP
+              </>
+            ) : added ? (
               <>
                 <Check size={16} />
                 ADICIONADO

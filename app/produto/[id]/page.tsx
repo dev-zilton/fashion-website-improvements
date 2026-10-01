@@ -16,7 +16,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!product) return {}
 
   const price = product.salePrice ?? product.price
-  const description = `${product.title} da colecção ${product.collection.toLowerCase()} DripGOd. ${price} MT, com entrega em Moçambique.`
+  const description = product.priceOnRequest
+    ? `${product.title} da colecção ${product.collection.toLowerCase()} DripGOd. Preço sob consulta, com entrega em Moçambique.`
+    : `${product.title} da colecção ${product.collection.toLowerCase()} DripGOd. ${price} MT, com entrega em Moçambique.`
   return {
     title: product.title,
     description,
@@ -40,13 +42,18 @@ export default async function Page({ params }: Params) {
     image: `${SITE_URL}${product.image}`,
     category: product.collection,
     brand: { '@type': 'Brand', name: 'DripGOd' },
-    offers: {
-      '@type': 'Offer',
-      url: `${SITE_URL}/produto/${product.id}`,
-      priceCurrency: 'MZN',
-      price: product.salePrice ?? product.price,
-      availability: 'https://schema.org/InStock',
-    },
+    // Sem `offers` quando o preço é sob consulta (um preço falso invalidaria o rich result)
+    ...(product.priceOnRequest
+      ? {}
+      : {
+          offers: {
+            '@type': 'Offer',
+            url: `${SITE_URL}/produto/${product.id}`,
+            priceCurrency: 'MZN',
+            price: product.salePrice ?? product.price,
+            availability: 'https://schema.org/InStock',
+          },
+        }),
   }
 
   return (

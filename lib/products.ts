@@ -6,7 +6,10 @@ export interface ProductVariant {
 export interface Product {
   id: string
   title: string
+  /** Em MT. Ignorado quando `priceOnRequest` é verdadeiro. */
   price: number
+  /** Preço sob consulta: não mostra valor nem permite comprar pela sacola; o cliente pede o preço no WhatsApp. */
+  priceOnRequest?: boolean
   image: string
   collection: string
   subcategory?: string
@@ -559,6 +562,33 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Azul Médio', images: ['/products/calcoes-diesel-azul-medio.jpg'] },
       { color: 'Azul Claro', images: ['/products/calcoes-diesel-azul-claro.jpg'] },
       { color: 'Azul Lavado', images: ['/products/calcoes-diesel-azul-lavado.jpg'] },
+    ],
+  },
+  {
+    id: '40',
+    title: 'Conjunto Linho Loro Piana',
+    price: 0,
+    priceOnRequest: true,
+    image: '/products/conjunto-linho-loro-piana-branco-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      {
+        color: 'Branco',
+        images: ['/products/conjunto-linho-loro-piana-branco-1.jpg', '/products/conjunto-linho-loro-piana-branco-2.jpg', '/products/conjunto-linho-loro-piana-branco-3.jpg', '/products/conjunto-linho-loro-piana-branco-4.jpg'],
+      },
+      {
+        color: 'Preto',
+        images: ['/products/conjunto-linho-loro-piana-preto-1.jpg', '/products/conjunto-linho-loro-piana-preto-2.jpg'],
+      },
+      {
+        color: 'Cinzento',
+        images: ['/products/conjunto-linho-loro-piana-cinzento-1.jpg', '/products/conjunto-linho-loro-piana-cinzento-2.jpg', '/products/conjunto-linho-loro-piana-cinzento-3.jpg'],
+      },
+      {
+        color: 'Verde Caqui',
+        images: ['/products/conjunto-linho-loro-piana-verde-caqui-1.jpg'],
+      },
     ],
   },
 ]
