@@ -393,7 +393,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     image: '/products/tshirt-supreme-1.jpg',
     collection: 'PEÇAS ESSENCIAIS',
     isNew: true,
-    images: Array.from({ length: 5 }, (_, i) => `/products/tshirt-supreme-${i + 1}.jpg`),
+    images: [1, 2, 3, 5].map((n) => `/products/tshirt-supreme-${n}.jpg`),
   },
   {
     id: '31',
@@ -403,7 +403,7 @@ export const FEATURED_PRODUCTS: Product[] = [
     collection: 'PEÇAS ESSENCIAIS',
     isNew: true,
     colors: ['Amarelo', 'Branco', 'Azul Marinho'],
-    images: Array.from({ length: 6 }, (_, i) => `/products/tshirt-brasil-${i + 1}.jpg`),
+    images: [1, 3, 4, 5, 6].map((n) => `/products/tshirt-brasil-${n}.jpg`),
   },
   {
     id: '32',
