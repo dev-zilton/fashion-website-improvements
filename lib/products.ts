@@ -781,12 +781,12 @@ export const FEATURED_PRODUCTS: Product[] = [
   {
     id: '51',
     title: 'New Balance 327',
-    price: 0,
-    priceOnRequest: true, // provisório: falta confirmar o preço
+    price: 2850,
     image: '/products/calcados/new-balance-327-branco-cinzento-verde.jpg',
     collection: 'CALÇADOS',
     subcategory: 'ESPORTIVAS',
     isNew: true,
+    sizes: ['37', '38', '39', '40', '41', '42', '43', '44'],
     variants: [
       { color: 'Branco, Cinzento e Verde', images: ['/products/calcados/new-balance-327-branco-cinzento-verde.jpg'] },
       { color: 'Azul Petróleo', images: ['/products/calcados/new-balance-327-azul-petroleo.jpg'] },
