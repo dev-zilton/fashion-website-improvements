@@ -778,6 +778,20 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Preto', images: ['/products/calcados/tenis-lacoste-preto.jpg'] },
     ],
   },
+  {
+    id: '51',
+    title: 'New Balance 327',
+    price: 0,
+    priceOnRequest: true, // provisório: falta confirmar o preço
+    image: '/products/calcados/new-balance-327-branco-cinzento-verde.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'ESPORTIVAS',
+    isNew: true,
+    variants: [
+      { color: 'Branco, Cinzento e Verde', images: ['/products/calcados/new-balance-327-branco-cinzento-verde.jpg'] },
+      { color: 'Azul Petróleo', images: ['/products/calcados/new-balance-327-azul-petroleo.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
