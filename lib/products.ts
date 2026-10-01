@@ -706,6 +706,17 @@ export const FEATURED_PRODUCTS: Product[] = [
     colors: ['Bordô', 'Creme', 'Preto', 'Cinzento'],
     images: ['/products/camiseta-malha-1.jpg', '/products/camiseta-malha-2.jpg'],
   },
+  {
+    id: '46',
+    title: 'Calções Nike Jordan',
+    price: 2550,
+    image: '/products/calcoes-nike-jordan-1.jpg',
+    collection: 'PRIMAVERA',
+    isNew: true,
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    colors: ['Azul Claro', 'Cinzento', 'Preto', 'Vermelho', 'Branco'],
+    images: Array.from({ length: 5 }, (_, i) => `/products/calcoes-nike-jordan-${i + 1}.jpg`),
+  },
 ]
 
 export function getProductById(id: string) {
