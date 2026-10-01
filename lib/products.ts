@@ -717,6 +717,22 @@ export const FEATURED_PRODUCTS: Product[] = [
     colors: ['Azul Claro', 'Cinzento', 'Preto', 'Vermelho', 'Branco'],
     images: Array.from({ length: 5 }, (_, i) => `/products/calcoes-nike-jordan-${i + 1}.jpg`),
   },
+  {
+    id: '47',
+    title: 'Fato Cruzado',
+    price: 7500,
+    image: '/products/fato-cruzado-preto-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Preto', images: ['/products/fato-cruzado-preto-1.jpg', '/products/fato-cruzado-preto-2.jpg'] },
+      { color: 'Bege', images: ['/products/fato-cruzado-bege-1.jpg'] },
+      { color: 'Camel', images: ['/products/fato-cruzado-camel-1.jpg'] },
+      { color: 'Azul Marinho', images: ['/products/fato-cruzado-azul-marinho-1.jpg', '/products/fato-cruzado-azul-marinho-2.jpg'] },
+      { color: 'Cinzento', images: ['/products/fato-cruzado-cinzento-1.jpg'] },
+      { color: 'Castanho', images: ['/products/fato-cruzado-castanho-1.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
