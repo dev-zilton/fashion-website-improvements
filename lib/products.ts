@@ -764,6 +764,20 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Cinzento', images: ['/products/calcados/adidas-superstar-cinzento-1.jpg', '/products/calcados/adidas-superstar-cinzento-2.jpg'] },
     ],
   },
+  {
+    id: '50',
+    title: 'Ténis Lacoste',
+    price: 3499,
+    image: '/products/calcados/tenis-lacoste-preto.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Cinzento Escuro', images: ['/products/calcados/tenis-lacoste-cinzento-escuro.jpg'] },
+      { color: 'Preto', images: ['/products/calcados/tenis-lacoste-preto.jpg'] },
+    ],
+  },
 ]
 
 export function getProductById(id: string) {
