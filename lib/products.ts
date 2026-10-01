@@ -675,6 +675,26 @@ export const FEATURED_PRODUCTS: Product[] = [
       },
     ],
   },
+  {
+    id: '44',
+    title: 'Birkenstock Boston',
+    price: 2850,
+    image: '/products/calcados/birkenstock-boston-preto.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['38', '39', '40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Areia', images: ['/products/calcados/birkenstock-boston-areia.jpg'] },
+      { color: 'Cinzento Claro', images: ['/products/calcados/birkenstock-boston-cinzento-claro.jpg'] },
+      { color: 'Cinzento', images: ['/products/calcados/birkenstock-boston-cinzento.jpg'] },
+      { color: 'Castanho', images: ['/products/calcados/birkenstock-boston-castanho.jpg'] },
+      { color: 'Preto', images: ['/products/calcados/birkenstock-boston-preto.jpg'] },
+      { color: 'Rosa', images: ['/products/calcados/birkenstock-boston-rosa.jpg'] },
+      { color: 'Verde Caqui', images: ['/products/calcados/birkenstock-boston-verde-caqui.jpg'] },
+    ],
+    extraImages: ['/products/calcados/birkenstock-boston-todas-1.jpg', '/products/calcados/birkenstock-boston-todas-2.jpg'],
+  },
 ]
 
 export function getProductById(id: string) {
