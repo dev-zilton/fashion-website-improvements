@@ -458,6 +458,23 @@ export const FEATURED_PRODUCTS: Product[] = [
     ],
     extraImages: ['/products/calcoes-nike-classic-todas-as-cores.jpg'],
   },
+  {
+    id: '35',
+    title: 'Calções Nike NOCTA',
+    price: 1450,
+    image: '/products/calcoes-nike-nocta-preto.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    variants: [
+      { color: 'Vermelho', images: ['/products/calcoes-nike-nocta-vermelho.jpg'] },
+      { color: 'Preto', images: ['/products/calcoes-nike-nocta-preto.jpg'] },
+      { color: 'Roxo', images: ['/products/calcoes-nike-nocta-roxo.jpg'] },
+      { color: 'Azul Marinho', images: ['/products/calcoes-nike-nocta-azul-marinho.jpg'] },
+      { color: 'Coral', images: ['/products/calcoes-nike-nocta-coral.jpg'] },
+      { color: 'Cinzento', images: ['/products/calcoes-nike-nocta-cinzento.jpg'] },
+    ],
+    extraImages: ['/products/calcoes-nike-nocta-todas-as-cores.jpg'],
+  },
 ]
 
 export function getProductById(id: string) {
