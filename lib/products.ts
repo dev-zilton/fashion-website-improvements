@@ -809,6 +809,15 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Cinzento Escuro e Bege', images: ['/products/calcados/new-balance-480-cinzento-escuro-bege.jpg'] },
     ],
   },
+  {
+    id: '53',
+    title: 'Colete BOSS',
+    price: 3850,
+    image: '/products/colete-boss-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    images: Array.from({ length: 3 }, (_, i) => `/products/colete-boss-${i + 1}.jpg`),
+  },
 ]
 
 export function getProductById(id: string) {
