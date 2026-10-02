@@ -49,7 +49,7 @@ export default function Page() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Pesquisar produtos..."
-            className="w-full pl-11 pr-4 py-3 bg-transparent border border-border text-sm focus:outline-2 focus:outline-accent"
+            className="w-full pl-11 pr-4 py-3 bg-transparent border border-border text-base md:text-sm focus:outline-2 focus:outline-accent"
           />
         </label>
         <label>
@@ -57,7 +57,7 @@ export default function Page() {
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as typeof sort)}
-            className="w-full md:w-auto px-4 py-3 bg-background border border-border text-sm focus:outline-2 focus:outline-accent"
+            className="w-full md:w-auto px-4 py-3 bg-background border border-border text-base md:text-sm focus:outline-2 focus:outline-accent"
           >
             {SORTS.map((s) => (
               <option key={s.key} value={s.key}>

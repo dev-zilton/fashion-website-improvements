@@ -13,7 +13,7 @@ export function PageLayout({ children, title, description }: PageLayoutProps) {
       <Header />
       <main id="main-content" className="min-h-screen bg-background text-foreground pt-24">
         <section className="max-w-5xl mx-auto px-6 py-16">
-          <h1 className="text-4xl font-bold tracking-wider mb-4" style={{ fontFamily: 'var(--font-playfair)' }}>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-wider mb-4 break-words" style={{ fontFamily: 'var(--font-playfair)' }}>
             {title}
           </h1>
           {description && (

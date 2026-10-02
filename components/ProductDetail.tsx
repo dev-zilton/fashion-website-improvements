@@ -59,7 +59,7 @@ export function ProductDetail({ product }: { product: Product }) {
   }
 
   return (
-    <div className="grid md:grid-cols-2 gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
       {/* Image */}
       <div>
       <div className="relative aspect-[3/4] bg-muted overflow-hidden">

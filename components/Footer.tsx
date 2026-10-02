@@ -115,14 +115,14 @@ export function Footer() {
               Receba novidades, ofertas exclusivas e inspiração de Moçambique direto na sua caixa de entrada.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
                 placeholder="seu@email.com"
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 disabled={isSubscribing}
-                className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-gray-400 text-sm border border-white/20 focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 px-4 py-3 bg-white/10 text-white placeholder-gray-400 text-base md:text-sm border border-white/20 focus:outline-none focus:border-accent transition-colors disabled:opacity-50"
               />
               <button
                 onClick={handleNewsletterSubmit}
