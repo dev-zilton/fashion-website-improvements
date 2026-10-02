@@ -39,7 +39,7 @@ export default function Page() {
           <ShoppingBag size={48} className="text-gray-400" />
           <p className="text-gray-400 max-w-md">
             A sua sacola está vazia. Explore a nossa colecção e adicione as
-            peças que mais gosta clicando em "Adicionar ao Carrinho".
+            peças que mais gosta clicando em “Adicionar ao Carrinho”.
           </p>
           <Link
             href="/"

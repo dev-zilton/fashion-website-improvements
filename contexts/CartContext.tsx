@@ -44,6 +44,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (stored) {
         const parsed = JSON.parse(stored) as CartItem[]
         // Carrinhos antigos não tinham lineId
+        // Ler o localStorage só depois de montar evita erros de hidratação
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setItems(parsed.map((i) => ({ ...i, lineId: i.lineId ?? makeLineId(i) })))
       }
     } catch (err) {

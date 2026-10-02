@@ -22,7 +22,7 @@ export function Footer() {
     if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share(shareData)
-      } catch (err) {
+      } catch {
         // utilizador cancelou a partilha, nada a fazer
       }
     } else if (typeof navigator !== 'undefined' && navigator.clipboard) {
@@ -54,7 +54,7 @@ export function Footer() {
 
       showToast('Subscrição efetuada com sucesso!', 'success')
       setNewsletterEmail('')
-    } catch (err) {
+    } catch {
       showToast('Erro ao subscrever. Tente novamente.', 'error')
     } finally {
       setIsSubscribing(false)

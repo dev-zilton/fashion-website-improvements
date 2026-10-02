@@ -1,8 +1,5 @@
 allowBuilds:
-  msw: true
   sharp: true
-onlyBuiltDependencies:
-  - msw
-  - sharp
+  unrs-resolver: true
 overrides:
   hono: 4.12.25

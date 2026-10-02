@@ -20,6 +20,8 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
+      // Ler o localStorage só depois de montar evita erros de hidratação
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (stored) setIds(JSON.parse(stored))
     } catch (err) {
       console.error('[DripGOd] Erro ao carregar favoritos:', err)
