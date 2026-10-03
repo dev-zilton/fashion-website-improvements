@@ -29,7 +29,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
-              Descubra o seu estilo único
+              O seu próximo fit está aqui
             </motion.h2>
 
             {/* Description */}
@@ -40,7 +40,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Explore a nossa colecção de Maputo e encontre as peças que definem o seu estilo pessoal.
+              Do básico do dia a dia ao look para sair à noite: escolha as peças, monte o visual e nós tratamos da entrega.
             </motion.p>
 
             {/* CTA Buttons */}

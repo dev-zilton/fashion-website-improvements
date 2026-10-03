@@ -18,7 +18,7 @@ export function Header() {
     { label: 'LOJA', href: '/loja' },
     { label: 'COLECÇÕES', id: 'coleccoes' },
     { label: 'CALÇADOS', href: '/calcados' },
-    { label: 'TESTEMUNHOS', id: 'testemunhos' },
+    { label: 'A NOSSA VIBE', id: 'vibe' },
     { label: 'CONTACTO', id: 'contacto' },
   ]
 

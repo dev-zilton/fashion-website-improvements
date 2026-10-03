@@ -2,7 +2,7 @@ import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { ProductGrid } from '@/components/ProductGrid'
 import { FeaturesSection } from '@/components/FeaturesSection'
-import { TestimonialsSection } from '@/components/TestimonialsSection'
+import { VibeSection } from '@/components/VibeSection'
 import { CTASection } from '@/components/CTASection'
 import { Footer } from '@/components/Footer'
 import { SITE_URL } from '@/lib/config'
@@ -13,7 +13,7 @@ const schemaMarkup = {
   name: 'DripGOd',
   url: SITE_URL,
   logo: `${SITE_URL}/apple-icon.png`,
-  description: 'Moda moçambicana de Maputo',
+  description: 'Loja de roupa, snikas e acessórios importados em Maputo, com entrega em todo Moçambique',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Avenida Mao Tse Tung',
@@ -44,8 +44,8 @@ export default function Page() {
           <ProductGrid />
         </section>
         
-        <section id="testemunhos" aria-label="Testemunhos de clientes">
-          <TestimonialsSection />
+        <section id="vibe" aria-label="A nossa vibe">
+          <VibeSection />
         </section>
         
         <section id="cta" aria-label="Chamada para acção">

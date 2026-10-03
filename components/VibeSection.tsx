@@ -2,47 +2,46 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ScrollReveal } from './ScrollReveal'
 
-const testimonials = [
+// Frases da própria loja (não são testemunhos de clientes)
+const messages = [
   {
-    name: 'Marina Nhantumbo',
-    role: 'Influenciadora de Moda',
-    text: 'A DripGOd oferece a qualidade que procurava! Cada peça é um investimento em estilo moçambicano.',
-    rating: 5,
+    title: 'Snikas que chegam e voam.',
+    text: 'Muitas peças chegam em poucas unidades. Quem vê primeiro, leva.',
   },
   {
-    name: 'Carlos Mateus',
-    role: 'Empresário de Maputo',
-    text: 'Excelente atendimento e produtos de qualidade. Recomendo para quem valoriza qualidade local.',
-    rating: 5,
+    title: 'Fit maningue nice, sem complicação.',
+    text: 'Escolher, encomendar e receber onde estiver. Simples assim.',
   },
   {
-    name: 'Ana Couto',
-    role: 'Estilista Profissional',
-    text: 'As colecções são incríveis! Design contemporâneo com toque de sofisticação moçambicana.',
-    rating: 5,
+    title: 'Dúvidas no tamanho? É só mandar mensagem.',
+    text: 'No WhatsApp a malta responde e ajuda a acertar no tamanho e na cor antes de pagar.',
+  },
+  {
+    title: 'Drip importado, qualidade que se nota.',
+    text: 'Roupa, snikas e acessórios escolhidos a dedo, com as tendências do momento.',
   },
 ]
 
-export function TestimonialsSection() {
+export function VibeSection() {
   const [current, setCurrent] = useState(0)
 
-  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length)
-  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  const next = () => setCurrent((prev) => (prev + 1) % messages.length)
+  const prev = () => setCurrent((prev) => (prev - 1 + messages.length) % messages.length)
 
   return (
     <section className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-6">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <p className="text-xs md:text-sm tracking-widest text-accent mb-4">TESTEMUNHOS</p>
+            <p className="text-xs md:text-sm tracking-widest text-accent mb-4">A NOSSA VIBE</p>
             <h2
               className="text-4xl md:text-5xl font-bold"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
-              O que os nossos clientes dizem
+              Drip maningue nice, sem stress
             </h2>
           </div>
         </ScrollReveal>
@@ -58,25 +57,15 @@ export function TestimonialsSection() {
                 transition={{ duration: 0.35 }}
                 className="bg-muted p-8 md:p-12 rounded-lg"
               >
-                {/* Rating */}
-                <div className="flex gap-1 mb-6">
-                  {Array.from({ length: testimonials[current].rating }).map((_, i) => (
-                    <Star key={i} size={16} className="fill-accent text-accent" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote className="text-xl md:text-2xl font-light mb-8 leading-relaxed">
-                  “{testimonials[current].text}”
-                </blockquote>
-
-                {/* Author */}
-                <div>
-                  <p className="font-semibold text-sm">{testimonials[current].name}</p>
-                  <p className="text-xs text-muted-foreground tracking-wide">
-                    {testimonials[current].role}
-                  </p>
-                </div>
+                <p
+                  className="text-2xl md:text-4xl font-bold mb-4 leading-tight"
+                  style={{ fontFamily: 'var(--font-playfair)' }}
+                >
+                  {messages[current].title}
+                </p>
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  {messages[current].text}
+                </p>
               </motion.div>
             </AnimatePresence>
 
@@ -85,21 +74,21 @@ export function TestimonialsSection() {
               <button
                 onClick={prev}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
-                aria-label="Previous testimonial"
+                aria-label="Mensagem anterior"
               >
                 <ChevronLeft size={20} />
               </button>
 
               {/* Indicators */}
               <div className="flex gap-2">
-                {testimonials.map((_, index) => (
+                {messages.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrent(index)}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       index === current ? 'w-8 bg-accent' : 'w-2 bg-muted hover:bg-muted-foreground'
                     }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
+                    aria-label={`Ver mensagem ${index + 1}`}
                   />
                 ))}
               </div>
@@ -107,7 +96,7 @@ export function TestimonialsSection() {
               <button
                 onClick={next}
                 className="p-2 hover:bg-muted rounded-full transition-colors"
-                aria-label="Next testimonial"
+                aria-label="Mensagem seguinte"
               >
                 <ChevronRight size={20} />
               </button>

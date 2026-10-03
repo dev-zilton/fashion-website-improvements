@@ -25,6 +25,8 @@ export interface Product {
   images?: string[]
   /** Fotos extra na galeria que não pertencem a nenhuma cor (ex.: todas as cores juntas). */
   extraImages?: string[]
+  /** Cor da peça quando só existe uma versão; serve só para mostrar (não é para escolher). */
+  baseColor?: string
 }
 
 export const SNEAKER_COLORS = ['Preto', 'Branco', 'Cinzento', 'Azul', 'Vermelho']
@@ -47,6 +49,7 @@ const CATALOG: Product[] = [
   {
     id: '1',
     title: 'Blazer Structured Preto',
+    baseColor: 'Preto',
     price: 4980,
     image: '/products/blazer-structured-preto.png',
     collection: 'PEÇAS ESSENCIAIS',
@@ -54,6 +57,7 @@ const CATALOG: Product[] = [
   {
     id: '2',
     title: 'T-Shirt Oversized',
+    baseColor: 'Cinzento Escuro',
     price: 2480,
     image: '/products/tshirt-oversized.png',
     collection: 'PRIMAVERA',
@@ -62,6 +66,7 @@ const CATALOG: Product[] = [
   {
     id: '3',
     title: 'Calça Slim Fit',
+    baseColor: 'Azul Escuro',
     price: 3320,
     image: '/products/calca-slim-fit.png',
     collection: 'PEÇAS ESSENCIAIS',
@@ -70,6 +75,7 @@ const CATALOG: Product[] = [
   {
     id: '4',
     title: 'Jaqueta Biker Deluxe',
+    baseColor: 'Preto',
     price: 9980,
     image: '/products/jaqueta-biker-deluxe.png',
     collection: 'MAPUTO',
@@ -77,6 +83,7 @@ const CATALOG: Product[] = [
   {
     id: '5',
     title: 'Calções Utility Vintage',
+    baseColor: 'Azul Claro',
     price: 2320,
     image: '/products/calcoes-utility-vintage.png',
     collection: 'PRIMAVERA',
@@ -98,7 +105,7 @@ const CATALOG: Product[] = [
   },
   {
     id: '7',
-    title: 'Ténis Retro Edição Limitada',
+    title: 'Snikas Retro Edição Limitada',
     price: 5820,
     image: '/products/tenis-retro-edicao-limitada.jpg',
     collection: 'EDIÇÃO LIMITADA',
@@ -108,6 +115,7 @@ const CATALOG: Product[] = [
   {
     id: '8',
     title: 'Acessórios Signature Ouro',
+    baseColor: 'Dourado',
     price: 3320,
     image: '/products/acessorios-signature-ouro.png',
     collection: 'ACESSÓRIOS',
@@ -255,6 +263,7 @@ const CATALOG: Product[] = [
   {
     id: '22',
     title: 'Calções Jeans',
+    baseColor: 'Azul Claro',
     price: 1700,
     image: '/products/calcoes-jeans-1.jpg',
     collection: 'PRIMAVERA',
@@ -401,6 +410,7 @@ const CATALOG: Product[] = [
   {
     id: '30',
     title: 'T-shirt Supreme',
+    baseColor: 'Vermelho, Branco e Preto',
     price: 1500,
     image: '/products/tshirt-supreme-1.jpg',
     collection: 'PEÇAS ESSENCIAIS',
@@ -420,6 +430,7 @@ const CATALOG: Product[] = [
   {
     id: '32',
     title: 'Calções Gallery Dept',
+    baseColor: 'Camuflado',
     price: 1550,
     image: '/products/calcoes-gallery-dept-1.jpg',
     collection: 'PRIMAVERA',
@@ -750,7 +761,7 @@ const CATALOG: Product[] = [
   },
   {
     id: '48',
-    title: 'Ténis Numeris',
+    title: 'Snikas Numeris',
     price: 5999,
     image: '/products/calcados/tenis-numeris-1.jpg',
     collection: 'CALÇADOS',
@@ -782,7 +793,7 @@ const CATALOG: Product[] = [
   },
   {
     id: '50',
-    title: 'Ténis Lacoste',
+    title: 'Snikas Lacoste',
     price: 3499,
     image: '/products/calcados/tenis-lacoste-preto.jpg',
     collection: 'CALÇADOS',
@@ -828,6 +839,7 @@ const CATALOG: Product[] = [
   {
     id: '53',
     title: 'Colete BOSS',
+    baseColor: 'Preto',
     price: 3850,
     image: '/products/colete-boss-1.jpg',
     collection: 'PEÇAS ESSENCIAIS',
@@ -837,6 +849,7 @@ const CATALOG: Product[] = [
   {
     id: '54',
     title: 'Calças Jeans AMIRI',
+    baseColor: 'Azul Lavado',
     price: 2199,
     image: '/products/calcas-amiri-1.jpg',
     collection: 'PEÇAS ESSENCIAIS',
@@ -871,6 +884,7 @@ const CATALOG: Product[] = [
   {
     id: '57',
     title: 'Adidas Drop Step',
+    baseColor: 'Branco, Cinzento e Laranja',
     price: 0,
     priceOnRequest: true,
     image: '/products/calcados/adidas-drop-step-1.jpg',

@@ -7,18 +7,18 @@ import { ScrollReveal } from './ScrollReveal'
 const features = [
   {
     icon: Zap,
-    title: 'Qualidade Superior',
-    description: 'Selecionamos apenas as melhores peças com materiais de excelência moçambicana',
+    title: 'Qualidade a sério',
+    description: 'Peças importadas e escolhidas a dedo, com acabamento que se nota logo ao primeiro toque.',
   },
   {
     icon: Shield,
-    title: 'Compra Segura',
-    description: 'Os seus dados estão protegidos com encriptação de nível bancário',
+    title: 'Compra sem stress',
+    description: 'Dúvidas sobre o tamanho ou a cor? Fale connosco no WhatsApp e confirme tudo antes de pagar.',
   },
   {
     icon: Truck,
-    title: 'Entrega Rápida',
-    description: 'Entregamos em até 5 dias úteis para todo Moçambique',
+    title: 'Entrega em todo o país',
+    description: 'Maputo e Matola em 1 a 3 dias úteis. Restantes províncias em 3 a 7 dias úteis.',
   },
 ]
 
@@ -33,7 +33,7 @@ export function FeaturesSection() {
               className="text-4xl md:text-5xl font-bold"
               style={{ fontFamily: 'var(--font-playfair)' }}
             >
-              Por que escolher a DripGOd
+              Porquê comprar na DripGOd
             </h2>
           </div>
         </ScrollReveal>

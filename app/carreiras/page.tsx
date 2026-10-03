@@ -19,7 +19,7 @@ export default function Page() {
         </div>
         <div>
           <h2 className="text-xl font-semibold mb-2">Porquê trabalhar connosco</h2>
-          <p>Ambiente criativo, oportunidades de crescimento e a possibilidade de contribuir para o crescimento da moda moçambicana.</p>
+          <p>Uma equipa jovem, um ambiente descontraído e a oportunidade de crescer connosco enquanto levamos as tendências a cada vez mais gente em Moçambique.</p>
         </div>
       </div>
     </PageLayout>

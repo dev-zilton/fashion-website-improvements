@@ -16,7 +16,7 @@ export function Footer() {
     const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
     const shareData = {
       title: 'DripGOD Moçambique',
-      text: 'Confira a DripGOD - moda contemporânea moçambicana',
+      text: 'Confira a DripGOD: roupa e snikas importados, com as tendências do momento, em Moçambique',
       url: shareUrl,
     }
     if (typeof navigator !== 'undefined' && navigator.share) {
@@ -77,7 +77,6 @@ export function Footer() {
     EMPRESA: [
       { label: 'Sobre Nós', href: '/sobre-nos' },
       { label: 'Carreiras', href: '/carreiras' },
-      { label: 'Sustentabilidade', href: '/sustentabilidade' },
       { label: 'Imprensa', href: '/imprensa' },
     ],
     LEGAL: [
@@ -145,7 +144,7 @@ export function Footer() {
               DRIP<span className="text-accent">GOD</span>
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Qualidade, design contemporâneo, e moda moçambicana com propósito para si.
+              Roupa, snikas e acessórios importados, com qualidade e as tendências do momento. Entregamos em todo Moçambique.
             </p>
           </div>
 

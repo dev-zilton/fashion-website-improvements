@@ -7,7 +7,8 @@ import { ShoppingBag, Heart } from 'lucide-react'
 import { useState, memo } from 'react'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
-import { getProductSizes } from '@/lib/products'
+import { getProductSizes, type ProductVariant } from '@/lib/products'
+import { getCardSwatches } from '@/lib/colors'
 
 interface ProductCardProps {
   id: string
@@ -21,17 +22,21 @@ interface ProductCardProps {
   limitedStock?: boolean
   salePrice?: number
   sizes?: string[]
+  colors?: string[]
+  variants?: ProductVariant[]
+  baseColor?: string
   onAddToCart?: (productId: string) => void
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
   const { isWishlisted, toggle } = useWishlist()
   const wishlisted = isWishlisted(id)
   const needsSize = getProductSizes({ id, title, price, image, collection, sizes }).length > 0
+  const swatches = getCardSwatches(variants?.map((v) => v.color) ?? colors ?? [], baseColor)
 
   // Validação básica
   if (!id || !title || price < 0) {
@@ -157,6 +162,46 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
 
       {/* Product Info */}
       <div className="space-y-1 md:space-y-3">
+        {/* Todos os cartões têm bolinhas; só as das cores para escolher levam à cor (o padding aumenta a área de toque) */}
+        {swatches && (
+          <div className="flex items-center -ml-1" aria-hidden={!swatches.linkable || undefined}>
+            {swatches.items.slice(0, 4).map((s) => {
+              const dot = (
+                <span
+                  className="block w-3 h-3 md:w-3.5 md:h-3.5 rounded-full ring-1 ring-white/20 group-hover/swatch:ring-2 group-hover/swatch:ring-accent transition-shadow"
+                  style={{ background: s.background }}
+                />
+              )
+              return swatches.linkable ? (
+                <Link
+                  key={s.name}
+                  href={`/produto/${id}?cor=${encodeURIComponent(s.name)}`}
+                  title={s.name}
+                  aria-label={`Ver ${title} em ${s.name}`}
+                  className="p-1 group/swatch"
+                >
+                  {dot}
+                </Link>
+              ) : (
+                <span key={s.name} className="p-1">
+                  {dot}
+                </span>
+              )
+            })}
+            {swatches.items.length > 4 &&
+              (swatches.linkable ? (
+                <Link
+                  href={`/produto/${id}`}
+                  aria-label={`Ver todas as ${swatches.items.length} cores de ${title}`}
+                  className="p-1 text-[10px] md:text-xs text-muted-foreground hover:text-accent"
+                >
+                  +{swatches.items.length - 4}
+                </Link>
+              ) : (
+                <span className="p-1 text-[10px] md:text-xs text-muted-foreground">+{swatches.items.length - 4}</span>
+              ))}
+          </div>
+        )}
         <div>
           <h3 className="text-sm font-medium tracking-wide line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {title}

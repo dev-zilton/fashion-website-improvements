@@ -32,17 +32,17 @@ export function Hero() {
   const collections = [
     {
       title: 'COLECÇÃO PRIMAVERA',
-      subtitle: 'Silhuetas ousadas e cores vibrantes de Moçambique',
+      subtitle: 'Peças leves e cheias de cor para os dias quentes',
       image: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
     },
     {
       title: 'PEÇAS ESSENCIAIS',
-      subtitle: 'Peças atemporais para o guarda-roupa perfeito',
+      subtitle: 'Básicos de qualidade que combinam com tudo',
       image: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)',
     },
     {
-      title: 'EDIÇÃO LIMITADA MAPUTO',
-      subtitle: 'Designs exclusivos inspirados na cultura moçambicana',
+      title: 'EDIÇÃO LIMITADA',
+      subtitle: 'Poucas unidades: quando acabam, acabam',
       image: 'linear-gradient(135deg, #2a2a2a 0%, #000000 100%)',
     },
   ]
@@ -81,7 +81,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.6, delay: 0.1 }}
           >
-            — NOVO LANÇAMENTO —
+            — ACABADO DE CHEGAR —
           </motion.p>
 
           {/* Main Headline */}
@@ -104,7 +104,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.3 }}
           >
-            Descubra a excelência em cada peça. Qualidade, design e conforto de Maputo para o mundo.
+            Roupa, snikas e acessórios importados, com qualidade que se nota e as tendências que toda a gente quer. Escolha online e receba onde estiver.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -121,7 +121,7 @@ export function Hero() {
               EXPLORAR COLECÇÃO
             </a>
             <a
-              href="#testemunhos"
+              href="#vibe"
               className="px-12 py-4 border-2 border-foreground text-foreground font-semibold tracking-wider hover:bg-foreground hover:text-background transition-colors duration-300 inline-block text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded"
             >
               SABER MAIS

@@ -5,12 +5,12 @@ import { FEATURED_PRODUCTS } from '@/lib/products'
 
 export const metadata: Metadata = {
   title: 'Promoções',
-  description: 'Peças selecionadas com condições especiais para si.',
+  description: 'Peças boas a preços ainda melhores. Aproveite enquanto há stock.',
 }
 
 export default function Page() {
   return (
-    <PageLayout title="Promoções" description="Peças selecionadas com condições especiais para si.">
+    <PageLayout title="Promoções" description="Peças boas a preços ainda melhores. Aproveite enquanto há stock.">
       <ProductCollection products={FEATURED_PRODUCTS.filter((p) => p.salePrice)} />
     </PageLayout>
   )

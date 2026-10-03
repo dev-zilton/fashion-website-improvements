@@ -5,12 +5,12 @@ import { FEATURED_PRODUCTS } from '@/lib/products'
 
 export const metadata: Metadata = {
   title: 'Novidades',
-  description: 'Confira as últimas peças que chegaram à nossa colecção.',
+  description: 'Acabou de chegar: as últimas peças que trouxemos para si.',
 }
 
 export default function Page() {
   return (
-    <PageLayout title="Novidades" description="Confira as últimas peças que chegaram à nossa colecção.">
+    <PageLayout title="Novidades" description="Acabou de chegar: as últimas peças que trouxemos para si.">
       <ProductCollection products={FEATURED_PRODUCTS.filter((p) => p.isNew)} />
     </PageLayout>
   )

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'DripGOd - Moda de Moçambique'
+export const alt = 'DripGOd - O drip do mundo, em Moçambique'
 export const size = {
   width: 1200,
   height: 630,
@@ -48,7 +48,7 @@ export default function Image() {
             marginTop: 20,
           }}
         >
-          Moda de Moçambique
+          O drip do mundo, em Moçambique
         </div>
       </div>
     ),

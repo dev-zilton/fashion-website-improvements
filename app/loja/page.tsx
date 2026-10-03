@@ -39,7 +39,7 @@ export default function Page() {
   }, [query, collection, sort])
 
   return (
-    <PageLayout title="Loja" description="Toda a colecção DripGOd num só lugar.">
+    <PageLayout title="Loja" description="Roupa, snikas e acessórios importados, tudo num só lugar.">
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <label className="relative flex-1">
           <span className="sr-only">Pesquisar produtos</span>

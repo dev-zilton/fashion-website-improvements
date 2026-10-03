@@ -24,7 +24,7 @@ export function ProductGrid() {
                 className="text-4xl md:text-5xl lg:text-6xl font-bold"
                 style={{ fontFamily: 'var(--font-playfair)' }}
               >
-                Destaques de Maputo
+                Acabou de chegar
               </h2>
             </div>
             <Link href="/loja" className="inline-block px-8 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors duration-300 text-sm font-medium tracking-wider whitespace-nowrap focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
@@ -45,7 +45,7 @@ export function ProductGrid() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Explore a nossa colecção completa de peças selecionadas especialmente para si
+            Há muito mais para ver: roupa, snikas e acessórios para montar o seu próximo fit.
           </p>
           <Link href="/loja" className="inline-block px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-black hover:text-accent transition-colors duration-300 text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
             DESCOBRIR MAIS

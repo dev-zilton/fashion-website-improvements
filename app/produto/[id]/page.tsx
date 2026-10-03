@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const price = product.salePrice ?? product.price
   const description = product.priceOnRequest
-    ? `${product.title} da colecção ${product.collection.toLowerCase()} DripGOd. Preço sob consulta, com entrega em Moçambique.`
-    : `${product.title} da colecção ${product.collection.toLowerCase()} DripGOd. ${price} MT, com entrega em Moçambique.`
+    ? `${product.title} na DripGOd: peça importada, preço sob consulta, com entrega em todo Moçambique.`
+    : `${product.title} na DripGOd: peça importada, ${price} MT, com entrega em todo Moçambique.`
   return {
     title: product.title,
     description,
@@ -57,7 +57,7 @@ export default async function Page({ params }: Params) {
   }
 
   return (
-    <PageLayout title={product.title}>
+    <PageLayout title={product.title} showTitle={false}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'sw
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
 
 export const metadata: Metadata = {
-  title: { default: 'DripGOd - Moda de Moçambique', template: '%s | DripGOd' },
-  description: 'Descubra moda e estilos de luxo de Maputo em Moçambique',
-  keywords: 'moda, luxo, drip, estilo, roupa, Moçambique, Maputo',
+  title: { default: 'DripGOd - O drip do mundo, em Moçambique', template: '%s | DripGOd' },
+  description: 'Roupa, snikas e acessórios importados, com qualidade a sério e as tendências do momento. Entregamos em todo Moçambique.',
+  keywords: 'roupa importada, snikas, ténis, sapatilhas, streetwear, drip, moda, Moçambique, Maputo',
   authors: [{ name: 'DripGOd Moçambique' }],
   icons: {
     icon: [
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     locale: 'pt_MZ',
     url: SITE_URL,
     siteName: 'DripGOd',
-    title: 'DripGOd - Moda Moçambicana',
-    description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
+    title: 'DripGOd - O drip do mundo, em Moçambique',
+    description: 'Roupa, snikas e acessórios importados, com as tendências do momento. Entregamos em todo Moçambique.',
     images: ['/opengraph-image'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DripGOd - Moda Moçambicana',
-    description: 'Descubra estilos de luxo e moda contemporânea de Maputo',
+    title: 'DripGOd - O drip do mundo, em Moçambique',
+    description: 'Roupa, snikas e acessórios importados, com as tendências do momento. Entregamos em todo Moçambique.',
     images: ['/opengraph-image'],
   },
 }
