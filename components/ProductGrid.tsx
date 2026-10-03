@@ -5,6 +5,10 @@ import Link from 'next/link'
 import { ProductCollection } from './ProductCollection'
 import { FEATURED_PRODUCTS } from '@/lib/products'
 
+// Só os mais recentes na página inicial (o catálogo completo está na loja):
+// menos cartões animados = telemóvel livre mais depressa. 12 encaixa em 2, 3 e 4 colunas.
+const HOME_PRODUCT_COUNT = 12
+
 export function ProductGrid() {
   return (
     <section className="py-20 md:py-32 bg-background">
@@ -34,7 +38,7 @@ export function ProductGrid() {
         </m.div>
 
         {/* Product Grid with Staggered Animation */}
-        <ProductCollection products={FEATURED_PRODUCTS} />
+        <ProductCollection products={FEATURED_PRODUCTS.slice(0, HOME_PRODUCT_COUNT)} />
 
         {/* Bottom CTA */}
         <m.div
