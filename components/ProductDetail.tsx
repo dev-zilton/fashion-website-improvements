@@ -3,6 +3,7 @@
 import { useState, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import { Heart, ShoppingBag, Check, MessageCircle } from 'lucide-react'
+import { WhatsAppIcon } from '@/components/WhatsAppButton'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { getProductSizes, type Product } from '@/lib/products'
@@ -50,16 +51,36 @@ export function ProductDetail({ product }: { product: Product }) {
     if (owner) setColor(owner.color)
   }
 
+  // Tamanho e cor têm de estar escolhidos antes de comprar ou falar no WhatsApp
+  const hasChoices = () => {
+    const ok = !(sizes.length > 0 && !size) && !(colors.length > 0 && !color)
+    setMissing(!ok)
+    return ok
+  }
+  const variantText = () => [size && `Tam. ${size}`, color].filter(Boolean).join(', ')
+  const openWhatsApp = (message: string) =>
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+
+  const handleOrderOnWhatsApp = () => {
+    if (!hasChoices()) return
+    const variant = variantText()
+    const price = product.salePrice ?? product.price
+    openWhatsApp(
+      [
+        'Olá! Quero encomendar na DripGOd:',
+        '',
+        `- ${product.title}${variant ? ` [${variant}]` : ''} — ${price.toFixed(0)} MT`,
+        '',
+        window.location.origin + window.location.pathname,
+      ].join('\n')
+    )
+  }
+
   const handleAddToCart = () => {
-    if ((sizes.length > 0 && !size) || (colors.length > 0 && !color)) {
-      setMissing(true)
-      return
-    }
-    setMissing(false)
+    if (!hasChoices()) return
     if (product.priceOnRequest) {
-      const variant = [size && `Tam. ${size}`, color].filter(Boolean).join(', ')
-      const message = `Olá! Gostaria de saber o preço de: ${product.title}${variant ? ` [${variant}]` : ''}`
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+      const variant = variantText()
+      openWhatsApp(`Olá! Gostaria de saber o preço de: ${product.title}${variant ? ` [${variant}]` : ''}`)
       return
     }
     addItem({
@@ -247,7 +268,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
         {missing && (
           <p role="alert" className="text-sm text-red-500 mb-4">
-            Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'adicionar ao carrinho'}.
+            Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'continuar'}.
           </p>
         )}
 
@@ -272,6 +293,16 @@ export function ProductDetail({ product }: { product: Product }) {
             </>
           )}
         </button>
+
+        {!product.priceOnRequest && (
+          <button
+            onClick={handleOrderOnWhatsApp}
+            className="w-full h-14 mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-sm hover:bg-[#25D366] hover:text-white transition-colors"
+          >
+            <WhatsAppIcon size={18} />
+            ENCOMENDAR PELO WHATSAPP
+          </button>
+        )}
       </div>
     </div>
   )

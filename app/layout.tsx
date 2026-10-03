@@ -6,6 +6,7 @@ import { CartProvider } from '@/contexts/CartContext'
 import { SITE_URL } from '@/lib/config'
 import { WishlistProvider } from '@/contexts/WishlistContext'
 import { MotionProvider } from '@/components/MotionProvider'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
@@ -73,6 +74,7 @@ export default function RootLayout({
             <WishlistProvider>{children}</WishlistProvider>
           </CartProvider>
         </MotionProvider>
+        <WhatsAppButton />
         <Analytics />
       </body>
     </html>
