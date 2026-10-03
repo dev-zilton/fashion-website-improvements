@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import { getProductById } from '@/lib/products'
 
 export interface CartItem {
   /** Identifica a linha do carrinho: o mesmo produto em tamanhos diferentes são linhas diferentes. */
@@ -34,6 +35,15 @@ const STORAGE_KEY = 'dripgod_cart'
 const makeLineId = (item: Pick<CartItem, 'id' | 'size' | 'color'>) =>
   [item.id, item.size ?? '', item.color ?? ''].join('|')
 
+// O carrinho guardado pode ter preços ou produtos que já mudaram no catálogo:
+// actualiza nome e preço, e retira os que já não existem ou passaram a preço sob consulta.
+const syncWithCatalog = (items: CartItem[]): CartItem[] =>
+  items.flatMap((i) => {
+    const product = getProductById(i.id)
+    if (!product || product.priceOnRequest) return []
+    return [{ ...i, title: product.title, price: product.price, salePrice: product.salePrice }]
+  })
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
@@ -46,7 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         // Carrinhos antigos não tinham lineId
         // Ler o localStorage só depois de montar evita erros de hidratação
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setItems(parsed.map((i) => ({ ...i, lineId: i.lineId ?? makeLineId(i) })))
+        setItems(syncWithCatalog(parsed.map((i) => ({ ...i, lineId: i.lineId ?? makeLineId(i) }))))
       }
     } catch (err) {
       console.error('[DripGOd] Erro ao carregar carrinho do localStorage:', err)
