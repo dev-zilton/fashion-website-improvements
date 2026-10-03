@@ -104,15 +104,6 @@ const CATALOG: Product[] = [
     ],
   },
   {
-    id: '7',
-    title: 'Snikas Retro Edição Limitada',
-    price: 5820,
-    image: '/products/tenis-retro-edicao-limitada.jpg',
-    collection: 'EDIÇÃO LIMITADA',
-    sizes: SHOE_SIZES,
-    colors: SNEAKER_COLORS,
-  },
-  {
     id: '8',
     title: 'Acessórios Signature Ouro',
     baseColor: 'Dourado',
