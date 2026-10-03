@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Inter, Playfair_Display } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import { CartProvider } from '@/contexts/CartContext'
 import { SITE_URL } from '@/lib/config'
 import { WishlistProvider } from '@/contexts/WishlistContext'
@@ -69,6 +70,7 @@ export default function RootLayout({
         <CartProvider>
           <WishlistProvider>{children}</WishlistProvider>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   )
