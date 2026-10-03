@@ -17,7 +17,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              — EXCLUSIVO —
+              EXCLUSIVO
             </m.p>
 
             {/* Headline */}
@@ -29,7 +29,7 @@ export function CTASection() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
-              O seu próximo fit está aqui
+              O seu próximo outfit está aqui
             </m.h2>
 
             {/* Description */}
