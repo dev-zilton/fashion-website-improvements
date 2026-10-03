@@ -8,6 +8,10 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // CSS dentro do HTML: o telemóvel não espera por um pedido extra para mostrar a página
+  experimental: {
+    inlineCss: true,
+  },
   // Cada combinação foto × largura × formato conta para o limite de otimizações da Vercel:
   // só WebP, menos larguras (1200px chega para ecrãs retina) e cache de 31 dias.
   images: {

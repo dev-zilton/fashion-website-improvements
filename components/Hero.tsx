@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
 import { useMotionPreference } from '@/hooks/useMotionPreference'
 
+// As animações de entrada são CSS (classes hero-*): o título é o LCP no telemóvel
+// e tem de aparecer logo com o HTML, sem esperar pelo JavaScript.
 export function Hero() {
   const [activeImage, setActiveImage] = useState(0)
-  const [scrollY, setScrollY] = useState(0)
+  const backgroundRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useMotionPreference()
 
   // Rotate hero images every 8 seconds
@@ -17,14 +18,20 @@ export function Hero() {
     return () => clearInterval(timer)
   }, [])
 
-  // Parallax scroll effect
+  // Parallax: mexe no estilo directamente para não re-renderizar a cada scroll
   useEffect(() => {
-    if (prefersReducedMotion) return
-
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
+    const background = backgroundRef.current
+    if (!background) return
+    if (prefersReducedMotion) {
+      background.style.transform = 'none'
+      return
     }
 
+    const handleScroll = () => {
+      background.style.transform = `translateY(${window.scrollY * 0.3}px)`
+    }
+
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [prefersReducedMotion])
@@ -51,22 +58,17 @@ export function Hero() {
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       {/* Background with crossfade and parallax */}
       <div
+        ref={backgroundRef}
         className="absolute inset-0 -z-10 bg-gradient-to-b from-primary to-secondary"
-        style={{
-          transform: prefersReducedMotion ? 'none' : `translateY(${scrollY * 0.3}px)`,
-        }}
       >
         {collections.map((collection, index) => (
-          <motion.div
+          <div
             key={index}
-            className="absolute inset-0"
+            className="absolute inset-0 transition-opacity duration-1000 motion-reduce:transition-none"
             style={{
               background: collection.image,
-              willChange: 'opacity',
+              opacity: index === activeImage ? 0.3 : 0,
             }}
-            initial={{ opacity: index === 0 ? 0.1 : 0 }}
-            animate={{ opacity: index === activeImage ? 0.3 : 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 1 }}
           />
         ))}
       </div>
@@ -75,44 +77,35 @@ export function Hero() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow */}
-          <motion.p
-            className="text-xs md:text-sm tracking-widest text-accent mb-8"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.6, delay: 0.1 }}
+          <p
+            className="hero-fade text-xs md:text-sm tracking-widest text-accent mb-8"
+            style={{ animationDelay: '100ms' }}
           >
             — ACABADO DE CHEGAR —
-          </motion.p>
+          </p>
 
           {/* Main Headline */}
-          <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-foreground mb-6 tracking-tight"
-            style={{ fontFamily: 'var(--font-playfair)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.2 }}
+          <h1
+            className="hero-rise text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-foreground mb-6 tracking-tight"
+            style={{ fontFamily: 'var(--font-playfair)', animationDelay: '200ms' }}
           >
             O drip do mundo,
             <br />
             <span className="text-accent">em Moçambique</span>
-          </motion.h1>
+          </h1>
 
           {/* Subtitle */}
-          <motion.p
-            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.3 }}
+          <p
+            className="hero-rise text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+            style={{ animationDelay: '300ms' }}
           >
             Roupa, snikas e acessórios importados, com qualidade que se nota e as tendências que toda a gente quer. Escolha online e receba onde estiver.
-          </motion.p>
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-col md:flex-row gap-6 justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: 0.4 }}
+          <div
+            className="hero-fade flex flex-col md:flex-row gap-6 justify-center"
+            style={{ animationDelay: '400ms' }}
           >
             <a
               href="#coleccoes"
@@ -126,7 +119,7 @@ export function Hero() {
             >
               SABER MAIS
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -145,11 +138,7 @@ export function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
+      <div className="hero-bounce absolute bottom-8 left-1/2 -translate-x-1/2">
         <svg
           className="w-6 h-6 text-foreground opacity-50"
           fill="none"
@@ -163,7 +152,7 @@ export function Hero() {
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           />
         </svg>
-      </motion.div>
+      </div>
     </section>
   )
 }

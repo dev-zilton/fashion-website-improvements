@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 
@@ -13,7 +13,7 @@ export function RouteTransition({ children }: RouteTransitionProps) {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <m.div
         key={pathname}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -24,7 +24,7 @@ export function RouteTransition({ children }: RouteTransitionProps) {
         }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Link from 'next/link'
 import { ProductCollection } from './ProductCollection'
 import { FEATURED_PRODUCTS } from '@/lib/products'
@@ -10,7 +10,7 @@ export function ProductGrid() {
     <section className="py-20 md:py-32 bg-background">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <motion.div
+        <m.div
           className="mb-16 md:mb-24"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,13 +31,13 @@ export function ProductGrid() {
               VER TUDO
             </Link>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Product Grid with Staggered Animation */}
         <ProductCollection products={FEATURED_PRODUCTS} />
 
         {/* Bottom CTA */}
-        <motion.div
+        <m.div
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,7 +50,7 @@ export function ProductGrid() {
           <Link href="/loja" className="inline-block px-12 py-4 bg-accent text-black font-semibold tracking-wider hover:bg-black hover:text-accent transition-colors duration-300 text-sm focus:outline-2 focus:outline-offset-2 focus:outline-accent rounded">
             DESCOBRIR MAIS
           </Link>
-        </motion.div>
+        </m.div>
 
       </div>
     </section>

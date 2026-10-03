@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { ScrollReveal } from './ScrollReveal'
@@ -49,7 +49,7 @@ export function VibeSection() {
         <div className="max-w-3xl mx-auto">
           <div className="relative overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={current}
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -66,7 +66,7 @@ export function VibeSection() {
                 <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
                   {messages[current].text}
                 </p>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
 
             {/* Navigation */}

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ScrollReveal } from './ScrollReveal'
 
 export function CTASection() {
@@ -10,7 +10,7 @@ export function CTASection() {
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center">
             {/* Eyebrow */}
-            <motion.p
+            <m.p
               className="text-xs md:text-sm tracking-widest text-accent mb-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -18,10 +18,10 @@ export function CTASection() {
               transition={{ duration: 0.6 }}
             >
               — EXCLUSIVO —
-            </motion.p>
+            </m.p>
 
             {/* Headline */}
-            <motion.h2
+            <m.h2
               className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
               style={{ fontFamily: 'var(--font-playfair)' }}
               initial={{ opacity: 0, y: 20 }}
@@ -30,10 +30,10 @@ export function CTASection() {
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               O seu próximo fit está aqui
-            </motion.h2>
+            </m.h2>
 
             {/* Description */}
-            <motion.p
+            <m.p
               className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -41,10 +41,10 @@ export function CTASection() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Do básico do dia a dia ao look para sair à noite: escolha as peças, monte o visual e nós tratamos da entrega.
-            </motion.p>
+            </m.p>
 
             {/* CTA Buttons */}
-            <motion.div
+            <m.div
               className="flex flex-col sm:flex-row gap-6 justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export function CTASection() {
               >
                 SABER MAIS
               </a>
-            </motion.div>
+            </m.div>
           </div>
         </ScrollReveal>
       </div>

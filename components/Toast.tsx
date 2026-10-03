@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { Check, X } from 'lucide-react'
 
 export interface ToastProps {
@@ -12,7 +12,7 @@ export function Toast({ message, type, isVisible, onClose }: ToastProps) {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           className={`fixed bottom-6 right-6 flex items-center gap-3 px-6 py-4 rounded-lg text-white font-medium shadow-lg z-50 ${
             type === 'success' ? 'bg-green-600' : 'bg-red-600'
           }`}
@@ -36,7 +36,7 @@ export function Toast({ message, type, isVisible, onClose }: ToastProps) {
           >
             <X size={16} />
           </button>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

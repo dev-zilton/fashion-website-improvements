@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Zap, Shield, Truck } from 'lucide-react'
 import { ScrollReveal } from './ScrollReveal'
 
@@ -43,23 +43,23 @@ export function FeaturesSection() {
             const Icon = feature.icon
             return (
               <ScrollReveal key={index} delay={index * 0.1}>
-                <motion.div
+                <m.div
                   className="text-center"
                   whileHover={{ y: -8 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <motion.div
+                  <m.div
                     className="inline-flex items-center justify-center w-16 h-16 mb-6 bg-primary rounded-full text-accent"
                     whileHover={{ scale: 1.1, rotate: 10 }}
                     transition={{ duration: 0.3 }}
                   >
                     <Icon size={28} />
-                  </motion.div>
+                  </m.div>
                   <h3 className="text-lg font-semibold mb-3">{feature.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {feature.description}
                   </p>
-                </motion.div>
+                </m.div>
               </ScrollReveal>
             )
           })}

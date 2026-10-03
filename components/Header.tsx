@@ -5,7 +5,7 @@ import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
 import Link from 'next/link'
 import { Menu, X, ShoppingBag, Heart } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -81,7 +81,7 @@ export function Header() {
             aria-expanded={isOpen}
           >
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={isOpen ? 'close' : 'open'}
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -89,7 +89,7 @@ export function Header() {
                 transition={{ duration: 0.2 }}
               >
                 {isOpen ? <X size={20} /> : <Menu size={20} />}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </button>
         </div>
@@ -98,14 +98,14 @@ export function Header() {
       {/* Mobile Menu - Animated */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             className="md:hidden border-t border-border bg-background overflow-hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <motion.div
+            <m.div
               className="flex flex-col gap-4 px-6 py-6"
               role="navigation"
               aria-label="Menu móvel"
@@ -114,7 +114,7 @@ export function Header() {
               transition={{ duration: 0.2, delay: 0.1 }}
             >
               {navItems.map((item, index) => (
-                <motion.div
+                <m.div
                   key={item.label}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -127,10 +127,10 @@ export function Header() {
                   >
                     {item.label}
                   </a>
-                </motion.div>
+                </m.div>
               ))}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

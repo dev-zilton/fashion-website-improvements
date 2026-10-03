@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingBag, Heart } from 'lucide-react'
@@ -49,7 +49,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
   }
 
   return (
-    <motion.div
+    <m.div
       className="group cursor-pointer"
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
                 <span className="text-sm font-medium">{title}</span>
               </div>
             ) : (
-              <motion.div
+              <m.div
                 className="absolute inset-0"
                 initial={{ scale: 1, translateY: 0, opacity: 1 }}
                 animate={{
@@ -96,11 +96,11 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
                   priority={index < 4}
                   onError={() => setImageError(true)}
                 />
-              </motion.div>
+              </m.div>
             )}
 
             {/* Overlay */}
-            <motion.div
+            <m.div
               className="absolute inset-0 bg-black/20"
               initial={{ opacity: 0 }}
               animate={{ opacity: isHovered ? 1 : 0 }}
@@ -109,7 +109,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           </div>
 
           {/* Wishlist Button */}
-          <motion.button
+          <m.button
             className="absolute top-2 right-2 md:top-4 md:right-4 p-2 md:p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               e.preventDefault()
@@ -123,10 +123,10 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
               size={18}
               className={wishlisted ? 'fill-red-500 text-red-500' : 'text-black'}
             />
-          </motion.button>
+          </m.button>
 
           {/* Quick Add Button */}
-          <motion.button
+          <m.button
             className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm hidden md:flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
@@ -142,7 +142,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           >
             <ShoppingBag size={16} />
             {priceOnRequest ? 'VER DETALHES' : needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
-          </motion.button>
+          </m.button>
 
           {/* Badges: juntos num só bloco para não se sobreporem (o espaço à direita é do coração) */}
           <div className="absolute top-2 left-2 right-11 md:top-4 md:left-4 md:right-16 flex flex-wrap items-start gap-1 md:gap-2">
@@ -231,7 +231,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           </div>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }
 
