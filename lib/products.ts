@@ -750,7 +750,14 @@ export const FEATURED_PRODUCTS: Product[] = [
     subcategory: 'MAIS',
     isNew: true,
     sizes: ['40', '41', '42', '43', '44', '45'],
-    images: Array.from({ length: 3 }, (_, i) => `/products/calcados/tenis-numeris-${i + 1}.jpg`),
+    variants: [
+      { color: 'Branco e Azul', images: ['/products/calcados/tenis-numeris-1.jpg', '/products/calcados/tenis-numeris-2.jpg'] },
+      { color: 'Azul', images: ['/products/calcados/tenis-numeris-15.jpg'] },
+      { color: 'Preto', images: ['/products/calcados/tenis-numeris-7.jpg', '/products/calcados/tenis-numeris-8.jpg', '/products/calcados/tenis-numeris-9.jpg'] },
+      { color: 'Preto e Branco', images: ['/products/calcados/tenis-numeris-10.jpg', '/products/calcados/tenis-numeris-11.jpg', '/products/calcados/tenis-numeris-12.jpg', '/products/calcados/tenis-numeris-13.jpg'] },
+      { color: 'Preto e Rosa', images: ['/products/calcados/tenis-numeris-14.jpg'] },
+    ],
+    extraImages: [4, 5, 6, 3].map((n) => `/products/calcados/tenis-numeris-${n}.jpg`),
   },
   {
     id: '49',
