@@ -147,7 +147,7 @@ const CATALOG: Product[] = [
     price: 9800,
     image: '/products/calcados/balenciaga-track-elegance.png',
     collection: 'CALÇADOS',
-    subcategory: 'FORMAIS',
+    subcategory: 'ESPORTIVAS',
     colors: SNEAKER_COLORS,
   },
   {
@@ -156,7 +156,7 @@ const CATALOG: Product[] = [
     price: 9500,
     image: '/products/calcados/balenciaga-speed-trainer.png',
     collection: 'CALÇADOS',
-    subcategory: 'FORMAIS',
+    subcategory: 'ESPORTIVAS',
     colors: SNEAKER_COLORS,
   },
   {
