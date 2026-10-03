@@ -43,7 +43,7 @@ export function getProductSizes(product: Product): string[] {
   return CLOTHING_SIZES
 }
 
-export const FEATURED_PRODUCTS: Product[] = [
+const CATALOG: Product[] = [
   {
     id: '1',
     title: 'Blazer Structured Preto',
@@ -84,10 +84,17 @@ export const FEATURED_PRODUCTS: Product[] = [
   },
   {
     id: '6',
-    title: 'Casaco Longline',
-    price: 7480,
-    image: '/products/casaco-longline.png',
-    collection: 'MAPUTO',
+    title: 'Calções Rhude',
+    price: 1850,
+    salePrice: 1550,
+    image: '/products/calcoes-rhude-vermelho-1.jpg',
+    collection: 'PRIMAVERA',
+    sizes: ['S', 'M', 'L', 'XL'],
+    variants: [
+      { color: 'Vermelho', images: ['/products/calcoes-rhude-vermelho-1.jpg', '/products/calcoes-rhude-vermelho-2.jpg'] },
+      { color: 'Verde', images: ['/products/calcoes-rhude-verde-1.jpg'] },
+      { color: 'Azul Marinho', images: ['/products/calcoes-rhude-azul-marinho-1.jpg', '/products/calcoes-rhude-azul-marinho-2.jpg'] },
+    ],
   },
   {
     id: '7',
@@ -948,6 +955,14 @@ export const FEATURED_PRODUCTS: Product[] = [
       { color: 'Verde', images: ['/products/fato-nike-tech-fleece-verde.jpg'] },
     ],
   },
+]
+
+// Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
+const INITIAL_IDS = new Set(Array.from({ length: 20 }, (_, i) => String(i + 1)))
+
+export const FEATURED_PRODUCTS: Product[] = [
+  ...CATALOG.filter((p) => !INITIAL_IDS.has(p.id)).reverse(),
+  ...CATALOG.filter((p) => INITIAL_IDS.has(p.id)),
 ]
 
 export function getProductById(id: string) {
