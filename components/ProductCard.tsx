@@ -17,6 +17,7 @@ interface ProductCardProps {
   priceOnRequest?: boolean
   image: string
   collection: string
+  subcategory?: string
   index: number
   isNew?: boolean
   limitedStock?: boolean
@@ -29,13 +30,15 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, subcategory, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
   const { isWishlisted, toggle } = useWishlist()
   const wishlisted = isWishlisted(id)
   const needsSize = getProductSizes({ id, title, price, image, collection, sizes }).length > 0
+  // "MAIS" é só um agrupamento do filtro; não diz nada sobre o produto
+  const label = subcategory && subcategory !== 'MAIS' ? subcategory : collection
   const swatches = getCardSwatches(variants?.map((v) => v.color) ?? colors ?? [], baseColor)
 
   // Validação básica
@@ -144,19 +147,12 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             {priceOnRequest ? 'VER DETALHES' : needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
           </m.button>
 
-          {/* Badges: juntos num só bloco para não se sobreporem (o espaço à direita é do coração) */}
-          <div className="absolute top-2 left-2 right-11 md:top-4 md:left-4 md:right-16 flex flex-wrap items-start gap-1 md:gap-2">
-            {collection && (
-              <div className="hidden sm:block px-3 py-1 bg-black/80 backdrop-blur-sm text-white text-xs tracking-widest font-medium">
-                {collection}
-              </div>
-            )}
-            {(isNew || salePrice || limitedStock) && (
-              <div className="px-2 py-0.5 md:px-3 md:py-1 bg-accent text-black text-[10px] md:text-xs tracking-wider md:tracking-widest font-bold">
-                {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
-              </div>
-            )}
-          </div>
+          {/* Só o selo de estado fica sobre a foto; a coleção aparece por cima do nome */}
+          {(isNew || salePrice || limitedStock) && (
+            <div className="absolute top-2 left-2 md:top-4 md:left-4 px-2 py-0.5 md:py-1 bg-accent text-black text-[10px] tracking-widest font-bold">
+              {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
+            </div>
+          )}
         </div>
       </Link>
 
@@ -203,6 +199,11 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
           </div>
         )}
         <div>
+          {label && (
+            <p className="text-[10px] md:text-xs tracking-widest uppercase text-muted-foreground mb-1">
+              {label}
+            </p>
+          )}
           <h3 className="text-sm font-medium tracking-wide line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {title}
           </h3>
