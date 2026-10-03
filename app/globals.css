@@ -205,6 +205,42 @@
   }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.brand-marquee {
+  animation: marquee 45s linear infinite;
+}
+
+.brand-marquee:hover,
+.brand-marquee:focus-within {
+  animation-play-state: paused;
+}
+
+/* Logótipos das marcas: a cinzento, ganham a cor original ao passar o rato */
+.brand-logo {
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter 0.25s, opacity 0.25s;
+}
+
+.brand-tile:hover .brand-logo {
+  filter: none;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee {
+    animation: none;
+  }
+  /* Sem movimento automático: o cliente desliza a faixa à mão */
+  .brand-marquee-track {
+    overflow-x: auto;
+  }
+}
+
 .page-enter {
   animation: fadeInUp 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }

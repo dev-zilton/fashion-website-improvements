@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { BrandCarousel } from '@/components/BrandCarousel'
 import { ProductGrid } from '@/components/ProductGrid'
 import { FeaturesSection } from '@/components/FeaturesSection'
 import { VibeSection } from '@/components/VibeSection'
@@ -38,6 +39,8 @@ export default function Page() {
         <section id="hero" aria-label="Secção de boas-vindas com apresentação">
           <Hero />
         </section>
+
+        <BrandCarousel />
         
         <section id="coleccoes" aria-label="Colecções em destaque">
           <FeaturesSection />

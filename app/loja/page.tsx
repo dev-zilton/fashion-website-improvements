@@ -1,10 +1,12 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Search } from 'lucide-react'
 import { PageLayout } from '@/components/PageLayout'
 import { ProductCollection } from '@/components/ProductCollection'
-import { FEATURED_PRODUCTS } from '@/lib/products'
+import { FEATURED_PRODUCTS, type Product } from '@/lib/products'
+import { getProductBrands, normalize } from '@/lib/brands'
 
 const SORTS = [
   { key: 'default', label: 'Destaques' },
@@ -16,13 +18,24 @@ const SORTS = [
 const effectivePrice = (p: { price: number; salePrice?: number; priceOnRequest?: boolean }) =>
   p.priceOnRequest ? Number.POSITIVE_INFINITY : (p.salePrice ?? p.price)
 
-const normalize = (value: string) =>
-  value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+// Pesquisa no título e no nome da marca (ex.: "nike" também encontra os Air Force)
+const matchesQuery = (p: Product, q: string) =>
+  normalize(p.title).includes(q) || getProductBrands(p).some((b) => normalize(b.name).includes(q))
 
 const COLLECTIONS = ['TODOS', ...Array.from(new Set(FEATURED_PRODUCTS.map((p) => p.collection)))]
 
 export default function Page() {
-  const [query, setQuery] = useState('')
+  return (
+    <Suspense>
+      <Shop />
+    </Suspense>
+  )
+}
+
+function Shop() {
+  // Links das marcas na página inicial chegam como /loja?q=Nike
+  const searchParams = useSearchParams()
+  const [query, setQuery] = useState(searchParams.get('q') ?? '')
   const [collection, setCollection] = useState('TODOS')
   const [sort, setSort] = useState<(typeof SORTS)[number]['key']>('default')
 
@@ -31,7 +44,7 @@ export default function Page() {
     const list = FEATURED_PRODUCTS.filter(
       (p) =>
         (collection === 'TODOS' || p.collection === collection) &&
-        (!q || normalize(p.title).includes(q))
+        (!q || matchesQuery(p, q))
     )
     if (sort === 'price-asc') list.sort((a, b) => effectivePrice(a) - effectivePrice(b))
     if (sort === 'price-desc') list.sort((a, b) => (a.priceOnRequest ? 1 : b.priceOnRequest ? -1 : effectivePrice(b) - effectivePrice(a)))
