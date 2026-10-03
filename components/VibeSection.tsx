@@ -8,7 +8,7 @@ import { ScrollReveal } from './ScrollReveal'
 // Frases da própria loja (não são testemunhos de clientes)
 const messages = [
   {
-    title: 'Snikas que chegam e voam.',
+    title: 'Snikas que completam o teu Drip!',
     text: 'Muitas peças chegam em poucas unidades. Quem vê primeiro, leva.',
   },
   {
