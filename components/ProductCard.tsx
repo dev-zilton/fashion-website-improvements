@@ -91,7 +91,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
                   src={image}
                   alt={title}
                   fill
-                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover"
                   priority={index < 4}
                   onError={() => setImageError(true)}

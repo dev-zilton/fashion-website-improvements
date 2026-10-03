@@ -8,8 +8,13 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Cada combinação foto × largura × formato conta para o limite de otimizações da Vercel:
+  // só WebP, menos larguras (1200px chega para ecrãs retina) e cache de 31 dias.
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
+    deviceSizes: [640, 828, 1080, 1200],
+    imageSizes: [96, 256, 384],
+    minimumCacheTTL: 2678400,
   },
   headers: async () => {
     return [
