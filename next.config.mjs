@@ -29,9 +29,10 @@ const nextConfig = {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
+          // Só o próprio site e o portfólio do autor podem mostrar esta página num iframe
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://zilton-portfolio.vercel.app https://dev-zilton.github.io",
           },
           {
             key: 'X-XSS-Protection',
