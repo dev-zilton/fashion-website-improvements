@@ -80,7 +80,8 @@ export function Header() {
             aria-label="Abrir menu"
             aria-expanded={isOpen}
           >
-            <AnimatePresence mode="wait">
+            {/* initial={false}: o ícone aparece logo com o HTML, só anima ao abrir/fechar */}
+            <AnimatePresence mode="wait" initial={false}>
               <m.div
                 key={isOpen ? 'close' : 'open'}
                 initial={{ rotate: -90, opacity: 0 }}
