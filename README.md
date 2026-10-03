@@ -134,10 +134,10 @@ public/
 
 ```bash
 # Instalar dependências
-pnpm install
+npm install
 
 # Rodar dev server
-pnpm dev
+npm run dev
 
 # Abrir em http://localhost:3000
 ```
@@ -146,10 +146,10 @@ pnpm dev
 
 ```bash
 # Build para produção
-pnpm build
+npm run build
 
 # Testar build localmente
-pnpm start
+npm start
 ```
 
 Publique no Vercel:

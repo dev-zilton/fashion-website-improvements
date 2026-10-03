@@ -39,11 +39,6 @@ hooks/
 ├── useToast.ts # Toast management ✨
 └── useScrollReveal.ts # Scroll observer
 
-docs/
-├── README.md # Documentação completa
-├── AUDIT_CHECKLIST.md # Auditoria técnica
-├── IMPROVEMENTS_IMPLEMENTED.md # Detalhes
-└── QUICK_START.md # Este arquivo
 ```
 
 ---
@@ -53,10 +48,10 @@ docs/
 ### Local Development
 ```bash
 # 1. Instalar dependências
-pnpm install
+npm install
 
 # 2. Iniciar dev server
-pnpm dev
+npm run dev
 
 # 3. Abrir navegador
 # http://localhost:3000
@@ -65,10 +60,10 @@ pnpm dev
 ### Build & Deploy
 ```bash
 # Build para produção
-pnpm build
+npm run build
 
 # Testar build localmente
-pnpm start
+npm start
 
 # Deploy no Vercel (automático via GitHub)
 # ou clicar "Publish" na v0 UI
@@ -285,8 +280,8 @@ Buscar por `transition={{ duration: 0.3 }}` e ajustar em:
 
 ### Self-hosted
 ```bash
-pnpm build
-pnpm start
+npm run build
+npm start
 # Expor porta 3000
 ```
 
@@ -309,7 +304,7 @@ Para detalhes técnicos, ver:
 - **Styling:** Tailwind CSS 4 (inline config)
 - **Animations:** Framer Motion
 - **Icons:** Lucide React
-- **Package Manager:** pnpm
+- **Package Manager:** npm
 - **TypeScript:** Completo
 
 ---

@@ -1,5 +1,0 @@
-allowBuilds:
-  sharp: true
-  unrs-resolver: true
-overrides:
-  hono: 4.12.25
