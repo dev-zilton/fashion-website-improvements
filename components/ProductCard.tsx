@@ -57,7 +57,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
     >
       <Link href={`/produto/${id}`}>
         <div
-          className="relative overflow-hidden bg-muted aspect-[3/4] mb-6"
+          className="relative overflow-hidden bg-muted aspect-[3/4] mb-3 md:mb-6"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -105,7 +105,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
 
           {/* Wishlist Button */}
           <motion.button
-            className="absolute top-4 right-4 p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+            className="absolute top-2 right-2 md:top-4 md:right-4 p-2 md:p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               e.preventDefault()
               onToggleWishlist?.(id, toggle(id))
@@ -122,7 +122,7 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
 
           {/* Quick Add Button */}
           <motion.button
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm hidden md:flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
             transition={{ duration: 0.3 }}
@@ -139,24 +139,24 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
             {priceOnRequest ? 'VER DETALHES' : needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
           </motion.button>
 
-          {/* Collection Badge */}
-          {collection && (
-            <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-sm text-white text-xs tracking-widest font-medium">
-              {collection}
-            </div>
-          )}
-
-          {/* New / Sale Badge */}
-          {(isNew || salePrice || limitedStock) && (
-            <div className="absolute top-4 right-16 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
-              {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
-            </div>
-          )}
+          {/* Badges: juntos num só bloco para não se sobreporem (o espaço à direita é do coração) */}
+          <div className="absolute top-2 left-2 right-11 md:top-4 md:left-4 md:right-16 flex flex-wrap items-start gap-1 md:gap-2">
+            {collection && (
+              <div className="hidden sm:block px-3 py-1 bg-black/80 backdrop-blur-sm text-white text-xs tracking-widest font-medium">
+                {collection}
+              </div>
+            )}
+            {(isNew || salePrice || limitedStock) && (
+              <div className="px-2 py-0.5 md:px-3 md:py-1 bg-accent text-black text-[10px] md:text-xs tracking-wider md:tracking-widest font-bold">
+                {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
+              </div>
+            )}
+          </div>
         </div>
       </Link>
 
       {/* Product Info */}
-      <div className="space-y-3">
+      <div className="space-y-1 md:space-y-3">
         <div>
           <h3 className="text-sm font-medium tracking-wide line-clamp-2 group-hover:text-accent transition-colors duration-300">
             {title}
@@ -164,22 +164,22 @@ function ProductCardComponent({ id, title, price, image, collection, index, isNe
         </div>
 
         <div className="flex items-baseline justify-between">
-          <div className="flex items-baseline gap-2">
+          <div className="flex flex-wrap items-baseline gap-x-2">
             {priceOnRequest ? (
-              <span className="text-sm font-semibold tracking-widest uppercase text-accent">
+              <span className="text-xs md:text-sm font-semibold tracking-wider md:tracking-widest uppercase text-accent">
                 Preço sob consulta
               </span>
             ) : salePrice ? (
               <>
-                <span className="text-lg font-semibold tracking-tight text-accent">
+                <span className="text-base md:text-lg font-semibold tracking-tight text-accent">
                   {salePrice.toFixed(0)} MT
                 </span>
-                <span className="text-sm text-muted-foreground line-through">
+                <span className="text-xs md:text-sm text-muted-foreground line-through">
                   {price.toFixed(0)} MT
                 </span>
               </>
             ) : (
-              <span className="text-lg font-semibold tracking-tight">
+              <span className="text-base md:text-lg font-semibold tracking-tight">
                 {price.toFixed(0)} MT
               </span>
             )}

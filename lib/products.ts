@@ -955,6 +955,31 @@ const CATALOG: Product[] = [
       { color: 'Verde', images: ['/products/fato-nike-tech-fleece-verde.jpg'] },
     ],
   },
+  {
+    id: '63',
+    title: 'Camiseta Alta Qualidade',
+    price: 1350,
+    image: '/products/camiseta-premium-zegna-logo-amarelo.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    isNew: true,
+    // Cada modelo existe em preto e em branco (as duas cores aparecem na mesma foto)
+    variants: [
+      ['Zegna Logo Amarelo', 'zegna-logo-amarelo'],
+      ['Zegna Logo Pequeno', 'zegna-logo-pequeno'],
+      ['Zegna Riscas', 'zegna-riscas'],
+      ['Louis Vuitton Relevo', 'lv-relevo'],
+      ['Louis Vuitton Dourado', 'lv-dourado'],
+      ['Hermès', 'hermes'],
+      ['Loro Piana Brasão', 'loro-piana-brasao'],
+      ['Loro Piana Bordado', 'loro-piana-bordado'],
+      ['Loro Piana Gola Castanha', 'loro-piana-gola-castanha'],
+      ['Loro Piana Básica', 'loro-piana-basica'],
+      ['Chrome Hearts', 'chrome-hearts'],
+      ['Alo', 'alo'],
+    ].flatMap(([model, file]) =>
+      ['Preto', 'Branco'].map((c) => ({ color: `${model} – ${c}`, images: [`/products/camiseta-premium-${file}.jpg`] }))
+    ),
+  },
 ]
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.

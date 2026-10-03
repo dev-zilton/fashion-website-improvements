@@ -24,7 +24,7 @@ export function ProductCollection({
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-8 sm:gap-6 md:gap-10">
         {products.map((product, index) => (
           <ProductCard
             key={product.id}
