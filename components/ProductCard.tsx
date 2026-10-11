@@ -52,17 +52,7 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
   }
 
   return (
-    <m.div
-      className="group cursor-pointer"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 0.42,
-        delay: index * 0.06,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-    >
+    <div className="reveal group cursor-pointer">
       <Link href={`/produto/${id}`}>
         <div
           className="relative overflow-hidden bg-muted aspect-[3/4] mb-3 md:mb-6"
@@ -232,7 +222,7 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
           </div>
         </div>
       </div>
-    </m.div>
+    </div>
   )
 }
 

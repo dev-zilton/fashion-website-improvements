@@ -231,13 +231,57 @@
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: reduce) {
+/* Sem movimento automático: o cliente desliza a faixa à mão. Em ecrãs tácteis a faixa
+   a andar fazia o toque cair no logótipo que tinha acabado de passar por baixo do dedo. */
+@media (prefers-reduced-motion: reduce), (hover: none) {
   .brand-marquee {
     animation: none;
   }
-  /* Sem movimento automático: o cliente desliza a faixa à mão */
   .brand-marquee-track {
     overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .brand-marquee-track::-webkit-scrollbar {
+    display: none;
+  }
+  .brand-marquee li {
+    scroll-snap-align: start;
+  }
+  /* A cópia da lista só serve para o movimento dar a volta */
+  .brand-marquee > ul[aria-hidden] {
+    display: none;
+  }
+  .brand-marquee > ul:first-child {
+    padding-left: 1rem;
+  }
+  /* Sem rato não há hover: os logótipos ficam logo a cores */
+  .brand-logo {
+    filter: none;
+    opacity: 1;
+  }
+}
+
+/* Entrada ao fazer scroll, só em CSS: no HTML o conteúdo já vem visível, por isso
+   nunca fica em branco à espera do JavaScript. Navegadores sem suporte mostram tudo sem animar. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
   }
 }
 

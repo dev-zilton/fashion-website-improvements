@@ -48,7 +48,7 @@ export function VibeSection() {
 
         <div className="max-w-3xl mx-auto">
           <div className="relative overflow-hidden">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" initial={false}>
               <m.div
                 key={current}
                 initial={{ opacity: 0, x: 40 }}

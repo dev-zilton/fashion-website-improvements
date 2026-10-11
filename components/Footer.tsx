@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { m } from 'framer-motion'
 import { Mail, Share2, Heart, MessageCircle, ShoppingBag } from 'lucide-react'
 import { Toast } from './Toast'
 import { useToast } from '@/hooks/useToast'
@@ -101,15 +100,12 @@ export function Footer() {
       <div className="border-b border-border/20">
         <div className="container mx-auto px-6 py-16 md:py-20">
           <div className="max-w-2xl">
-            <m.h3
-              className="text-3xl md:text-4xl font-bold mb-4"
+            <h3
+              className="reveal text-3xl md:text-4xl font-bold mb-4"
               style={{ fontFamily: 'var(--font-playfair)' }}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
             >
               Fique atualizado
-            </m.h3>
+            </h3>
             <p className="text-sm text-gray-300 mb-8">
               Receba novidades, ofertas exclusivas e inspiração de Moçambique direto na sua caixa de entrada.
             </p>

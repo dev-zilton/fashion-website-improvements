@@ -36,7 +36,7 @@ export function FeaturesSection() {
 
         <div className="grid md:grid-cols-3 gap-12 md:gap-8">
           {features.map((feature, index) => (
-            <ScrollReveal key={index} delay={index * 0.1}>
+            <ScrollReveal key={index}>
               <m.div
                 className="text-center"
                 whileHover={{ y: -8 }}
