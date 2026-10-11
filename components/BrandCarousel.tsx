@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { ALL_BRANDS, brandSlug, type Brand } from '@/lib/brands'
+import { BrandMarqueeTrack } from './BrandMarqueeTrack'
 
 // Logótipo em public/brands/<nome-da-marca>.svg (ou .png)
 function findLogo(brand: Brand) {
@@ -22,7 +23,7 @@ export function BrandCarousel() {
       {BRANDS_WITH_LOGO.map(({ brand, logo }) => (
         <li key={brand.name} className="brand-tile flex items-center justify-center w-28 h-20 md:w-36 md:h-24 p-2 bg-white rounded-lg">
           {/* eslint-disable-next-line @next/next/no-img-element -- logótipos SVG pequenos, sem otimização */}
-          <img src={logo} alt={brand.name} className="brand-logo h-full w-full object-contain" loading="lazy" />
+          <img src={logo} alt={brand.name} className="brand-logo h-full w-full object-contain" loading="lazy" draggable={false} />
         </li>
       ))}
     </ul>
@@ -31,12 +32,12 @@ export function BrandCarousel() {
   return (
     <section aria-label="Marcas disponíveis" className="py-10 md:py-14 border-y border-border">
       <p className="text-center text-xs md:text-sm tracking-widest text-accent mb-6 md:mb-8">AS NOSSAS MARCAS</p>
-      <div className="brand-marquee-track overflow-hidden">
+      <BrandMarqueeTrack>
         <div className="brand-marquee flex w-max">
           {renderList(false)}
           {renderList(true)}
         </div>
-      </div>
+      </BrandMarqueeTrack>
     </section>
   )
 }
