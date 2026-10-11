@@ -231,34 +231,13 @@
   opacity: 1;
 }
 
-/* Sem movimento automático: o cliente desliza a faixa à mão. Em ecrãs tácteis a faixa
-   a andar fazia o toque cair no logótipo que tinha acabado de passar por baixo do dedo. */
-@media (prefers-reduced-motion: reduce), (hover: none) {
+@media (prefers-reduced-motion: reduce) {
   .brand-marquee {
     animation: none;
   }
+  /* Sem movimento automático: o cliente desliza a faixa à mão */
   .brand-marquee-track {
     overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-  .brand-marquee-track::-webkit-scrollbar {
-    display: none;
-  }
-  .brand-marquee li {
-    scroll-snap-align: start;
-  }
-  /* A cópia da lista só serve para o movimento dar a volta */
-  .brand-marquee > ul[aria-hidden] {
-    display: none;
-  }
-  .brand-marquee > ul:first-child {
-    padding-left: 1rem;
-  }
-  /* Sem rato não há hover: os logótipos ficam logo a cores */
-  .brand-logo {
-    filter: none;
-    opacity: 1;
   }
 }
 

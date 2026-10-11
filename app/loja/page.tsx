@@ -33,7 +33,7 @@ export default function Page() {
 }
 
 function Shop() {
-  // Links das marcas na página inicial chegam como /loja?q=Nike
+  // Pesquisa inicial pelo endereço, ex.: /loja?q=Nike
   const searchParams = useSearchParams()
   const [query, setQuery] = useState(searchParams.get('q') ?? '')
   const [collection, setCollection] = useState('TODOS')
