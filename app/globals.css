@@ -326,3 +326,12 @@
     animation-range: entry 0% cover 30%;
   }
 }
+
+/* Galeria da página do produto: desliza com o dedo, sem barra de scroll visível */
+.product-slider {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.product-slider::-webkit-scrollbar {
+  display: none;
+}

@@ -33,5 +33,12 @@
     "shadcn": "^4.21.1",
     "tailwindcss": "^4.2.0",
     "typescript": "5.7.3"
-  }
+  },
+  "browserslist": [
+    "chrome >= 87",
+    "edge >= 88",
+    "firefox >= 78",
+    "safari >= 14",
+    "ios_saf >= 14"
+  ]
 }

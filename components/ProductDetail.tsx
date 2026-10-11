@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import { Heart, ShoppingBag, Check, MessageCircle } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/WhatsAppButton'
@@ -96,6 +96,31 @@ export function ProductDetail({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 2000)
   }
 
+  // Foto principal desliza com o dedo (scroll-snap nativo); fica sincronizada com as miniaturas e a cor
+  const sliderRef = useRef<HTMLDivElement>(null)
+  const scrollIdle = useRef<ReturnType<typeof setTimeout>>(undefined)
+  const firstScroll = useRef(true)
+  useEffect(() => {
+    const slider = sliderRef.current
+    if (!slider) return
+    const left = imageIndex * slider.clientWidth
+    if (Math.abs(slider.scrollLeft - left) > 2) {
+      slider.scrollTo({ left, behavior: firstScroll.current ? 'auto' : 'smooth' })
+    }
+    firstScroll.current = false
+  }, [imageIndex])
+  useEffect(() => () => clearTimeout(scrollIdle.current), [])
+  // Só conta a foto onde o deslizar parou, não as que passam pelo meio
+  const handleSlide = () => {
+    clearTimeout(scrollIdle.current)
+    scrollIdle.current = setTimeout(() => {
+      const slider = sliderRef.current
+      if (!slider) return
+      const index = Math.round(slider.scrollLeft / slider.clientWidth)
+      if (index !== imageIndex && gallery[index]) selectImage(index)
+    }, 120)
+  }
+
   const swatches = getSwatches(colors)
   const isSoldByColor = colors.length > 0
   const selectColor = (c: string) => {
@@ -109,15 +134,31 @@ export function ProductDetail({ product }: { product: Product }) {
       {/* Image */}
       <div>
         <div className="relative aspect-[3/4] bg-muted overflow-hidden">
-          <Image
-            key={currentImage}
-            src={currentImage}
-            alt={product.title}
-            fill
-            priority
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover"
-          />
+          <div
+            ref={sliderRef}
+            onScroll={handleSlide}
+            className="product-slider flex h-full overflow-x-auto snap-x snap-mandatory overscroll-x-contain"
+            aria-label={`Fotos de ${product.title}`}
+          >
+            {gallery.map((src, i) => (
+              <div key={src} className="relative w-full h-full shrink-0 snap-center snap-always">
+                <Image
+                  src={src}
+                  alt={i === imageIndex ? product.title : ''}
+                  fill
+                  priority={src === currentImage}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+          {gallery.length > 1 && (
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-full bg-black/60 text-white text-xs tabular-nums pointer-events-none">
+              {imageIndex + 1} / {gallery.length}
+            </div>
+          )}
           {(product.isNew || product.salePrice || product.limitedStock) && (
             <div className="absolute top-4 left-4 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
               {product.salePrice ? 'PROMOÇÃO' : product.limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
