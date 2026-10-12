@@ -67,15 +67,17 @@ export function ProductDetail({ product }: { product: Product }) {
   const openWhatsApp = (message: string) =>
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
 
+  // Preço sob consulta com carrinho: compra-se como os outros e o preço confirma-se no WhatsApp
+  const orderable = !product.priceOnRequest || product.orderableOnRequest
   const handleOrderOnWhatsApp = () => {
     if (!hasChoices()) return
     const variant = variantText()
-    const price = product.salePrice ?? product.price
+    const price = product.priceOnRequest ? 'preço sob consulta' : `${(product.salePrice ?? product.price).toFixed(0)} MT`
     openWhatsApp(
       [
         'Olá! Quero encomendar na DripGOd:',
         '',
-        `- ${product.title}${variant ? ` [${variant}]` : ''} — ${price.toFixed(0)} MT`,
+        `- ${product.title}${variant ? ` [${variant}]` : ''} — ${price}`,
         '',
         window.location.origin + window.location.pathname,
       ].join('\n')
@@ -84,7 +86,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
   const handleAddToCart = () => {
     if (!hasChoices()) return
-    if (product.priceOnRequest) {
+    if (!orderable) {
       const variant = variantText()
       openWhatsApp(`Olá! Gostaria de saber o preço de: ${product.title}${variant ? ` [${variant}]` : ''}`)
       return
@@ -94,6 +96,7 @@ export function ProductDetail({ product }: { product: Product }) {
       title: product.title,
       price: product.price,
       salePrice: product.salePrice,
+      priceOnRequest: product.priceOnRequest,
       image: variants.find((v) => v.color === color)?.images[0] ?? gallery[0],
       size,
       color,
@@ -332,7 +335,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="buy-bar fixed inset-x-0 bottom-0 z-40 px-4 pt-3 bg-background border-t border-border md:static md:z-auto md:p-0 md:bg-transparent md:border-0">
           {missing && (
             <p role="alert" className="text-sm text-red-500 mb-2 md:mb-4">
-              Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'continuar'}.
+              Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {orderable ? 'continuar' : 'pedir o preço'}.
             </p>
           )}
 
@@ -341,7 +344,7 @@ export function ProductDetail({ product }: { product: Product }) {
               onClick={handleAddToCart}
               className="flex-1 md:w-full h-12 md:h-14 flex items-center justify-center gap-2 bg-accent text-black font-semibold tracking-wider text-xs sm:text-sm hover:bg-white transition-colors"
             >
-              {product.priceOnRequest ? (
+              {!orderable ? (
                 <>
                   <MessageCircle size={18} />
                   PEDIR PREÇO<span className="hidden sm:inline"> NO WHATSAPP</span>
@@ -359,7 +362,7 @@ export function ProductDetail({ product }: { product: Product }) {
               )}
             </button>
 
-            {!product.priceOnRequest && (
+            {orderable && (
               <button
                 onClick={handleOrderOnWhatsApp}
                 className="flex-1 md:w-full h-12 md:h-14 md:mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-xs sm:text-sm hover:bg-[#25D366] hover:text-white transition-colors"

@@ -10,6 +10,8 @@ export interface CartItem {
   title: string
   price: number
   salePrice?: number
+  /** Preço sob consulta: não entra no total e confirma-se no WhatsApp */
+  priceOnRequest?: boolean
   image: string
   quantity: number
   size?: string
@@ -25,7 +27,9 @@ interface CartContextType {
   updateQuantity: (lineId: string, quantity: number) => void
   clearCart: () => void
   totalItems: number
+  /** Soma só dos artigos com preço */
   totalPrice: number
+  hasPriceOnRequest: boolean
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -36,12 +40,18 @@ const makeLineId = (item: Pick<CartItem, 'id' | 'size' | 'color'>) =>
   [item.id, item.size ?? '', item.color ?? ''].join('|')
 
 // O carrinho guardado pode ter preços ou produtos que já mudaram no catálogo:
-// actualiza nome e preço, e retira os que já não existem ou passaram a preço sob consulta.
+// actualiza nome e preço, e retira os que já não existem ou passaram a preço sob consulta sem carrinho.
 const syncWithCatalog = (items: CartItem[]): CartItem[] =>
   items.flatMap((i) => {
     const product = getProductById(i.id)
-    if (!product || product.priceOnRequest) return []
-    return [{ ...i, title: product.title, price: product.price, salePrice: product.salePrice }]
+    if (!product || (product.priceOnRequest && !product.orderableOnRequest)) return []
+    return [{
+      ...i,
+      title: product.title,
+      price: product.price,
+      salePrice: product.salePrice,
+      priceOnRequest: product.priceOnRequest,
+    }]
   })
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -107,13 +117,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0)
   const totalPrice = items.reduce(
-    (sum, i) => sum + (i.salePrice ?? i.price) * i.quantity,
+    (sum, i) => (i.priceOnRequest ? sum : sum + (i.salePrice ?? i.price) * i.quantity),
     0
   )
+  const hasPriceOnRequest = items.some((i) => i.priceOnRequest)
 
   return (
     <CartContext.Provider
-      value={{ items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice }}
+      value={{ items, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, hasPriceOnRequest }}
     >
       {children}
     </CartContext.Provider>

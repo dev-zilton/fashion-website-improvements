@@ -10,6 +10,8 @@ export interface Product {
   price: number
   /** Preço sob consulta: não mostra valor nem permite comprar pela sacola; o cliente pede o preço no WhatsApp. */
   priceOnRequest?: boolean
+  /** Com preço sob consulta, deixa mesmo assim pôr no carrinho (o preço confirma-se no WhatsApp). */
+  orderableOnRequest?: boolean
   image: string
   collection: string
   subcategory?: string
@@ -1087,6 +1089,7 @@ const CATALOG: Product[] = [
     title: 'Mochila Essentials',
     price: 0,
     priceOnRequest: true,
+    orderableOnRequest: true,
     image: '/products/mochila-essentials-bege.jpg',
     collection: 'ACESSÓRIOS',
     isNew: true,

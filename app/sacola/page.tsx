@@ -8,13 +8,18 @@ import Image from 'next/image'
 import { WHATSAPP_NUMBER } from '@/lib/config'
 
 export default function Page() {
-  const { items, removeItem, updateQuantity, totalPrice } = useCart()
+  const { items, removeItem, updateQuantity, totalPrice, hasPriceOnRequest } = useCart()
+  // Com artigos de preço sob consulta o total só soma os outros
+  const totalText = hasPriceOnRequest
+    ? totalPrice > 0 ? `${totalPrice.toFixed(0)} MT + preço sob consulta` : 'Sob consulta'
+    : `${totalPrice.toFixed(0)} MT`
 
   const handleCheckout = () => {
     const lines = items.map((item) => {
       const unitPrice = item.salePrice ?? item.price
       const variant = [item.size && `Tam. ${item.size}`, item.color].filter(Boolean).join(', ')
-      return `- ${item.title}${variant ? ` [${variant}]` : ''} (x${item.quantity}) — ${(unitPrice * item.quantity).toFixed(0)} MT`
+      const price = item.priceOnRequest ? 'preço sob consulta' : `${(unitPrice * item.quantity).toFixed(0)} MT`
+      return `- ${item.title}${variant ? ` [${variant}]` : ''} (x${item.quantity}) — ${price}`
     })
 
     const message = [
@@ -22,7 +27,7 @@ export default function Page() {
       '',
       ...lines,
       '',
-      `Total: ${totalPrice.toFixed(0)} MT`,
+      `Total: ${totalText}`,
     ].join('\n')
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
@@ -87,10 +92,14 @@ export default function Page() {
                   </p>
                 )}
                 <div className="flex items-baseline gap-2">
-                  <span className="text-sm font-semibold">
-                    {unitPrice.toFixed(0)} MT
-                  </span>
-                  {item.salePrice && (
+                  {item.priceOnRequest ? (
+                    <span className="text-xs font-semibold tracking-widest uppercase text-accent">Sob consulta</span>
+                  ) : (
+                    <span className="text-sm font-semibold">
+                      {unitPrice.toFixed(0)} MT
+                    </span>
+                  )}
+                  {!item.priceOnRequest && item.salePrice && (
                     <span className="text-xs text-muted-foreground line-through">
                       {item.price.toFixed(0)} MT
                     </span>
@@ -129,7 +138,7 @@ export default function Page() {
 
         <div className="flex items-center justify-between pt-6">
           <span className="text-lg font-semibold tracking-wide">Total</span>
-          <span className="text-xl font-bold">{totalPrice.toFixed(0)} MT</span>
+          <span className="text-xl font-bold text-right">{totalText}</span>
         </div>
 
         <button
