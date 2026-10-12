@@ -251,7 +251,18 @@ const CATALOG: Product[] = [
           '/products/calcados/new-balance-530-preto-3.jpg',
         ],
       },
+      {
+        color: 'Preto e Branco',
+        images: [
+          '/products/calcados/new-balance-530-preto-branco-1.jpg',
+          '/products/calcados/new-balance-530-preto-branco-2.jpg',
+          '/products/calcados/new-balance-530-preto-branco-3.jpg',
+        ],
+      },
+      { color: 'Preto', images: ['/products/calcados/new-balance-530-preto-total-1.jpg'] },
+      { color: 'Branco e Rosa', images: ['/products/calcados/new-balance-530-branco-rosa-1.jpg'] },
     ],
+    extraImages: ['/products/calcados/new-balance-530-todas.jpg'],
   },
   {
     id: '22',
