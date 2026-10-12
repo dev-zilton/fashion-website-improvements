@@ -22,6 +22,7 @@ interface ProductCardProps {
   isNew?: boolean
   limitedStock?: boolean
   salePrice?: number
+  onSale?: boolean
   sizes?: string[]
   colors?: string[]
   variants?: ProductVariant[]
@@ -30,7 +31,7 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, subcategory, index, isNew, limitedStock, salePrice, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, subcategory, index, isNew, limitedStock, salePrice, onSale, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
@@ -138,9 +139,9 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
           </m.button>
 
           {/* Só o selo de estado fica sobre a foto; a coleção aparece por cima do nome */}
-          {(isNew || salePrice || limitedStock) && (
+          {(isNew || salePrice || onSale || limitedStock) && (
             <div className="absolute top-2 left-2 md:top-4 md:left-4 px-2 py-0.5 md:py-1 bg-accent text-black text-[10px] tracking-widest font-bold">
-              {salePrice ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
+              {salePrice || onSale ? 'PROMOÇÃO' : limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
             </div>
           )}
         </div>

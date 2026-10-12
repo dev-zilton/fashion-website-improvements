@@ -17,6 +17,8 @@ export interface Product {
   /** Mostra o selo "STOCK LIMITADO" no lugar de "NOVO". */
   limitedStock?: boolean
   salePrice?: number
+  /** Em promoção sem preço antigo para riscar: selo "PROMOÇÃO" e entra na página Promoções. */
+  onSale?: boolean
   sizes?: string[]
   colors?: string[]
   /** Cores com fotos próprias; quando existe, substitui `colors` e a foto muda com a cor. */
@@ -1127,6 +1129,19 @@ const CATALOG: Product[] = [
         images: photos.map((n) => `/products/camiseta-marca-${String(n).padStart(2, '0')}.jpg`),
       }))
     ),
+  },
+  {
+    id: '70',
+    title: 'Calça Gallery Dept',
+    baseColor: 'Preto',
+    price: 2200,
+    onSale: true,
+    // Peça única
+    limitedStock: true,
+    image: '/products/calca-gallery-dept-1.jpg',
+    collection: 'PEÇAS ESSENCIAIS',
+    sizes: ['XL'],
+    images: ['/products/calca-gallery-dept-1.jpg', '/products/calca-gallery-dept-2.jpg', '/products/calca-gallery-dept-3.jpg'],
   },
 ]
 

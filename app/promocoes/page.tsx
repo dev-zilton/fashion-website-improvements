@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageLayout title="Promoções" description="Peças boas a preços ainda melhores. Aproveite enquanto há stock.">
-      <ProductCollection products={FEATURED_PRODUCTS.filter((p) => p.salePrice)} />
+      <ProductCollection products={FEATURED_PRODUCTS.filter((p) => p.salePrice || p.onSale)} />
     </PageLayout>
   )
 }

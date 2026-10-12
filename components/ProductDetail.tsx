@@ -180,9 +180,9 @@ export function ProductDetail({ product }: { product: Product }) {
               {imageIndex + 1} / {gallery.length}
             </div>
           )}
-          {(product.isNew || product.salePrice || product.limitedStock) && (
+          {(product.isNew || product.salePrice || product.onSale || product.limitedStock) && (
             <div className="absolute top-4 left-4 px-3 py-1 bg-accent text-black text-xs tracking-widest font-bold">
-              {product.salePrice ? 'PROMOÇÃO' : product.limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
+              {product.salePrice || product.onSale ? 'PROMOÇÃO' : product.limitedStock ? 'STOCK LIMITADO' : 'NOVO'}
             </div>
           )}
           <button
