@@ -1008,11 +1008,11 @@ const CATALOG: Product[] = [
   {
     id: '65',
     title: 'Calções Nike NOCTA Fleece',
-    price: 0,
-    priceOnRequest: true,
+    price: 1950,
     image: '/products/calcoes-nocta-fleece-cinzento.jpg',
     collection: 'PEÇAS ESSENCIAIS',
     isNew: true,
+    sizes: ['M', 'L', 'XL', 'XXL'],
     variants: [
       { color: 'Cinzento', images: ['/products/calcoes-nocta-fleece-cinzento.jpg'] },
       { color: 'Preto', images: ['/products/calcoes-nocta-fleece-preto.jpg'] },
@@ -1060,8 +1060,7 @@ const CATALOG: Product[] = [
   {
     id: '67',
     title: 'Mochila Louis Vuitton',
-    price: 0,
-    priceOnRequest: true,
+    price: 3500,
     image: '/products/mochila-lv-monograma-castanho.jpg',
     collection: 'ACESSÓRIOS',
     isNew: true,
