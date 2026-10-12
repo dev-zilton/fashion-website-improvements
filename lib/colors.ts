@@ -31,6 +31,7 @@ const COLOR_HEX: Record<string, string> = {
   castanho: '#6b4226',
   rosa: '#f3a5c0',
   roxo: '#6a3d9a',
+  lilas: '#b4a7e0',
   coral: '#ff7f6b',
   bordo: '#6d1a2a',
   laranja: '#f28c28',
