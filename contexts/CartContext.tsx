@@ -40,11 +40,11 @@ const makeLineId = (item: Pick<CartItem, 'id' | 'size' | 'color'>) =>
   [item.id, item.size ?? '', item.color ?? ''].join('|')
 
 // O carrinho guardado pode ter preços ou produtos que já mudaram no catálogo:
-// actualiza nome e preço, e retira os que já não existem ou passaram a preço sob consulta sem carrinho.
+// actualiza nome e preço, e retira os que já não existem.
 const syncWithCatalog = (items: CartItem[]): CartItem[] =>
   items.flatMap((i) => {
     const product = getProductById(i.id)
-    if (!product || (product.priceOnRequest && !product.orderableOnRequest)) return []
+    if (!product) return []
     return [{
       ...i,
       title: product.title,

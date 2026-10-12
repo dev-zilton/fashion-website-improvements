@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import Image from 'next/image'
-import { Heart, ShoppingBag, Check, MessageCircle } from 'lucide-react'
+import { Heart, ShoppingBag, Check } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/WhatsAppButton'
 import { useCart } from '@/contexts/CartContext'
 import { useWishlist } from '@/contexts/WishlistContext'
@@ -67,8 +67,7 @@ export function ProductDetail({ product }: { product: Product }) {
   const openWhatsApp = (message: string) =>
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
 
-  // Preço sob consulta com carrinho: compra-se como os outros e o preço confirma-se no WhatsApp
-  const orderable = !product.priceOnRequest || product.orderableOnRequest
+  // Preço sob consulta: compra-se como os outros e o preço responde-se no WhatsApp
   const handleOrderOnWhatsApp = () => {
     if (!hasChoices()) return
     const variant = variantText()
@@ -86,11 +85,6 @@ export function ProductDetail({ product }: { product: Product }) {
 
   const handleAddToCart = () => {
     if (!hasChoices()) return
-    if (!orderable) {
-      const variant = variantText()
-      openWhatsApp(`Olá! Gostaria de saber o preço de: ${product.title}${variant ? ` [${variant}]` : ''}`)
-      return
-    }
     addItem({
       id: product.id,
       title: product.title,
@@ -335,7 +329,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="buy-bar fixed inset-x-0 bottom-0 z-40 px-4 pt-3 bg-background border-t border-border md:static md:z-auto md:p-0 md:bg-transparent md:border-0">
           {missing && (
             <p role="alert" className="text-sm text-red-500 mb-2 md:mb-4">
-              Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {orderable ? 'continuar' : 'pedir o preço'}.
+              Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de continuar.
             </p>
           )}
 
@@ -344,12 +338,7 @@ export function ProductDetail({ product }: { product: Product }) {
               onClick={handleAddToCart}
               className="flex-1 md:w-full h-12 md:h-14 flex items-center justify-center gap-2 bg-accent text-black font-semibold tracking-wider text-xs sm:text-sm hover:bg-white transition-colors"
             >
-              {!orderable ? (
-                <>
-                  <MessageCircle size={18} />
-                  PEDIR PREÇO<span className="hidden sm:inline"> NO WHATSAPP</span>
-                </>
-              ) : added ? (
+              {added ? (
                 <>
                   <Check size={18} />
                   ADICIONADO
@@ -362,15 +351,13 @@ export function ProductDetail({ product }: { product: Product }) {
               )}
             </button>
 
-            {orderable && (
-              <button
-                onClick={handleOrderOnWhatsApp}
-                className="flex-1 md:w-full h-12 md:h-14 md:mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-xs sm:text-sm hover:bg-[#25D366] hover:text-white transition-colors"
-              >
-                <WhatsAppIcon size={18} />
-                ENCOMENDAR<span className="hidden sm:inline"> PELO WHATSAPP</span>
-              </button>
-            )}
+            <button
+              onClick={handleOrderOnWhatsApp}
+              className="flex-1 md:w-full h-12 md:h-14 md:mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-xs sm:text-sm hover:bg-[#25D366] hover:text-white transition-colors"
+            >
+              <WhatsAppIcon size={18} />
+              ENCOMENDAR<span className="hidden sm:inline"> PELO WHATSAPP</span>
+            </button>
           </div>
         </div>
       </div>

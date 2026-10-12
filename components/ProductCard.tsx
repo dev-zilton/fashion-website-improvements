@@ -127,15 +127,15 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
             transition={{ duration: 0.3 }}
             onClick={(e) => {
               // Peças com tamanho seguem o link para a página do produto para escolher o tamanho
-              if (needsSize || priceOnRequest) return
+              if (needsSize) return
               e.preventDefault()
-              addItem({ id, title, price, salePrice, image })
+              addItem({ id, title, price, salePrice, priceOnRequest, image })
               onAddToCart?.(id)
             }}
-            aria-label={priceOnRequest ? `Ver ${title}` : needsSize ? `Escolher tamanho de ${title}` : `Adicionar ${title} ao carrinho`}
+            aria-label={needsSize ? `Escolher tamanho de ${title}` : `Adicionar ${title} ao carrinho`}
           >
             <ShoppingBag size={16} />
-            {priceOnRequest ? 'VER DETALHES' : needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
+            {needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
           </m.button>
 
           {/* Só o selo de estado fica sobre a foto; a coleção aparece por cima do nome */}
