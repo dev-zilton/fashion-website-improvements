@@ -335,3 +335,13 @@
 .product-slider::-webkit-scrollbar {
   display: none;
 }
+
+/* Barra de compra fixa da página do produto (só no telemóvel) */
+@media (max-width: 767px) {
+  .buy-bar {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+  body.has-buy-bar {
+    padding-bottom: 5.5rem;
+  }
+}

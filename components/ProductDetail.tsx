@@ -51,11 +51,17 @@ export function ProductDetail({ product }: { product: Product }) {
     if (owner) setColor(owner.color)
   }
 
-  // Tamanho e cor têm de estar escolhidos antes de comprar ou falar no WhatsApp
+  // Tamanho e cor têm de estar escolhidos antes de comprar ou falar no WhatsApp;
+  // se faltar algum, a página desliza até ele (no telemóvel pode estar fora do ecrã)
+  const sizeRef = useRef<HTMLFieldSetElement>(null)
+  const colorRef = useRef<HTMLFieldSetElement>(null)
   const hasChoices = () => {
-    const ok = !(sizes.length > 0 && !size) && !(colors.length > 0 && !color)
-    setMissing(!ok)
-    return ok
+    const missingSize = sizes.length > 0 && !size
+    const missingColor = colors.length > 0 && !color
+    setMissing(missingSize || missingColor)
+    const field = missingSize ? sizeRef.current : missingColor ? colorRef.current : null
+    field?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    return !field
   }
   const variantText = () => [size && `Tam. ${size}`, color].filter(Boolean).join(', ')
   const openWhatsApp = (message: string) =>
@@ -110,6 +116,20 @@ export function ProductDetail({ product }: { product: Product }) {
     firstScroll.current = false
   }, [imageIndex])
   useEffect(() => () => clearTimeout(scrollIdle.current), [])
+  // Com zoom ou ao rodar o telemóvel a largura muda e a foto ficava a meio entre duas
+  useEffect(() => {
+    const realign = () => {
+      const slider = sliderRef.current
+      if (slider) slider.scrollTo({ left: imageIndex * slider.clientWidth })
+    }
+    window.addEventListener('resize', realign)
+    return () => window.removeEventListener('resize', realign)
+  }, [imageIndex])
+  // A barra de compra fica fixa no fundo do ecrã no telemóvel: o fim da página não pode ficar tapado
+  useEffect(() => {
+    document.body.classList.add('has-buy-bar')
+    return () => document.body.classList.remove('has-buy-bar')
+  }, [])
   // Só conta a foto onde o deslizar parou, não as que passam pelo meio
   const handleSlide = () => {
     clearTimeout(scrollIdle.current)
@@ -130,10 +150,11 @@ export function ProductDetail({ product }: { product: Product }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
       {/* Image */}
       <div>
-        <div className="relative aspect-[3/4] bg-muted overflow-hidden">
+        {/* No telemóvel a foto não passa de metade do ecrã, para o nome e o preço aparecerem logo */}
+        <div className="relative aspect-[3/4] max-h-[42vh] md:max-h-none w-full bg-muted overflow-hidden">
           <div
             ref={sliderRef}
             onScroll={handleSlide}
@@ -174,7 +195,7 @@ export function ProductDetail({ product }: { product: Product }) {
           </button>
         </div>
         {gallery.length > 1 && (
-          <div className="flex gap-3 mt-3 overflow-x-auto">
+          <div className="product-slider flex gap-2 md:gap-3 mt-2 md:mt-3 overflow-x-auto">
             {gallery.map((src, i) => (
               <button
                 key={src}
@@ -182,7 +203,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 onClick={() => selectImage(i)}
                 aria-label={`Ver foto ${i + 1}`}
                 aria-pressed={i === imageIndex}
-                className={`relative w-16 sm:w-20 aspect-[3/4] flex-shrink-0 overflow-hidden border transition-colors ${
+                className={`relative w-11 sm:w-20 aspect-[3/4] flex-shrink-0 overflow-hidden border transition-colors ${
                   i === imageIndex ? 'border-accent' : 'border-border hover:border-accent'
                 }`}
               >
@@ -198,9 +219,9 @@ export function ProductDetail({ product }: { product: Product }) {
         <span className="text-xs text-gray-400 tracking-widest">{product.collection}</span>
 
         {/* Nome e preço na mesma linha */}
-        <div className="flex items-start justify-between gap-4 mt-2">
+        <div className="flex items-start justify-between gap-4 mt-1 md:mt-2">
           <h1
-            className="text-2xl sm:text-3xl font-bold tracking-wide break-words"
+            className="text-xl sm:text-3xl font-bold tracking-wide break-words"
             style={{ fontFamily: 'var(--font-playfair)' }}
           >
             {product.title}
@@ -214,20 +235,20 @@ export function ProductDetail({ product }: { product: Product }) {
                 <span className="block text-sm text-gray-400 line-through">{product.price.toFixed(0)} MT</span>
               </>
             ) : (
-              <span className="text-2xl font-semibold">{product.price.toFixed(0)} MT</span>
+              <span className="text-xl sm:text-2xl font-semibold">{product.price.toFixed(0)} MT</span>
             )}
           </div>
         </div>
 
-        <p className="text-sm text-gray-300 leading-relaxed mt-6 mb-8">
+        <p className="text-sm text-gray-300 leading-relaxed mt-3 mb-5 md:mt-6 md:mb-8">
           Peça importada e escolhida a dedo pela DripGOd, com qualidade que se
           nota. Dúvidas sobre o tamanho ou a cor? Fale connosco no WhatsApp antes
           de encomendar.
         </p>
 
         {isSoldByColor && (
-          <fieldset className="mb-8">
-            <legend className="text-xs tracking-widest text-gray-400 mb-3">
+          <fieldset ref={colorRef} className="mb-5 md:mb-8">
+            <legend className="text-xs tracking-widest text-gray-400 mb-2 md:mb-3">
               COR{color && <span className="text-foreground normal-case tracking-normal">: {color}</span>}
             </legend>
             {swatches ? (
@@ -240,7 +261,7 @@ export function ProductDetail({ product }: { product: Product }) {
                     aria-pressed={color === s.name}
                     aria-label={s.name}
                     title={s.name}
-                    className={`w-9 h-9 rounded-full ring-offset-2 ring-offset-background transition-shadow ${
+                    className={`w-8 h-8 md:w-9 md:h-9 rounded-full ring-offset-2 ring-offset-background transition-shadow ${
                       color === s.name ? 'ring-2 ring-accent' : 'ring-1 ring-border hover:ring-accent'
                     }`}
                     style={{ background: s.background }}
@@ -287,8 +308,8 @@ export function ProductDetail({ product }: { product: Product }) {
         )}
 
         {sizes.length > 0 && (
-          <fieldset className="mb-8">
-            <legend className="text-xs tracking-widest text-gray-400 mb-3">TAMANHO</legend>
+          <fieldset ref={sizeRef} className="mb-5 md:mb-8">
+            <legend className="text-xs tracking-widest text-gray-400 mb-2 md:mb-3">TAMANHO</legend>
             <div className="grid grid-cols-5 gap-2">
               {sizes.map((s) => (
                 <button
@@ -296,7 +317,7 @@ export function ProductDetail({ product }: { product: Product }) {
                   type="button"
                   onClick={() => setSize(s)}
                   aria-pressed={size === s}
-                  className={`h-11 text-sm border transition-colors ${
+                  className={`h-10 md:h-11 text-sm border transition-colors ${
                     size === s ? 'bg-accent text-black border-accent font-semibold' : 'border-border hover:border-accent'
                   }`}
                 >
@@ -307,43 +328,48 @@ export function ProductDetail({ product }: { product: Product }) {
           </fieldset>
         )}
 
-        {missing && (
-          <p role="alert" className="text-sm text-red-500 mb-4">
-            Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'continuar'}.
-          </p>
-        )}
-
-        <button
-          onClick={handleAddToCart}
-          className="w-full h-14 flex items-center justify-center gap-2 bg-accent text-black font-semibold tracking-wider text-sm hover:bg-white transition-colors"
-        >
-          {product.priceOnRequest ? (
-            <>
-              <MessageCircle size={18} />
-              PEDIR PREÇO NO WHATSAPP
-            </>
-          ) : added ? (
-            <>
-              <Check size={18} />
-              ADICIONADO
-            </>
-          ) : (
-            <>
-              <ShoppingBag size={18} />
-              ADICIONAR AO CARRINHO
-            </>
+        {/* Telemóvel: barra fixa no fundo do ecrã, os botões de compra estão sempre à mão */}
+        <div className="buy-bar fixed inset-x-0 bottom-0 z-40 px-4 pt-3 bg-background border-t border-border md:static md:z-auto md:p-0 md:bg-transparent md:border-0">
+          {missing && (
+            <p role="alert" className="text-sm text-red-500 mb-2 md:mb-4">
+              Escolha {sizes.length > 0 && !size ? 'o tamanho' : 'a cor'} antes de {product.priceOnRequest ? 'pedir o preço' : 'continuar'}.
+            </p>
           )}
-        </button>
 
-        {!product.priceOnRequest && (
-          <button
-            onClick={handleOrderOnWhatsApp}
-            className="w-full h-14 mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-sm hover:bg-[#25D366] hover:text-white transition-colors"
-          >
-            <WhatsAppIcon size={18} />
-            ENCOMENDAR PELO WHATSAPP
-          </button>
-        )}
+          <div className="flex gap-2 md:block">
+            <button
+              onClick={handleAddToCart}
+              className="flex-1 md:w-full h-12 md:h-14 flex items-center justify-center gap-2 bg-accent text-black font-semibold tracking-wider text-xs sm:text-sm hover:bg-white transition-colors"
+            >
+              {product.priceOnRequest ? (
+                <>
+                  <MessageCircle size={18} />
+                  PEDIR PREÇO<span className="hidden sm:inline"> NO WHATSAPP</span>
+                </>
+              ) : added ? (
+                <>
+                  <Check size={18} />
+                  ADICIONADO
+                </>
+              ) : (
+                <>
+                  <ShoppingBag size={18} />
+                  ADICIONAR<span className="hidden sm:inline"> AO CARRINHO</span>
+                </>
+              )}
+            </button>
+
+            {!product.priceOnRequest && (
+              <button
+                onClick={handleOrderOnWhatsApp}
+                className="flex-1 md:w-full h-12 md:h-14 md:mt-3 flex items-center justify-center gap-2 border border-[#25D366] text-[#25D366] font-semibold tracking-wider text-xs sm:text-sm hover:bg-[#25D366] hover:text-white transition-colors"
+              >
+                <WhatsAppIcon size={18} />
+                ENCOMENDAR<span className="hidden sm:inline"> PELO WHATSAPP</span>
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )

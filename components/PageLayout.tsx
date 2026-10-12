@@ -14,7 +14,8 @@ export function PageLayout({ children, title, description, showTitle = true }: P
     <>
       <Header />
       <main id="main-content" className="min-h-screen bg-background text-foreground pt-24">
-        <section className="max-w-5xl mx-auto px-6 py-16">
+        {/* Sem título (página do produto): no telemóvel a foto começa logo abaixo do cabeçalho */}
+        <section className={`max-w-5xl mx-auto px-6 ${showTitle ? 'py-16' : 'pt-2 pb-16 md:py-16'}`}>
           {showTitle && (
             <h1 className="text-3xl sm:text-4xl font-bold tracking-wider mb-4 break-words" style={{ fontFamily: 'var(--font-playfair)' }}>
               {title}

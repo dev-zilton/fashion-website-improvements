@@ -13,10 +13,11 @@ export function WhatsAppIcon({ size = 24 }: { size?: number }) {
   )
 }
 
-// Botão fixo no canto do ecrã; na sacola já existe o botão de finalizar pelo WhatsApp
+// Botão fixo no canto do ecrã; na sacola e no produto já existe um botão de WhatsApp
+// (no produto ficava por cima do "Encomendar pelo WhatsApp")
 export function WhatsAppButton() {
   const pathname = usePathname()
-  if (pathname === '/sacola') return null
+  if (pathname === '/sacola' || pathname.startsWith('/produto/')) return null
 
   return (
     <a
