@@ -1180,6 +1180,18 @@ const CATALOG: Product[] = [
     isNew: true,
     images: Array.from({ length: 3 }, (_, i) => `/products/calcados/air-jordan-retro-3-${i + 1}.jpg`),
   },
+  {
+    id: '73',
+    title: 'Air Jordan Retro 4 Bike 2025',
+    price: 2800,
+    image: '/products/calcados/air-jordan-retro-4-bike-2025.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    sizes: ['37', '38', '39', '40', '41', '42', '43', '44'],
+    // As três cores aparecem na mesma foto
+    colors: ['Cinzento', 'Vermelho', 'Azul'],
+  },
 ]
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
