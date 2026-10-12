@@ -1158,6 +1158,17 @@ const CATALOG: Product[] = [
     ],
     extraImages: ['/products/calcados/af1-nocta-todas-1.jpg', '/products/calcados/af1-nocta-todas-2.jpg', '/products/calcados/af1-nocta-todas-3.jpg'],
   },
+  {
+    id: '72',
+    title: 'Air Jordan Retro 3',
+    baseColor: 'Preto e Branco',
+    price: 2800,
+    image: '/products/calcados/air-jordan-retro-3-1.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    isNew: true,
+    images: Array.from({ length: 3 }, (_, i) => `/products/calcados/air-jordan-retro-3-${i + 1}.jpg`),
+  },
 ]
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
