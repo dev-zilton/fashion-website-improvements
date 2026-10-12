@@ -989,12 +989,12 @@ const CATALOG: Product[] = [
   },
   {
     id: '64',
-    title: 'Fato Nike Tech Refletor',
-    price: 0,
-    priceOnRequest: true,
+    title: 'Conjunto Nike Tech Refletor',
+    price: 4199,
     image: '/products/fato-nike-tech-refletor-preto-1.jpg',
     collection: 'PEÇAS ESSENCIAIS',
     isNew: true,
+    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     variants: [
       { color: 'Preto', images: ['/products/fato-nike-tech-refletor-preto-1.jpg', '/products/fato-nike-tech-refletor-preto-2.jpg'] },
       { color: 'Cinzento', images: ['/products/fato-nike-tech-refletor-cinzento-1.jpg', '/products/fato-nike-tech-refletor-cinzento-2.jpg'] },
