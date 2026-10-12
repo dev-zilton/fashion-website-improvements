@@ -1141,6 +1141,23 @@ const CATALOG: Product[] = [
     sizes: ['XL'],
     images: ['/products/calca-gallery-dept-1.jpg', '/products/calca-gallery-dept-2.jpg', '/products/calca-gallery-dept-3.jpg'],
   },
+  {
+    id: '71',
+    title: 'Nike Air Force 1 NOCTA',
+    price: 2850,
+    onSale: true,
+    image: '/products/calcados/af1-nocta-rosa-2.jpg',
+    collection: 'CALÇADOS',
+    subcategory: 'MAIS',
+    sizes: ['37', '38', '39', '40', '41', '42', '43', '44', '45'],
+    variants: [
+      { color: 'Rosa', images: ['/products/calcados/af1-nocta-rosa-2.jpg', '/products/calcados/af1-nocta-rosa-1.jpg', '/products/calcados/af1-nocta-rosa-3.jpg', '/products/calcados/af1-nocta-rosa-4.jpg', '/products/calcados/af1-nocta-rosa-5.jpg', '/products/calcados/af1-nocta-rosa-6.jpg', '/products/calcados/af1-nocta-rosa-7.jpg'] },
+      { color: 'Branco', images: ['/products/calcados/af1-nocta-branco-1.jpg', '/products/calcados/af1-nocta-branco-2.jpg', '/products/calcados/af1-nocta-branco-3.jpg'] },
+      { color: 'Amarelo', images: ['/products/calcados/af1-nocta-amarelo-1.jpg'] },
+      { color: 'Lilás', images: ['/products/calcados/af1-nocta-lilas-1.jpg'] },
+    ],
+    extraImages: ['/products/calcados/af1-nocta-todas-1.jpg', '/products/calcados/af1-nocta-todas-2.jpg', '/products/calcados/af1-nocta-todas-3.jpg'],
+  },
 ]
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
