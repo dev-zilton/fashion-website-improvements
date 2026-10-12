@@ -182,10 +182,12 @@ const CATALOG: Product[] = [
   {
     id: '16',
     title: 'Nike Air Force 1 Classic',
-    price: 5600,
-    image: '/products/calcados/nike-air-force-1-classic.png',
+    price: 4999,
+    salePrice: 2999,
+    image: '/products/calcados/nike-air-force-1-classic.jpg',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
+    sizes: ['37', '38', '39', '40', '41', '42'],
     colors: SNEAKER_COLORS,
   },
   {
