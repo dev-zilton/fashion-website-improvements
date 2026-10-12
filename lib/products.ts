@@ -1198,10 +1198,17 @@ const CATALOG: Product[] = [
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
 const INITIAL_IDS = new Set(Array.from({ length: 20 }, (_, i) => String(i + 1)))
+// Em destaque: aparecem antes de todos, por esta ordem (ex.: '16' é a Nike Air Force 1 Classic)
+const PINNED_IDS = ['16']
 
-export const FEATURED_PRODUCTS: Product[] = [
+const BY_DATE: Product[] = [
   ...CATALOG.filter((p) => !INITIAL_IDS.has(p.id)).reverse(),
   ...CATALOG.filter((p) => INITIAL_IDS.has(p.id)),
+]
+
+export const FEATURED_PRODUCTS: Product[] = [
+  ...PINNED_IDS.flatMap((id) => BY_DATE.filter((p) => p.id === id)),
+  ...BY_DATE.filter((p) => !PINNED_IDS.includes(p.id)),
 ]
 
 export function getProductById(id: string) {
