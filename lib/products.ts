@@ -1023,14 +1023,13 @@ const CATALOG: Product[] = [
   },
   {
     id: '66',
-    title: 'Vans Authentic',
-    price: 0,
-    priceOnRequest: true,
+    title: 'Vans Rasa',
+    price: 1450,
     image: '/products/calcados/vans-authentic-03.jpg',
     collection: 'CALÇADOS',
     subcategory: 'MAIS',
     isNew: true,
-    sizes: ['39', '40', '41', '42', '43', '44'],
+    sizes: ['36', '37', '38', '39', '40', '41', '42', '43', '44'],
     variants: [
       { color: 'Xadrez Castanho e Preto', images: ['/products/calcados/vans-authentic-01.jpg'] },
       { color: 'Xadrez Azul Marinho', images: ['/products/calcados/vans-authentic-02.jpg'] },
