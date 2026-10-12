@@ -1194,6 +1194,18 @@ const CATALOG: Product[] = [
     // As três cores aparecem na mesma foto
     colors: ['Cinzento', 'Vermelho', 'Azul'],
   },
+  {
+    id: '74',
+    title: 'Bolsa de Pulso Couro',
+    price: 2499,
+    image: '/products/bolsa-pulso-couro-preto-1.jpg',
+    collection: 'ACESSÓRIOS',
+    isNew: true,
+    variants: [
+      { color: 'Preto', images: [1, 2, 3].map((n) => `/products/bolsa-pulso-couro-preto-${n}.jpg`) },
+      { color: 'Cinzento Claro', images: [1, 2, 3].map((n) => `/products/bolsa-pulso-couro-cinzento-claro-${n}.jpg`) },
+    ],
+  },
 ]
 
 // Os 20 produtos do catálogo inicial ficam no fim; os restantes aparecem do mais recente para o mais antigo.
