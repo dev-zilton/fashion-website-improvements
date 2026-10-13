@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 import { ProductCollection } from './ProductCollection'
 import { FEATURED_PRODUCTS } from '@/lib/products'
@@ -33,7 +31,8 @@ export function ProductGrid() {
         </div>
 
         {/* Product Grid with Staggered Animation */}
-        <ProductCollection products={FEATURED_PRODUCTS.slice(0, HOME_PRODUCT_COUNT)} />
+        {/* Na página inicial a grelha fica abaixo do topo: as fotos não passam à frente do título (LCP) */}
+        <ProductCollection products={FEATURED_PRODUCTS.slice(0, HOME_PRODUCT_COUNT)} priorityCount={0} />
 
         {/* Bottom CTA */}
         <div

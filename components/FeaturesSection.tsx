@@ -1,6 +1,3 @@
-'use client'
-
-import { m } from 'framer-motion'
 import { ScrollReveal } from './ScrollReveal'
 
 const features = [
@@ -37,11 +34,7 @@ export function FeaturesSection() {
         <div className="grid md:grid-cols-3 gap-12 md:gap-8">
           {features.map((feature, index) => (
             <ScrollReveal key={index}>
-              <m.div
-                className="text-center"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <div className="text-center transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2">
                 <span
                   className="block text-5xl text-accent mb-4"
                   style={{ fontFamily: 'var(--font-playfair)' }}
@@ -54,7 +47,7 @@ export function FeaturesSection() {
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {feature.description}
                 </p>
-              </m.div>
+              </div>
             </ScrollReveal>
           ))}
         </div>

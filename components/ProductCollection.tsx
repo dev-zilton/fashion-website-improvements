@@ -8,11 +8,14 @@ import type { Product } from '@/lib/products'
 interface ProductCollectionProps {
   products: Product[]
   emptyMessage?: string
+  /** Quantos cartões carregam a foto com prioridade: os que se vêem ao abrir a página (0 quando a grelha está mais abaixo) */
+  priorityCount?: number
 }
 
 export function ProductCollection({
   products,
   emptyMessage = 'Nenhum produto encontrado.',
+  priorityCount = 4,
 }: ProductCollectionProps) {
   const { toast, showToast, hideToast } = useToast()
 
@@ -29,7 +32,7 @@ export function ProductCollection({
           <ProductCard
             key={product.id}
             {...product}
-            index={index}
+            priority={index < priorityCount}
             onAddToCart={(id) => showToast(`${titleOf(id)} adicionado ao carrinho!`)}
             onToggleWishlist={(id, added) =>
               showToast(

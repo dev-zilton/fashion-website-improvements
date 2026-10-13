@@ -294,8 +294,9 @@
   animation: heroRise 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Salta só 3 vezes: uma seta sempre a mexer faz o teste de velocidade achar que a página ainda está a carregar */
 .hero-bounce {
-  animation: heroBounce 2s ease-in-out infinite;
+  animation: heroBounce 2s ease-in-out 3;
 }
 
 @media (prefers-reduced-motion: reduce) {

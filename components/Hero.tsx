@@ -10,12 +10,20 @@ export function Hero() {
   const backgroundRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useMotionPreference()
 
-  // Rotate hero images every 8 seconds
+  // Troca de colecção a cada 8 s, só depois de o cliente mexer na página:
+  // assim o topo fica parado enquanto a página carrega (melhor Speed Index no telemóvel)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveImage((prev) => (prev + 1) % 3)
-    }, 8000)
-    return () => clearInterval(timer)
+    let timer: ReturnType<typeof setInterval> | undefined
+    const start = () => {
+      if (timer) return
+      timer = setInterval(() => setActiveImage((prev) => (prev + 1) % 3), 8000)
+    }
+    const events = ['scroll', 'pointerdown', 'keydown'] as const
+    events.forEach((e) => window.addEventListener(e, start, { once: true, passive: true }))
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, start))
+      clearInterval(timer)
+    }
   }, [])
 
   // Parallax: mexe no estilo directamente para não re-renderizar a cada scroll

@@ -1,6 +1,5 @@
 'use client'
 
-import { m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingBag, Heart } from 'lucide-react'
@@ -18,7 +17,8 @@ interface ProductCardProps {
   image: string
   collection: string
   subcategory?: string
-  index: number
+  /** Foto carregada logo, com prioridade (só para os cartões visíveis ao abrir a página) */
+  priority?: boolean
   isNew?: boolean
   limitedStock?: boolean
   salePrice?: number
@@ -31,8 +31,7 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, subcategory, index, isNew, limitedStock, salePrice, onSale, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
+function ProductCardComponent({ id, title, price, image, collection, subcategory, priority = false, isNew, limitedStock, salePrice, onSale, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [imageError, setImageError] = useState(false)
   const { addItem } = useCart()
   const { isWishlisted, toggle } = useWishlist()
@@ -55,11 +54,8 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
   return (
     <div className="reveal group cursor-pointer">
       <Link href={`/produto/${id}`}>
-        <div
-          className="relative overflow-hidden bg-muted aspect-[3/4] mb-3 md:mb-6"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        {/* Efeitos ao passar o rato em CSS (group/foto): não custam JavaScript ao abrir a página */}
+        <div className="group/foto relative overflow-hidden bg-muted aspect-[3/4] mb-3 md:mb-6">
           {/* Product Image Container */}
           <div className="relative w-full h-full">
             {/* Main Image */}
@@ -71,60 +67,41 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
                 <span className="text-sm font-medium">{title}</span>
               </div>
             ) : (
-              <m.div
-                className="absolute inset-0"
-                initial={{ scale: 1, translateY: 0, opacity: 1 }}
-                animate={{
-                  scale: isHovered ? 1.05 : 1,
-                  translateY: isHovered ? -8 : 0,
-                  opacity: isHovered ? 0.95 : 1,
-                }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <div className="absolute inset-0 transition-[scale,translate,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/foto:scale-105 group-hover/foto:-translate-y-2 group-hover/foto:opacity-95">
                 <Image
                   src={image}
                   alt={title}
                   fill
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover"
-                  priority={index < 4}
+                  priority={priority}
                   onError={() => setImageError(true)}
                 />
-              </m.div>
+              </div>
             )}
 
             {/* Overlay */}
-            <m.div
-              className="absolute inset-0 bg-black/20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: isHovered ? 1 : 0 }}
-              transition={{ duration: 0.35 }}
-            />
+            <div className="absolute inset-0 bg-black/20 opacity-0 transition-opacity duration-300 group-hover/foto:opacity-100" />
           </div>
 
           {/* Wishlist Button */}
-          <m.button
-            className="absolute top-2 right-2 md:top-4 md:right-4 p-2 md:p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent transition-colors duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
+          <button
+            className="absolute top-2 right-2 md:top-4 md:right-4 p-2 md:p-3 rounded-full bg-white/90 backdrop-blur-sm hover:bg-accent hover:scale-110 active:scale-95 transition-[background-color,scale] duration-200 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               e.preventDefault()
               onToggleWishlist?.(id, toggle(id))
             }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
             aria-label={wishlisted ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
           >
             <Heart
               size={18}
               className={wishlisted ? 'fill-red-500 text-red-500' : 'text-black'}
             />
-          </m.button>
+          </button>
 
           {/* Quick Add Button */}
-          <m.button
-            className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm hidden md:flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-            transition={{ duration: 0.3 }}
+          <button
+            className="absolute bottom-4 left-1/2 -translate-x-1/2 translate-y-5 opacity-0 group-hover/foto:translate-y-0 group-hover/foto:opacity-100 focus-visible:translate-y-0 focus-visible:opacity-100 w-48 py-3 bg-accent text-black font-semibold tracking-wider text-sm hidden md:flex items-center justify-center gap-2 hover:bg-white transition-all duration-300 z-10 focus:outline-2 focus:outline-offset-2 focus:outline-accent"
             onClick={(e) => {
               // Peças com tamanho seguem o link para a página do produto para escolher o tamanho
               if (needsSize) return
@@ -136,7 +113,7 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
           >
             <ShoppingBag size={16} />
             {needsSize ? 'ESCOLHER TAMANHO' : 'ADICIONAR AO CARRINHO'}
-          </m.button>
+          </button>
 
           {/* Só o selo de estado fica sobre a foto; a coleção aparece por cima do nome */}
           {(isNew || salePrice || onSale || limitedStock) && (
