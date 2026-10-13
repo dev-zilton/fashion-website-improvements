@@ -19,7 +19,8 @@ export default function Page() {
       const unitPrice = item.salePrice ?? item.price
       const variant = [item.size && `Tam. ${item.size}`, item.color].filter(Boolean).join(', ')
       const price = item.priceOnRequest ? 'preço sob consulta' : `${(unitPrice * item.quantity).toFixed(0)} MT`
-      return `- ${item.title}${variant ? ` [${variant}]` : ''} (x${item.quantity}) — ${price}`
+      // O link mostra a foto do produto na conversa e diz à loja exactamente que peça é
+      return `- ${item.title}${variant ? ` [${variant}]` : ''} (x${item.quantity}) — ${price}\n${window.location.origin}/produto/${item.id}`
     })
 
     const message = [
