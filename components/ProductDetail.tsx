@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Heart, ShoppingBag, Check } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/WhatsAppButton'
 import { useCart } from '@/contexts/CartContext'
+import { usePageLoaded } from '@/hooks/usePageLoaded'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { getProductSizes, type Product } from '@/lib/products'
 import { WHATSAPP_NUMBER } from '@/lib/config'
@@ -23,6 +24,7 @@ export function ProductDetail({ product }: { product: Product }) {
   const { isWishlisted, toggle } = useWishlist()
   const wishlisted = isWishlisted(product.id)
   const [added, setAdded] = useState(false)
+  const pageLoaded = usePageLoaded()
   const sizes = getProductSizes(product)
   const variants = product.variants ?? []
   const colors = variants.length > 0 ? variants.map((v) => v.color) : (product.colors ?? [])
@@ -165,6 +167,9 @@ export function ProductDetail({ product }: { product: Product }) {
                   alt={i === imageIndex ? product.title : ''}
                   fill
                   priority={src === currentImage}
+                  // Depois de a página abrir, as fotos ao lado da actual descarregam logo: ao deslizar já estão prontas
+                  loading={src === currentImage ? undefined : pageLoaded && Math.abs(i - imageIndex) <= 2 ? 'eager' : 'lazy'}
+                  fetchPriority={src === currentImage ? undefined : 'low'}
                   sizes="(min-width: 768px) 50vw, 100vw"
                   className="object-cover"
                   draggable={false}
@@ -204,7 +209,7 @@ export function ProductDetail({ product }: { product: Product }) {
                   i === imageIndex ? 'border-accent' : 'border-border hover:border-accent'
                 }`}
               >
-                <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+                <Image src={src} alt="" fill sizes="80px" loading={pageLoaded ? 'eager' : 'lazy'} fetchPriority="low" className="object-cover" />
               </button>
             ))}
           </div>

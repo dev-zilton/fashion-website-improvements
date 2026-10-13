@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { ShoppingBag, Heart } from 'lucide-react'
 import { useState, memo } from 'react'
 import { useCart } from '@/contexts/CartContext'
+import { usePageLoaded } from '@/hooks/usePageLoaded'
 import { useWishlist } from '@/contexts/WishlistContext'
 import { getProductSizes, type ProductVariant } from '@/lib/products'
 import { getCardSwatches } from '@/lib/colors'
@@ -19,6 +20,8 @@ interface ProductCardProps {
   subcategory?: string
   /** Foto carregada logo, com prioridade (só para os cartões visíveis ao abrir a página) */
   priority?: boolean
+  /** Foto descarregada logo que a página acaba de abrir (prioridade baixa): fica pronta antes de o cliente chegar ao cartão */
+  eager?: boolean
   isNew?: boolean
   limitedStock?: boolean
   salePrice?: number
@@ -31,8 +34,9 @@ interface ProductCardProps {
   onToggleWishlist?: (productId: string, isNowWishlisted: boolean) => void
 }
 
-function ProductCardComponent({ id, title, price, image, collection, subcategory, priority = false, isNew, limitedStock, salePrice, onSale, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
+function ProductCardComponent({ id, title, price, image, collection, subcategory, priority = false, eager = false, isNew, limitedStock, salePrice, onSale, priceOnRequest, sizes, colors, variants, baseColor, onAddToCart, onToggleWishlist }: ProductCardProps) {
   const [imageError, setImageError] = useState(false)
+  const pageLoaded = usePageLoaded()
   const { addItem } = useCart()
   const { isWishlisted, toggle } = useWishlist()
   const wishlisted = isWishlisted(id)
@@ -75,6 +79,8 @@ function ProductCardComponent({ id, title, price, image, collection, subcategory
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover"
                   priority={priority}
+                  loading={priority ? undefined : eager && pageLoaded ? 'eager' : 'lazy'}
+                  fetchPriority={!priority && eager ? 'low' : undefined}
                   onError={() => setImageError(true)}
                 />
               </div>

@@ -10,12 +10,15 @@ interface ProductCollectionProps {
   emptyMessage?: string
   /** Quantos cartões carregam a foto com prioridade: os que se vêem ao abrir a página (0 quando a grelha está mais abaixo) */
   priorityCount?: number
+  /** Os primeiros cartões descarregam a foto logo (prioridade baixa); os restantes só perto do ecrã */
+  eagerCount?: number
 }
 
 export function ProductCollection({
   products,
   emptyMessage = 'Nenhum produto encontrado.',
   priorityCount = 4,
+  eagerCount = 12,
 }: ProductCollectionProps) {
   const { toast, showToast, hideToast } = useToast()
 
@@ -33,6 +36,7 @@ export function ProductCollection({
             key={product.id}
             {...product}
             priority={index < priorityCount}
+            eager={index < eagerCount}
             onAddToCart={(id) => showToast(`${titleOf(id)} adicionado ao carrinho!`)}
             onToggleWishlist={(id, added) =>
               showToast(

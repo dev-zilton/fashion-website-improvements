@@ -23,7 +23,7 @@ export function BrandCarousel() {
       {BRANDS_WITH_LOGO.map(({ brand, logo }) => (
         <li key={brand.name} className="brand-tile flex items-center justify-center w-28 h-20 md:w-36 md:h-24 p-2 bg-white rounded-lg">
           {/* eslint-disable-next-line @next/next/no-img-element -- logótipos SVG pequenos, sem otimização */}
-          <img src={logo} alt={brand.name} className="brand-logo h-full w-full object-contain" loading="lazy" draggable={false} />
+          <img src={logo} alt={brand.name} className="brand-logo h-full w-full object-contain" loading="lazy" fetchPriority="low" decoding="async" draggable={false} />
         </li>
       ))}
     </ul>
