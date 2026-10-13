@@ -6,6 +6,7 @@ import { Mail, Share2, Heart, MessageCircle, ShoppingBag } from 'lucide-react'
 import { Toast } from './Toast'
 import { useToast } from '@/hooks/useToast'
 import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '@/lib/config'
+import { Logo } from './Logo'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -136,8 +137,8 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-12 md:gap-8 mb-16">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-xl font-bold tracking-wider block mb-6">
-              DRIP<span className="text-accent">GOD</span>
+            <Link href="/" aria-label="DripGOd, página inicial" className="inline-block mb-6">
+              <Logo className="h-9" />
             </Link>
             <p className="text-xs text-gray-400 leading-relaxed">
               Roupa, snikas e acessórios importados, com qualidade e as tendências do momento. Entregamos em todo Moçambique.

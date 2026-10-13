@@ -6,6 +6,7 @@ import { useWishlist } from '@/contexts/WishlistContext'
 import Link from 'next/link'
 import { Menu, X, ShoppingBag, Heart } from 'lucide-react'
 import { m, AnimatePresence } from 'framer-motion'
+import { Logo } from './Logo'
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,8 +35,8 @@ export function Header() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border">
       <nav className="flex items-center justify-between px-6 py-6 max-w-7xl mx-auto" aria-label="Navegação principal">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold tracking-wider" style={{ fontFamily: 'var(--font-playfair)' }}>
-          DRIP<span className="text-accent">GOD</span>
+        <Link href="/" aria-label="DripGOd, página inicial" className="flex items-center">
+          <Logo className="h-8 md:h-10" />
         </Link>
 
         {/* Desktop Navigation */}

@@ -1,6 +1,6 @@
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
-
-export const runtime = 'edge'
 export const alt = 'DripGOd - O drip do mundo, em Moçambique'
 export const size = {
   width: 1200,
@@ -8,7 +8,9 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default function Image() {
+export default async function Image() {
+  // Logótipo com letras claras e auréola dourada (gerado a partir do logótipo oficial)
+  const logo = `data:image/png;base64,${(await readFile(join(process.cwd(), 'app/og-logo.png'))).toString('base64')}`
   return new ImageResponse(
     (
       <div
@@ -22,25 +24,7 @@ export default function Image() {
           backgroundColor: '#0a0a0a',
         }}
       >
-        <div
-          style={{
-            width: 80,
-            height: 4,
-            backgroundColor: '#d4af37',
-            marginBottom: 24,
-          }}
-        />
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 90,
-            fontWeight: 700,
-            letterSpacing: '0.05em',
-          }}
-        >
-          <span style={{ color: '#f5f5f5' }}>DRIP</span>
-          <span style={{ color: '#d4af37' }}>GOD</span>
-        </div>
+        <img src={logo} alt="DripGOd" width={720} height={202} />
         <div
           style={{
             fontSize: 34,
